@@ -7,7 +7,7 @@ class Services extends Component {
     render() {
         const divStyle = {
             display: 'flex',
-            alignItems: 'stretch',
+            alignItems: 'stretccenter',
             JustifyContent: 'space-between'
         };
         const right = {
@@ -48,7 +48,7 @@ class Services extends Component {
                     </div>
                     <div style={divStyle}>
                         <div style={left}>
-                        <img  src={bikerent} alt ="bike" />
+                        <img width = '50%' src={bikerent} alt ="bike" />
 
                         </div>
                         <div style={right}>
