@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
-import QrGenerator from './QrGenerator';
+import Login from './components/Login';
+import Services from './components/Services';
+import QrGenerator from './components/QrGenerator';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,7 +15,7 @@ class App extends React.Component {
     return (
       <div className="App">
         
-        <QrGenerator />
+        <Services />
       </div>
     );
   }
