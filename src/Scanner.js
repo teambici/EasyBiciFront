@@ -22,8 +22,8 @@ class Scanner extends Component {
     }
     render() {
         const divStyle = {
-            heigth: '30vh',
-            width: '30vw',
+            heigth: '100vh',
+            width: '100vw',
         };
         return (
             <div style={divStyle} >
@@ -31,7 +31,8 @@ class Scanner extends Component {
                     delay={300}
                     onError={this.handleError}
                     onScan={this.handleScan}
-                    style={{ width: '100%' }}
+                    style={{ width: '100%', heigth:'100%'}}
+                    showViewFinder= {true}
                 />
                 <p>{this.state.result}</p>
             </div>
