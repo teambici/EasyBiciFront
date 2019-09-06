@@ -3,6 +3,7 @@ import './App.css';
 import Login from './components/Login';
 import Services from './components/Services';
 import QrGenerator from './components/QrGenerator';
+import BikeReserve from './components/BikeReserve';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class App extends React.Component {
     return (
       <div className="App">
         
-        <Services />
+        <BikeReserve />
       </div>
     );
   }

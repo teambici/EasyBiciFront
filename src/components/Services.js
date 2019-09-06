@@ -48,7 +48,7 @@ class Services extends Component {
                     </div>
                     <div style={divStyle}>
                         <div style={left}>
-                        <img width = '200%' src={bikerent} alt ="bike" />
+                        <img  src={bikerent} alt ="bike" />
 
                         </div>
                         <div style={right}>
