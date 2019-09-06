@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-//import bikerent from './images/bikerent.jpg';
+import bikerent from '../img/bikerent.jpg';
+import bikepark from '../img/parking.gif';
 class Services extends Component {
 
 
@@ -27,6 +28,7 @@ class Services extends Component {
             padding: '110px'
 
         }
+        console.log();
         return (
 
             <div className="Services">
@@ -46,10 +48,11 @@ class Services extends Component {
                     </div>
                     <div style={divStyle}>
                         <div style={left}>
-                            <img src='./images/bikerent.jpg' />
+                        <img width = '200%' src={bikerent} alt ="bike" />
+
                         </div>
                         <div style={right}>
-                            <img src='./images/bikerent.jpg' />
+                            <img src={bikepark} alt="park"/>
                         </div>
                     </div>
 
