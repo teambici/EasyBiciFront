@@ -23,6 +23,12 @@ export class Terms extends Component {
             }}
             />
         }
+        if (this.state.Decline) {
+            return <Redirect to={{
+                pathname: '/Services'               
+            }}
+            />
+        }
         const divStyle = {
             display: 'flex',
             flexDirection:'column',
@@ -34,7 +40,7 @@ export class Terms extends Component {
                 <h1>BEFORE YOU JOIN</h1> 
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras laoreet lorem nulla, at molestie neque vestibulum nec. Nullam blandit nisi ligula, et fringilla orci euismod ullamcorper. Quisque a eros erat. Aenean elementum blandit tortor, eget semper lectus tempor id. Quisque eu ante posuere, euismod neque sed, porta dolor. Integer maximus eros a commodo ultrices. Phasellus molestie consectetur ex, at blandit tortor. Curabitur posuere, odio pellentesque molestie efficitur, turpis mi aliquam velit, eu condimentum leo nunc sed risus. Vivamus ligula est, placerat in imperdiet id, ornare vel mi. Praesent lectus enim, maximus a magna et, commodo efficitur orci. Cras hendrerit risus a elit accumsan congue. </p>               
                 <div style={divStyle}>
-                    <button> Accept</button>                   
+                    <button onClick={this.handleDecline}> Accept</button>                   
                     <button onClick={this.handleAccept}>Decline</button>
                 </div>                
             </div>
