@@ -30,7 +30,7 @@ export class Bike extends Component {
                 <h1> Bicicleta X </h1> 
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras laoreet lorem nulla, at molestie neque vestibulum nec. Nullam blandit nisi ligula, et fringilla orci euismod ullamcorper. Quisque a eros erat. Aenean elementum blandit tortor, eget semper lectus tempor id. Quisque eu ante posuere, euismod neque sed, porta dolor. Integer maximus eros a commodo ultrices. Phasellus molestie consectetur ex, at blandit tortor. Curabitur posuere, odio pellentesque molestie efficitur, turpis mi aliquam velit, eu condimentum leo nunc sed risus. Vivamus ligula est, placerat in imperdiet id, ornare vel mi. Praesent lectus enim, maximus a magna et, commodo efficitur orci. Cras hendrerit risus a elit accumsan congue. </p>               
                 <div style={divStyle}>
-                    <button onClick={this.handleCheck}> Check </button>                                       
+                    <button onClick={this.handleCheck}> Check Availability</button>                                       
                 </div>                
             </div>
         )
