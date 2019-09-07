@@ -9,6 +9,7 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { Link } from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import './Login.css'
 
 
@@ -16,13 +17,19 @@ export class Login extends React.Component {
     constructor(props) {
 
         super(props);
-        this.state = { Loggin: '' }
+        this.state = { Loggin: false }
         this.handleLoggin = this.handleLoggin.bind(this);
     }
     handleLoggin(e) {
-        this.setState({ loggin: true });
+        this.setState({ Loggin: true });
     }
     render() {
+        if(this.state.Loggin){
+            return <Redirect to={{
+                pathname: '/Services'               
+            }}
+            />
+        }
         const nextStyle = {
             position:'absolute',
             bottom:"10%",
@@ -59,6 +66,7 @@ export class Login extends React.Component {
                                 />
                             </FormControl>
                             <Button
+                                onClick={this.handleLoggin}
                                 type="submit"
                                 fullWidth
                                 variant="raised"
@@ -67,7 +75,6 @@ export class Login extends React.Component {
                             >
                                 LOG IN
                             </Button>
-                            <button style={nextStyle}></button>
                         </form>
                     </Paper>
                 </main>
