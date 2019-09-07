@@ -8,16 +8,38 @@ import InputLabel from '@material-ui/core/InputLabel';
 import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import { Link } from "react-router-dom";
 import './Login.css'
 
 
-export class Login extends React.Component{
-    render(){
+export class Login extends React.Component {
+    constructor(props) {
+
+        super(props);
+        this.state = { Loggin: '' }
+        this.handleLoggin = this.handleLoggin.bind(this);
+    }
+    handleLoggin(e) {
+        this.setState({ loggin: true });
+    }
+    render() {
+        const nextStyle = {
+            position:'absolute',
+            bottom:"10%",
+            right:"5%",
+            height: "45px",
+            width: "45px",
+            background: "green",
+            borderRadius: "50%"
+
+        };
         return (
+
             <React.Fragment>
                 <CssBaseline />
                 <main className="layout">
                     <Paper className="paper">
+                        <Link to="/">Back</Link>
                         <Avatar className="avatar">
                             <LockIcon />
                         </Avatar>
@@ -45,6 +67,7 @@ export class Login extends React.Component{
                             >
                                 LOG IN
                             </Button>
+                            <button style={nextStyle}></button>
                         </form>
                     </Paper>
                 </main>

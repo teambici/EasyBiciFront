@@ -4,10 +4,13 @@ export class LoginHome extends Component {
     constructor(props) {
         
         super(props);
-        this.state={createAcount:''}
+        this.state={createAcount:'',Loggin:''}
+        this.handleLoggin = this.handleLoggin.bind(this);
         this.handleCreateAcount = this.handleCreateAcount.bind(this);
     }
-    
+    handleLoggin(event) {
+        this.setState({ Loggin: true });
+    }
     handleCreateAcount(event) {        
         this.setState({createAcount: true});
     }  
@@ -16,6 +19,12 @@ export class LoginHome extends Component {
         if (this.state.createAcount) {
             return <Redirect to={{
                 pathname: '/name'               
+            }}
+            />
+        }
+        if (this.state.Loggin){
+            return <Redirect to={{
+                pathname: '/login'               
             }}
             />
         }
@@ -29,7 +38,7 @@ export class LoginHome extends Component {
             <div>
                 <h1>Welcome to EasyBici</h1>                
                 <div style={divStyle}>
-                    <button >Login</button>                   
+                    <button onClick = {this.handleLoggin} >Login</button>                   
                     <button onClick={this.handleCreateAcount}>CreateAcount</button>
                 </div>                
             </div>
