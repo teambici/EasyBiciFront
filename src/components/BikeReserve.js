@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import bikerent from '../img/bikeex.png';
 import bike from '../img/bikerent.jpg';
 
-export class BikeReserve extends Component {
+class BikeReserve extends Component {
     
     render() {
         const divStyle = {
