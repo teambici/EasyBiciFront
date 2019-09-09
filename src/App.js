@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
 
-import {Login} from './Components/Login';
-import Services from './Components/Services';
-import QrGenerator from './Components/QrGenerator';
-import BikeReserve from './Components/BikeReserve';
-import Confirmed from './Components/Confirmed';
+import {Login} from './components/Login';
+import Services from './components/Services';
+import QrGenerator from './components/QrGenerator.js';
+import BikeReserve from './components/BikeReserve.js';
+import Confirmed from './components/Confirmed';
 import Scanner from "./Scanner"
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { LoginHome } from "./Components/LoginHome"

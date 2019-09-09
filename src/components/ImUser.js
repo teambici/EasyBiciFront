@@ -31,4 +31,4 @@ export class ImUser extends Component {
 
 }
 
-export default BikeReserve;
+export default ImUser;

@@ -9,7 +9,8 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { Link } from "react-router-dom";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import User from "./ImUser.js";
 import './Login.css'
 
 
@@ -24,16 +25,16 @@ export class Login extends React.Component {
         this.setState({ Loggin: true });
     }
     render() {
-        if(this.state.Loggin){
+        if (this.state.Loggin) {
             return <Redirect to={{
-                pathname: '/Services'               
+                pathname: '/Services'
             }}
             />
         }
         const nextStyle = {
-            position:'absolute',
-            bottom:"10%",
-            right:"5%",
+            position: 'absolute',
+            bottom: "10%",
+            right: "5%",
             height: "45px",
             width: "45px",
             background: "green",
@@ -41,43 +42,48 @@ export class Login extends React.Component {
 
         };
         return (
-            <React.Fragment>
-                <CssBaseline />
-                <main className="layout">
-                    <Paper className="paper">
-                        <Link to="/">Back</Link>
-                        <Avatar className="avatar">
-                            <LockIcon />
-                        </Avatar>
-                        <Typography variant="headline">LOG IN</Typography>
-                        <form className="form">
-                            <FormControl margin="normal" required fullWidth>
-                                <InputLabel htmlFor="email">Email Address</InputLabel>
-                                <Input id="email" name="email" autoComplete="email" autoFocus />
-                            </FormControl>
-                            <FormControl margin="normal" required fullWidth>
-                                <InputLabel htmlFor="password">Password</InputLabel>
-                                <Input
-                                    name="password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="current-password"
-                                />
-                            </FormControl>
-                            <Button
-                                onClick={this.handleLoggin}
-                                type="submit"
-                                fullWidth
-                                variant="raised"
-                                color="primary"
-                                className="submit"
-                            >
-                                LOG IN
+            <div>
+
+                
+                <React.Fragment>
+
+                    <CssBaseline />
+                    <main className="layout">
+                        <Paper className="paper">
+                            <Link to="/">Back</Link>
+                            <Avatar className="avatar">
+                                <LockIcon />
+                            </Avatar>
+                            <Typography variant="headline">LOG IN</Typography>
+                            <form className="form">
+                                <FormControl margin="normal" required fullWidth>
+                                    <InputLabel htmlFor="email">Email Address</InputLabel>
+                                    <Input id="email" name="email" autoComplete="email" autoFocus />
+                                </FormControl>
+                                <FormControl margin="normal" required fullWidth>
+                                    <InputLabel htmlFor="password">Password</InputLabel>
+                                    <Input
+                                        name="password"
+                                        type="password"
+                                        id="password"
+                                        autoComplete="current-password"
+                                    />
+                                </FormControl>
+                                <Button
+                                    onClick={this.handleLoggin}
+                                    type="submit"
+                                    fullWidth
+                                    variant="raised"
+                                    color="primary"
+                                    className="submit"
+                                >
+                                    LOG IN
                             </Button>
-                        </form>
-                    </Paper>
-                </main>
-            </React.Fragment>
+                            </form>
+                        </Paper>
+                    </main>
+                </React.Fragment>
+            </div>
         );
     }
 
