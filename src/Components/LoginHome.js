@@ -16,6 +16,12 @@ export class LoginHome extends Component {
     }  
 
     render() {  
+        if (localStorage.getItem("isLoggedin")) {
+            return <Redirect to={{
+                pathname: '/Services'
+            }}
+            />
+        }
         if (this.state.createAcount) {
             return <Redirect to={{
                 pathname: '/name'               
