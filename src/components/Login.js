@@ -15,6 +15,17 @@ import './Login.css'
 
 
 export class Login extends React.Component {
+    checkdata() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value
+
+        if (email != "" && password != "") {
+            localStorage.setItem("isLoggedin", true);
+            localStorage.setItem("mailLogged", email);
+            localStorage.setItem("passwordLogged", password);
+            this.setState({ Loggin: true });
+        }
+    }
     constructor(props) {
 
         super(props);
@@ -22,10 +33,10 @@ export class Login extends React.Component {
         this.handleLoggin = this.handleLoggin.bind(this);
     }
     handleLoggin(e) {
-        this.setState({ Loggin: true });
+        this.checkdata();
     }
     render() {
-        if (this.state.Loggin) {
+        if (localStorage.getItem("isLoggedin")) {
             return <Redirect to={{
                 pathname: '/Services'
             }}
