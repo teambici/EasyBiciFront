@@ -3,12 +3,14 @@ import "./Confirmed.css";
 import Divider from '@material-ui/core/Divider';
 import Face from '@material-ui/icons/Face';
 import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 class hostService extends Component {
     constructor(props) {
         super(props);
-        this.state = { qrButton: false, notification: false };
+        this.state = { qrButton: false, notification: false  ,scan: false};
         this.handleqrButton = this.handleqrButton.bind(this);
         this.handlenotification = this.handlenotification.bind(this);
+        this.handlescan=this.handlescan.bind(this);
     }
     handleqrButton(event) {
         this.setState({ qrButton: true })
@@ -16,12 +18,15 @@ class hostService extends Component {
     handlenotification(event) {
         this.setState({ notification: true })
     }
+    handlescan(event) {
+        this.setState({ scan: true })
+    }
 
     whatView() {
         if (this.state.qrButton) {
             return (
                 <div>
-                    <button className="boton_qr">SCAN QR CODE</button>
+                    <button className="boton_qr" onClick={this.handlescan}>SCAN QR CODE</button>
                 </div>
             )
         } else {
@@ -38,6 +43,12 @@ class hostService extends Component {
         if (this.state.notification) {
             return <Redirect to={{
                 pathname: '/notifications'
+            }}
+            />
+        }
+        if (this.state.scan) {
+            return <Redirect to={{
+                pathname: '/Scanner'
             }}
             />
         }

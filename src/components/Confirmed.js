@@ -8,16 +8,26 @@ import { Redirect } from "react-router-dom";
 class Confirmed extends Component {
     constructor(props) {
         super(props);
-        this.state = { qrButton: false };
+        this.state = { qrButton: false ,map :false};
         this.handleqrButton = this.handleqrButton.bind(this);
+        this.handlemap = this.handlemap.bind(this);
     }
     handleqrButton(event){
         this.setState({qrButton:true})
+    }
+    handlemap(event){
+        this.setState({map: true})
     }
     render() {
         if(this.state.qrButton){
             return <Redirect to={{
                 pathname: '/qrGenerator'
+            }}
+            />
+        }
+        if(this.state.map){
+            return <Redirect to={{
+                pathname: '/Services'
             }}
             />
         }
@@ -33,7 +43,7 @@ class Confirmed extends Component {
                 </div>
                 < div>
                     <button className="boton_confer">CONTACT</button>
-                    <button className="boton_confer" >CANCEL</button>
+                    <button className="boton_confer" onClick={this.handlemap}>CANCEL</button>
                 </div>
                 <Divider />
                 <div className="divC"> </div>
