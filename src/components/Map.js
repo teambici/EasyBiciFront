@@ -12,7 +12,7 @@ const mapStyles = {
 
 
 
-const api="";
+const api="AIzaSyBCII_xm0kDyjH_nFAvZM6wg5eQF-vnTBw";
 class Maps extends Component {
     
     

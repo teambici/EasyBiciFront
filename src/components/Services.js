@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import bikerent from '../img/bikerent.jpg';
 import bikepark from '../img/parking.gif';
-
+import  BottomMenu  from "./Bottom_Menu"
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -22,20 +22,20 @@ class Services extends Component {
 
 
     render() {
-        const API_KEY = "";
+        const API_KEY = "AIzaSyBCII_xm0kDyjH_nFAvZM6wg5eQF-vnTBw";
         return (
             <div>
-                <MenuUserLogged></MenuUserLogged>
+               
 
                 <h2>Bienvenido {localStorage.getItem("mailLogged")}</h2>
-                <h3>Buscar ciclas</h3>
+                <h3>Buscar bicicletas</h3>
                 <div>
                     <Card className="insertCard">
                         <form onSubmit={this.handleSubmit}>
                             <TextField
                                 id="text-todo"
                                 label="Buscar Una Cicla"
-                                value="{this.state.text}"
+                                value={this.state.text}
                                 onChange={this.handleChange}
                                 margin="normal"
                             />
@@ -60,7 +60,7 @@ class Services extends Component {
 
                 </div>
 
-
+                <BottomMenu/>
 
 
 
