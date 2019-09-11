@@ -12,7 +12,7 @@ import { ImUser } from "./Components/ImUser"
 import { Favorite } from "./Components/Menu/Favorite"
 import { Profile } from "./Components/Menu/Profile"
 import { Recents } from "./Components/Menu/Recents"
-
+import { Notifications } from "./Components/Menu/Notifications"
 
 
 class App extends React.Component {
@@ -34,7 +34,7 @@ class App extends React.Component {
           <Route path="/favorites" exact component={Favorite} />
           <Route path="/profile" exact component={Profile} />
           <Route path="/recents" exact component={Recents} />
-
+          <Route path="/notifications" exact component={Notifications} />
         </div>
       </Router>
     );

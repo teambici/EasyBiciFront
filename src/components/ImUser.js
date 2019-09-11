@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import parker from '../img/Parker.jpg';
-
+import { Link } from "react-router-dom";
 export class ImUser extends Component {
     
     render() {
@@ -13,7 +13,7 @@ export class ImUser extends Component {
             <div className="ImUser">
 
                 <div>
-                    
+                    <Link to="/profile">back</Link>
                     <h1>HI, I´m Usuario Parker</h1>
                     <h2>Joined in August,2019 </h2>
                 </div>
