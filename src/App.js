@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 
-import {Login} from './components/Login';
-import Services from './components/Services';
+import {Login} from './Components/Login';
+import Services from './Components/Services';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { LoginHome } from "./Components/LoginHome"
 import { Name } from "./Components/Create_acount/Name"
