@@ -15,8 +15,8 @@ import { Recents } from "./Components/Menu/Recents"
 import { Notifications } from "./Components/Menu/Notifications"
 
 
-import Confirmed from './components/Confirmed.css';
-import qrGenerator from "./components/QrGenerator";
+import Confirmed from './Components/Confirmed.css';
+import qrGenerator from "./Components/QrGenerator";
 
 class App extends React.Component {
   constructor(props) {
