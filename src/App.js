@@ -45,6 +45,7 @@ class App extends React.Component {
           <Route path="/bike" exact component={Bike}/>
           <Route path="/Scanner" exact component={Scanner}/>
           <Route path="/reserve" exact component={BikeReserve}/>
+          
         </div>
       </Router>
     );

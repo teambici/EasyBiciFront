@@ -6,6 +6,7 @@ import { GoogleComponent } from 'react-google-location';
 import Button from '@material-ui/core/Button';
 import { runInThisContext } from 'vm';
 import logo from "../img/bikeex2.png"
+import parqueadero from "../img/parqueo.png"
 
 
 
@@ -62,9 +63,13 @@ class Maps extends Component {
                 <Marker position={{ lat: 4.751907, lng: -74.049233 }} icon={logo}/>
                 <Marker position={{ lat: 4.752228, lng: -74.053621 }} icon={logo}/>
                 <Marker position={{ lat: 4.751202, lng: -74.052859}} icon={logo}/>
-                <Marker position={{ lat:  4.751042, lng: -74.047881}} icon={logo}/>
-                 
+                <Marker position={{ lat:  4.751042, lng: -74.047881}} icon={logo}/>                 
                 <Marker position={{ lat: 4.752496,lng: -74.048192 }} icon={logo}/>
+
+                <Marker position={{ lat: 4.755831, lng: -74.052339 }} icon={parqueadero}/>
+                <Marker position={{ lat: 4.754775, lng: -74.054610 }} icon={parqueadero}/>
+                <Marker position={{ lat: 4.754989, lng: -74.065285 }} icon={parqueadero}/>
+                <Marker position={{ lat: 4.755278,lng:  -74.079919 }} icon={parqueadero}/>
                 
                 
             </Map>
