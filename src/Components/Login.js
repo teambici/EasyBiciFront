@@ -45,16 +45,6 @@ export class Login extends React.Component {
             }}
             />
         }
-        const nextStyle = {
-            position: 'absolute',
-            bottom: "10%",
-            right: "5%",
-            height: "45px",
-            width: "45px",
-            background: "green",
-            borderRadius: "50%"
-
-        };
         return (
             <div className="mainDiv">                
                 <React.Fragment>
