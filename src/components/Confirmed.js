@@ -8,13 +8,12 @@ import { Redirect } from "react-router-dom";
 class Confirmed extends Component {
     constructor(props) {
         super(props);
-        this.state = { qrButton: false};
+        this.state = { qrButton: false };
         this.handleqrButton = this.handleqrButton.bind(this);
     }
     handleqrButton(event){
         this.setState({qrButton:true})
     }
-
     render() {
         if(this.state.qrButton){
             return <Redirect to={{
@@ -33,8 +32,8 @@ class Confirmed extends Component {
                     <h6 className="usuario">usuario parker</h6>
                 </div>
                 < div>
-                    <button className="boton_personalizado">CONTACT</button>
-                    <button className="boton_personalizado">CANCEL</button>
+                    <button className="boton_confer">CONTACT</button>
+                    <button className="boton_confer" >CANCEL</button>
                 </div>
                 <Divider />
                 <div className="divC"> </div>
@@ -42,7 +41,7 @@ class Confirmed extends Component {
                 <div className="divC">
                     <h6>precio</h6>
                 </div>
-                <div className="divC"> </div>
+                <div className="divM"> </div>
                 <Divider />
                 <button className="boton_qr" onClick={this.handleqrButton}>GET YOUR QR CODE</button>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-
+import hostService from './Components/hostService';
 import {Login} from './Components/Login';
 import Services from './Components/Services';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -13,9 +13,9 @@ import { Favorite } from "./Components/Menu/Favorite"
 import { Profile } from "./Components/Menu/Profile"
 import { Recents } from "./Components/Menu/Recents"
 import { Notifications } from "./Components/Menu/Notifications"
-import { Bike } from "./Components/Bike"
-import { BikeReserve } from "./Components/BikeReserve"
-import Confirmed from './Components/Confirmed.css';
+import { Bike } from "./Components/Bike";
+import { BikeReserve } from "./Components/BikeReserve";
+import Confirmed from './Components/Confirmed';
 import qrGenerator from "./Components/QrGenerator";
 
 class App extends React.Component {
@@ -30,7 +30,8 @@ class App extends React.Component {
           <Route path="/" exact component={LoginHome} />
           <Route path="/qrGenerator" exact component={qrGenerator} />
           <Route path="/login" exact component={Login} />
-          <Route path="/Services" exact component={Services} />     
+          <Route path="/Services" exact component={Services} />  
+          <Route path="/hostService" exact component={hostService} />   
           <Route path="/name" exact component={Name} />      
           <Route path="/information" exact component={Information} />   
           <Route path="/terms" exact component={Terms} />
