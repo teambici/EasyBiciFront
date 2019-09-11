@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-
+import hostService from './Components/hostService';
 import {Login} from './Components/Login';
 import Services from './Components/Services';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -23,7 +23,8 @@ class App extends React.Component {
           <Route path="/" exact component={LoginHome} />
           <Route path="/qrGenerator" exact component={qrGenerator} />
           <Route path="/login" exact component={Login} />
-          <Route path="/Services" exact component={Services} />     
+          <Route path="/Services" exact component={Services} />  
+          <Route path="/hostService" exact component={hostService} />   
           <Route path="/name" exact component={Name} />      
           <Route path="/information" exact component={Information} />   
           <Route path="/terms" exact component={Terms} />

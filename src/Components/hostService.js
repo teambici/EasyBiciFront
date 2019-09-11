@@ -3,27 +3,37 @@ import "./Confirmed.css";
 import Divider from '@material-ui/core/Divider';
 import Face from '@material-ui/icons/Face';
 import { Redirect } from "react-router-dom";
-class Confirmed extends Component {
+class hostService extends Component {
     constructor(props) {
         super(props);
-        this.state = { qrButton: false};
+        this.state = { qrButton: false };
         this.handleqrButton = this.handleqrButton.bind(this);
     }
-    handleqrButton(event){
-        this.setState({qrButton:true})
+    handleqrButton(event) {
+        this.setState({ qrButton: true })
     }
+    whatView() {
+        if (this.state.qrButton) {
+            return (
+                <div>
+                    <button className="boton_qr">SCAN QR CODE</button>
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    <button className="boton_down" onClick={this.handleqrButton}>CONFIRM</button>
+                    <button className="boton_down">DECLINE</button>
+                </div>
 
-    render() {
-        if(this.state.qrButton){
-            return <Redirect to={{
-                pathname: '/qrGenerator'
-            }}
-            />
+            )
         }
+    }
+    render() {  
         return (
 
             <div className=" Confirmed">
-                <h1 className="titulo">YOUR BIKE</h1>
+                <h1 className="titulo">SERVICE</h1>
                 <div />
                 <Divider />
                 <div>
@@ -32,7 +42,6 @@ class Confirmed extends Component {
                 </div>
                 < div>
                     <button className="boton_confer">CONTACT</button>
-                    <button className="boton_confer">CANCEL</button>
                 </div>
                 <Divider />
                 <div className="divC"> </div>
@@ -40,9 +49,11 @@ class Confirmed extends Component {
                 <div className="divC">
                     <h6>precio</h6>
                 </div>
-                <div className="divM"> </div>
+                <div className="divC"> </div>
                 <Divider />
-                <button className="boton_qr" onClick={this.handleqrButton}>GET YOUR QR CODE</button>
+                <div className="divC">
+                    {this.whatView()}
+                </div>
             </div>
 
         );
@@ -50,4 +61,4 @@ class Confirmed extends Component {
 
 }
 
-export default Confirmed;
+export default hostService;
