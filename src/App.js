@@ -15,6 +15,9 @@ import { Recents } from "./Components/Menu/Recents"
 import { Notifications } from "./Components/Menu/Notifications"
 
 
+import Confirmed from './components/Confirmed.css';
+import qrGenerator from "./components/QrGenerator";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +28,7 @@ class App extends React.Component {
       <Router>
         <div className="App color_fondo">
           <Route path="/" exact component={LoginHome} />
+          <Route path="/qrGenerator" exact component={qrGenerator} />
           <Route path="/login" exact component={Login} />
           <Route path="/Services" exact component={Services} />     
           <Route path="/name" exact component={Name} />      
@@ -35,6 +39,7 @@ class App extends React.Component {
           <Route path="/profile" exact component={Profile} />
           <Route path="/recents" exact component={Recents} />
           <Route path="/notifications" exact component={Notifications} />
+          <Route path="/Confirmed" exact component={Confirmed}/>
         </div>
       </Router>
     );

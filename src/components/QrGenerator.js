@@ -7,6 +7,7 @@ class QrGenerator extends Component {
     var min=1;
     var max=100;
     var seed= Math.random*(max-min)*Math.random;
+    alert(Math.random)
     return (
       <div className="QrGenrator">
 

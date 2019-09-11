@@ -1,0 +1,33 @@
+.boton_personalizado{
+    text-decoration: none;
+    padding: 15px;
+    font-weight: 500;
+    font-size: 10px;
+    color: #070707;
+    background-color: #ffffff;
+    border-radius: 3px;
+    border: 2px solid #000000;
+    margin: 1%;
+}
+.titulo{
+    font-family: Verdana;
+    font-size: 150%;
+    margin: 2%;
+}
+.usuario{
+    padding: 15px;
+}
+.divC{
+    margin: 2%;
+}
+.boton_qr{
+    text-decoration: none;
+    padding: 15px;
+    font-weight: 500;
+    font-size: 20px;
+    color: #070707;
+    background-color: #ffffff;
+    border-radius: 3px;
+    border: 2px solid #000000;
+    margin: 1%;
+}

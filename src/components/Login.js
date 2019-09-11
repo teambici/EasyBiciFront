@@ -12,6 +12,8 @@ import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import User from "./ImUser.js";
 import './Login.css'
+import CardMedia from '@material-ui/core/CardMedia';
+import logo from '../img/logoF.png';
 
 
 
@@ -54,16 +56,21 @@ export class Login extends React.Component {
 
         };
         return (
-            <div>                
+            <div className="mainDiv">                
                 <React.Fragment>
                     <CssBaseline />
                     <main className="layout">
                         <Paper className="paper">
                             <Link to="/">Back</Link>
-                            <Avatar className="avatar">
-                                <LockIcon />
-                            </Avatar>
-                            <Typography variant="headline">LOG IN</Typography>
+                            <CardMedia
+                            component="img"
+                            alt="Logo"
+                            align="center"
+                            class="responsive"
+                            image={logo}
+                        title="Logo"
+                    />
+                            <Typography variant="headline">Ingresar</Typography>
                             <form className="form">
                                 <FormControl margin="normal" required fullWidth>
                                     <InputLabel htmlFor="email">Email Address</InputLabel>

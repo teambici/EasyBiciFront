@@ -4,6 +4,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+}
+#root{
+  background-color: #cc9c3357;
 }
 
 code {
