@@ -3,6 +3,8 @@ import "../Components/Confirmed.css";
 import Divider from '@material-ui/core/Divider';
 import Face from '@material-ui/icons/Face';
 import { Redirect } from "react-router-dom";
+
+
 class Confirmed extends Component {
     constructor(props) {
         super(props);
