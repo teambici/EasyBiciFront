@@ -15,7 +15,7 @@ import { Recents } from "./Components/Menu/Recents"
 import { Notifications } from "./Components/Menu/Notifications"
 
 
-import Confirmed from './Components/Confirmed.css';
+import Confirmed from './Components/Confirmed';
 import qrGenerator from "./Components/QrGenerator";
 
 class App extends React.Component {

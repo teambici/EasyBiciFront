@@ -8,15 +8,11 @@ import { Redirect } from "react-router-dom";
 class Confirmed extends Component {
     constructor(props) {
         super(props);
-        this.state = { qrButton: false, map: false};
+        this.state = { qrButton: false };
         this.handleqrButton = this.handleqrButton.bind(this);
-        this.handlemap =this.handlemap.bind(this);
     }
     handleqrButton(event){
-        this.setState({qrButton:true});
-    }
-    handlemap(event){
-        this.setState({handlemap:true});
+        this.setState({qrButton:true})
     }
     render() {
         if(this.state.qrButton){
@@ -37,7 +33,7 @@ class Confirmed extends Component {
                 </div>
                 < div>
                     <button className="boton_confer">CONTACT</button>
-                    <button className="boton_confer" onClick={this.handlemap} >CANCEL</button>
+                    <button className="boton_confer" >CANCEL</button>
                 </div>
                 <Divider />
                 <div className="divC"> </div>
