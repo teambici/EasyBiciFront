@@ -6,12 +6,17 @@ import { Redirect } from "react-router-dom";
 class hostService extends Component {
     constructor(props) {
         super(props);
-        this.state = { qrButton: false };
+        this.state = { qrButton: false, notification: false };
         this.handleqrButton = this.handleqrButton.bind(this);
+        this.handlenotification = this.handlenotification.bind(this);
     }
     handleqrButton(event) {
         this.setState({ qrButton: true })
     }
+    handlenotification(event) {
+        this.setState({ notification: true })
+    }
+
     whatView() {
         if (this.state.qrButton) {
             return (
@@ -23,13 +28,19 @@ class hostService extends Component {
             return (
                 <div>
                     <button className="boton_down" onClick={this.handleqrButton}>CONFIRM</button>
-                    <button className="boton_down">DECLINE</button>
+                    <button className="boton_down" onClick={this.handlenotification}>DECLINE</button>
                 </div>
 
             )
         }
     }
-    render() {  
+    render() {
+        if (this.state.notification) {
+            return <Redirect to={{
+                pathname: '/notifications'
+            }}
+            />
+        }
         return (
 
             <div className=" Confirmed">
