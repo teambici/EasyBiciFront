@@ -3,13 +3,10 @@
     margin:2.5%;
     width: 100%;
     max-width: 400px;
-    right:  "40%"
-    
-    
-   
+    right:  "40%"   
 }
 .Map{
-    max-width: 400px;
+    width: 600px;
     float:right;
     
 }
