@@ -53,11 +53,8 @@ export class Login extends React.Component {
 
         };
         return (
-            <div>
-
-                
+            <div>                
                 <React.Fragment>
-
                     <CssBaseline />
                     <main className="layout">
                         <Paper className="paper">

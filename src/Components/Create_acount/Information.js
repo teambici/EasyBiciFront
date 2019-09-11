@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "../LoginHome.css"
+
 export class Information extends Component {
     constructor(props) {
         super(props);
@@ -62,7 +64,7 @@ export class Information extends Component {
 
         return (
 
-            <div >
+            <div className="color_fond">
                 <Link  to={ {
                 pathname: '/name',
                 state: {first_name:this.state.first_name, last_name:this.state.last_name }}}>Back</Link>
@@ -81,6 +83,7 @@ export class Information extends Component {
                             onChange={this.handleBirthday}
                         />
                     </label>
+                    
                     <label>
                         PASSWORD
                             <input type="password" name="password" value={this.state.password}
@@ -91,7 +94,7 @@ export class Information extends Component {
                             <input type="password" name="secondPassword" value={this.state.secondPassword}
                             onChange={this.handleSecondPassword} />
                     </label>
-                    <button onClick={this.handleNext} style={nextStyle}></button>  
+                    <button className="boton_Next" onClick={this.handleNext} >Next</button>  
                 </form>
 
                   

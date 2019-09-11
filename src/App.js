@@ -3,10 +3,6 @@ import './App.css';
 
 import {Login} from './components/Login';
 import Services from './components/Services';
-import QrGenerator from './components/QrGenerator.js';
-import BikeReserve from './components/BikeReserve.js';
-import Confirmed from './components/Confirmed';
-import Scanner from "./Scanner"
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { LoginHome } from "./Components/LoginHome"
 import { Name } from "./Components/Create_acount/Name"
@@ -21,14 +17,13 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div className="App">
+        <div className="App color_fondo">
           <Route path="/" exact component={LoginHome} />
           <Route path="/login" exact component={Login} />
           <Route path="/Services" exact component={Services} />     
           <Route path="/name" exact component={Name} />      
           <Route path="/information" exact component={Information} />   
-          <Route path="/terms" exact component={Terms} />   
-
+          <Route path="/terms" exact component={Terms} />
         </div>
       </Router>
     );

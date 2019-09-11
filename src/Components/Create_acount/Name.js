@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from "react-router-dom";
 import {Link} from "react-router-dom";
+import "../LoginHome.css"
+
+
 export class Name extends Component {
     constructor(props) {
         super(props);        
@@ -39,7 +42,6 @@ export class Name extends Component {
             width: "45px",
             background: "green",
             borderRadius: "50%"
-
         };
         if(this.state.next){
             console.log("Aaa")
@@ -50,10 +52,9 @@ export class Name extends Component {
             />
         };
           
-        return (
+        return (         
             
-            
-            <div >
+            <div className="color_fondo">
                 <Link to="/">Back</Link>
                 <h1>What's your name?</h1>                
                 <div style={divStyle}>
@@ -70,7 +71,7 @@ export class Name extends Component {
                 </label>
                 
                 </div>  
-                <button onClick={this.handleNext} style={nextStyle}></button>                  
+                <button className="boton_Next" onClick={this.handleNext}>Next</button>                  
                 
                             
             </div>

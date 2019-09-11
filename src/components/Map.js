@@ -28,6 +28,6 @@ const MapWrapper = props => (
 );
 
 export default(GoogleApiWrapper({
-    apiKey: 'KEY',
+    apiKey: 'AIzaSyBCII_xm0kDyjH_nFAvZM6wg5eQF-vnTBw',
     language: "es",
 })(MapWrapper));
