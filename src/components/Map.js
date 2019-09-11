@@ -5,6 +5,9 @@ import TextField from '@material-ui/core/TextField';
 import { GoogleComponent } from 'react-google-location';
 import Button from '@material-ui/core/Button';
 import { runInThisContext } from 'vm';
+import logo from "../img/bikeex2.png"
+
+
 
 
 const mapStyles = {
@@ -16,7 +19,7 @@ const mapStyles = {
 
 
 
-const API_KEY = "";
+const API_KEY = "AIzaSyBCII_xm0kDyjH_nFAvZM6wg5eQF-vnTBw";
 class Maps extends Component {
     constructor(props) {
         super(props)
@@ -58,6 +61,9 @@ class Maps extends Component {
                 center={{ lat: this.state.place.lat, lng: this.state.place.lng }}
                 style={mapStyles}>
 
+                <Marker position={{ lat: 4.784, lng: -74.0417500 }} icon={logo} />
+                <Marker position={{ lat: 4.785, lng: -74.0917500 }} icon={logo}/>
+                <Marker position={{ lat: 4.6897100, lng: -74.0817500 }} icon={logo}/>
             </Map>
 
         </div>
