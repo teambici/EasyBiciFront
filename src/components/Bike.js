@@ -15,7 +15,7 @@ export class Bike extends Component {
     render() {        
         if (this.state.Check) {
             return <Redirect to={{
-                pathname: '/bikereserve'               
+                pathname: '/reserve'               
             }}
             />
         }

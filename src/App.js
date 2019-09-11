@@ -13,8 +13,8 @@ import { Favorite } from "./Components/Menu/Favorite"
 import { Profile } from "./Components/Menu/Profile"
 import { Recents } from "./Components/Menu/Recents"
 import { Notifications } from "./Components/Menu/Notifications"
-
-
+import { Bike } from "./Components/Bike"
+import { BikeReserve } from "./Components/BikeReserve"
 import Confirmed from './Components/Confirmed.css';
 import qrGenerator from "./Components/QrGenerator";
 
@@ -40,6 +40,8 @@ class App extends React.Component {
           <Route path="/recents" exact component={Recents} />
           <Route path="/notifications" exact component={Notifications} />
           <Route path="/Confirmed" exact component={Confirmed}/>
+          <Route path="/bike" exact component={Bike}/>
+          <Route path="/reserve" exact component={BikeReserve}/>
         </div>
       </Router>
     );
