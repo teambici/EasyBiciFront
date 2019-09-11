@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
-import { GoogleApiWrapper, Map, Marker, Polyline, } from 'google-maps-react';
-import { height } from '@material-ui/system';
+import { GoogleApiWrapper, Map, Marker, Polyline } from 'google-maps-react';
+
 
 
 const mapStyles = {
-    width :"60%",
-    height : "60%",
+    width: "60%",
+    height: "60%",
     left: "20%"
 };
 
 
-class Maps extends Component{
-    render(){
+
+
+const api="";
+class Maps extends Component {
+    
+    
+    render() {
         return <Map className="map"
-        google={this.props.google}
-        zoom={13}
-        center={{ lat:  4.6897100, lng: -74.0817500 }}
-        style={mapStyles}></Map>;
+            google={this.props.google}
+            zoom={13}
+            center={{ lat: 4.6897100, lng: -74.0817500 }}
+            style={mapStyles}>
+
+        </Map>;
     }
 }
 const MapWrapper = props => (
@@ -27,7 +34,7 @@ const MapWrapper = props => (
     </div>
 );
 
-export default(GoogleApiWrapper({
-    apiKey: 'AIzaSyBCII_xm0kDyjH_nFAvZM6wg5eQF-vnTBw',
+export default (GoogleApiWrapper({
+    apiKey: api,
     language: "es",
 })(MapWrapper));
