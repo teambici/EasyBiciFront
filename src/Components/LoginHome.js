@@ -40,7 +40,7 @@ export class LoginHome extends Component {
         }
         const { history } = this.props;
         return (
-            <div className="color_fondo">
+            <div>
                 <img src={imagen1} />
                 <div >
                     <button className="boton_personalizado" onClick={this.handleLoggin} >Login</button>
