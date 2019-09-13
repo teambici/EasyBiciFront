@@ -1,18 +1,13 @@
-.insertCard{
-    float: left;
-    margin:2.5%;
-    width: 100%;
-    max-width: 400px;
-    right:  "40%"   
-}
-.Map{
-    width: 600px;
-    float:right;
-    
-}
-.fix{
-    clear:both;
-}
+
 .btn{
     float:left;
+}
+
+
+.insertCard{
+    margin-left: 45px;
+}
+
+#topbar{
+    background-color:white;
 }

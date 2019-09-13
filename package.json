@@ -7,6 +7,8 @@
   "dependencies": {
     "@material-ui/core": "^4.4.1",
     "@material-ui/icons": "^4.4.1",
+    "@material/react-material-icon": "^0.15.0",
+    "@material/react-top-app-bar": "^0.15.0",
     "google-maps-react": "^2.0.2",
     "qrcode.react": "^0.9.3",
     "react": "^16.9.0",
