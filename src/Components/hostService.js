@@ -3,7 +3,6 @@ import "./Confirmed.css";
 import Divider from '@material-ui/core/Divider';
 import Face from '@material-ui/icons/Face';
 import { Redirect } from "react-router-dom";
-import { Link } from "react-router-dom";
 class hostService extends Component {
     constructor(props) {
         super(props);

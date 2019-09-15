@@ -3,7 +3,7 @@ import './App.css';
 import hostService from './Components/hostService';
 import {Login} from './Components/Login';
 import Services from './Components/Services';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import { LoginHome } from "./Components/LoginHome"
 import { Name } from "./Components/Create_acount/Name"
 import { Information } from "./Components/Create_acount/Information"
@@ -20,9 +20,6 @@ import qrGenerator from "./Components/QrGenerator";
 import Scanner from "./Components/Scanner"
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (
