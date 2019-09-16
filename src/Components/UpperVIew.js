@@ -14,7 +14,7 @@ import { isUserWhitespacable } from '@babel/types';
    
   const barStyles = {
     //modificar de acuerdo a lo que se defina como color principal
-    background: "blue"
+    background: "#0477A4"
 };
 
   const Menu = () => {

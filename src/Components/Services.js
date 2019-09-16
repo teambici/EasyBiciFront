@@ -20,12 +20,13 @@ class Services extends Component {
 
 
     render() {
+        
 
         return (
             <div>
                 <UpperView></UpperView>
                 <Map></Map>
-                <MenuUserLogged></MenuUserLogged>
+                <MenuUserLogged ></MenuUserLogged>
                 <BottomMenu />
             </div >
         );
