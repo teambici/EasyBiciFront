@@ -11,6 +11,7 @@ import TopAppBar, {
   import MaterialIcon from '@material/react-material-icon';
   import MenuUserLogged from "./MenuUserLogged.js"
 import { isUserWhitespacable } from '@babel/types';
+import Map from './Map';
    
   const barStyles = {
     //modificar de acuerdo a lo que se defina como color principal

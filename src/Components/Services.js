@@ -15,18 +15,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Map from './Map';
 import UpperView from './UpperVIew';
 class Services extends Component {
-
-
-
-
     render() {
-        
-
         return (
             <div>
                 <UpperView></UpperView>
+                <MenuUserLogged ></MenuUserLogged>                
                 <Map></Map>
-                <MenuUserLogged ></MenuUserLogged>
                 <BottomMenu />
             </div >
         );
