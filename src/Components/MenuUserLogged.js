@@ -10,16 +10,26 @@ import Face from '@material-ui/icons/Face';
 import Menu from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 
+
+
 function logOut() {
   localStorage.removeItem("isLoggedin");
   window.location.replace("/");
   
 }
-
+const styleMenu = {
+  //modificar de acuerdo a lo que se defina como color principal
+  background: "#3494AB",
+  height:"100vh"
+};
+const styleButton ={
+  background: "red",
+  left: "23%"
+}
 export default function TemporaryDrawer() {
 
   const [state, setState] = React.useState({
-    lefft: false
+    left: false
   });
 
   const toggleDrawer = (side, open) => event => {
@@ -31,32 +41,31 @@ export default function TemporaryDrawer() {
   };
 
   const sideList = side => (
-    <div
+    <div  style={styleMenu}
       role="presentation"
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
-      <List>
+      <List >
         <ListItem key='User'>
           <ListItemIcon><Face></Face></ListItemIcon>
           <ListItemText primary={localStorage.getItem('mailLogged')} />
         </ListItem>
 
       </List>
-      <Divider />
-      <Button variant="contained" color="secondary" onClick={logOut}>
+      
+      <Button variant="contained" color="secondary" onClick={logOut} style={styleButton}>
           Salir
       </Button>
       
     </div>
   );
   return (
-    <div>
-      
+    <div >      
       <IconButton className="btn" aria-label="Menu" onClick={toggleDrawer('left', true)}>
           <Menu></Menu>
         </IconButton>
-      <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
+      <Drawer open={state.left} onClose={toggleDrawer('left', false)} >
         {sideList('left')}
       </Drawer>
 
