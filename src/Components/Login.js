@@ -1,23 +1,23 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import { Link } from "react-router-dom";
-import { Redirect } from "react-router-dom";
-import User from "./ImUser.js";
 import './Login.css'
-import CardMedia from '@material-ui/core/CardMedia';
-import logo from '../img/logoF.png';
+import { Redirect } from "react-router-dom";
+import image1 from '../img/logoF.png';
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 
 
-export class Login extends React.Component {
+export class Login extends React.Component{
     checkdata() {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value
@@ -29,71 +29,90 @@ export class Login extends React.Component {
             this.setState({ Loggin: true });
         }
     }
+
     constructor(props) {
 
         super(props);
-        this.state = { Loggin: false }
+        this.state = { createAcount: '', Loggin: '' }
         this.handleLoggin = this.handleLoggin.bind(this);
+        this.handleCreateAcount = this.handleCreateAcount.bind(this);
     }
-    handleLoggin(e) {
-        this.checkdata();
+    handleLoggin() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value
+        if (email !=="" && password!==""){
+            this.checkdata();
+            this.setState({ Loggin: true });
+        }else{
+            alert("El campo de email o contraseña esta vacio");
+        }
+        
     }
-    render() {
+    handleCreateAcount() {
+        this.setState({ createAcount: true });
+    }
+    render(){
         if (localStorage.getItem("isLoggedin")) {
             return <Redirect to={{
                 pathname: '/Services'
             }}
             />
         }
+        if (this.state.createAcount) {
+            return <Redirect to={{
+                pathname: '/name'
+            }}
+            />
+        }
         return (
-            <div className="mainDiv">                
-                <React.Fragment>
-                    <CssBaseline />
-                    <main className="layout">
-                        <Paper className="paper">
-                            <Link to="/">Back</Link>
-                            <CardMedia
-                            component="img"
-                            alt="Logo"
-                            align="center"
-                            class="responsive"
-                            image={logo}
-                        title="Logo"
-                    />
-                            <Typography variant="headline">Ingresar</Typography>
-                            <form className="form">
-                                <FormControl margin="normal" required fullWidth>
-                                    <InputLabel htmlFor="email">Email Address</InputLabel>
-                                    <Input id="email" name="email" autoComplete="email" autoFocus />
-                                </FormControl>
-                                <FormControl margin="normal" required fullWidth>
-                                    <InputLabel htmlFor="password">Password</InputLabel>
-                                    <Input
-                                        name="password"
-                                        type="password"
-                                        id="password"
-                                        autoComplete="current-password"
-                                    />
-                                </FormControl>
-                                <Button
-                                    onClick={this.handleLoggin}
-                                    type="submit"
-                                    fullWidth
-                                    variant="raised"
-                                    color="primary"
-                                    className="submit"
-                                >
-                                    LOG IN
+            <React.Fragment className="layout">
+                <CssBaseline />
+                <main className="layout">
+                    
+                    <Paper className="paper">
+                            <img src={image1} width="60%" height="auto" />
+                        
+                        <Typography variant="headline">Login</Typography>
+                        <form className="form">
+                            <FormControl margin="normal" fullWidth>
+                                <InputLabel htmlFor="email">Email Address</InputLabel>
+                                <Input id="email" name="email" autoComplete="email" autoFocus />
+                            </FormControl>
+                            <FormControl margin="normal" fullWidth>
+                                <InputLabel htmlFor="password">Password</InputLabel>
+                                <Input
+                                    name="password"
+                                    type="password"
+                                    id="password"                                    
+                                    autoComplete="current-password"
+                                />
+                            </FormControl>
+                            <Button
+                                type="submit"
+                                variant="raised"
+                                color="primary"
+                                className="submit"
+                                onClick={this.handleLoggin}
+                            >
+                                Sign in
                             </Button>
-                            
-                            </form>
-                        </Paper>
-                    </main>
-                </React.Fragment>
-            </div>
+                            <Button
+                                className="ButtonLindo"
+                                type="submit"
+                                variant="raised"
+                                color="primary"
+                                className="submit"
+                                onClick={this.handleCreateAcount}
+                            >
+                               Create Account
+                            </Button>
+                        </form>
+                    </Paper>
+                </main>
+            </React.Fragment>
         );
     }
 
 }
-
 export default Login;
+

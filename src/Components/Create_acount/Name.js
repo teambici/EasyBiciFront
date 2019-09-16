@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from "react-router-dom";
-import { Link } from "react-router-dom";
 import "../LoginHome.css"
 import TextField from '@material-ui/core/TextField';
 import DateFnsUtils from '@date-io/date-fns';
@@ -16,6 +15,19 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 export class Name extends Component {
+
+    checkdata() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value
+
+        if (email != "" && password != "") {
+            localStorage.setItem("isLoggedin", true);
+            localStorage.setItem("mailLogged", email);
+            localStorage.setItem("passwordLogged", password);
+            this.setState({ Loggin: true });
+        }
+    }
+
     constructor(props) {
         super(props);
         if (this.props.location.state) {
@@ -58,6 +70,7 @@ export class Name extends Component {
     handleNext(event) {
         event.preventDefault();
         if (this.state.first_name && this.state.last_name && this.state.password && this.state.password == this.state.secondPassword) {
+            this.checkdata();
             this.setState({ next: true });
         }
         else if (this.state.password == this.state.secondPassword) {
@@ -104,7 +117,7 @@ export class Name extends Component {
         };
 
         return (
-            <div className="color_fondo">
+            <div >
                 <h1>Informacion de registro</h1>
                 <div >
                     <form style={divStyle} >

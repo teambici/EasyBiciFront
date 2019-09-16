@@ -4,7 +4,6 @@ import hostService from './Components/hostService';
 import {Login} from './Components/Login';
 import Services from './Components/Services';
 import { BrowserRouter as Router, Route} from "react-router-dom";
-import { LoginHome } from "./Components/LoginHome"
 import { Name } from "./Components/Create_acount/Name"
 import { Information } from "./Components/Create_acount/Information"
 import { Terms } from "./Components/Create_acount/Terms"
@@ -25,9 +24,8 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App color_fondo">
-          <Route path="/" exact component={LoginHome} />
+          <Route path="/" exact component={Login} />
           <Route path="/qrGenerator" exact component={qrGenerator} />
-          <Route path="/login" exact component={Login} />
           <Route path="/Services" exact component={Services} />  
           <Route path="/hostService" exact component={hostService} />   
           <Route path="/name" exact component={Name} />      
