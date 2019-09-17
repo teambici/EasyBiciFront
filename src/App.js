@@ -16,7 +16,8 @@ import { Bike } from "./Components/Bike";
 import { BikeReserve } from "./Components/BikeReserve";
 import Confirmed from './Components/Confirmed';
 import qrGenerator from "./Components/QrGenerator";
-import Scanner from "./Components/Scanner"
+import Scanner from "./Components/Scanner";
+import {NewBike} from "./Components/NewBike"; 
 
 class App extends React.Component {
 
@@ -40,7 +41,7 @@ class App extends React.Component {
           <Route path="/bike" exact component={Bike}/>
           <Route path="/Scanner" exact component={Scanner}/>
           <Route path="/reserve" exact component={BikeReserve}/>
-          
+          <Route path="/NewBIke" exact component={NewBike}/>
         </div>
       </Router>
     );
