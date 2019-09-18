@@ -11,8 +11,13 @@ import Fab from '@material-ui/core/Fab';
 import RightIcon from '@material-ui/icons/KeyboardArrowRight';
 import LeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import { makeStyles } from '@material-ui/core/styles';
-
-
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Button from "@material-ui/core/Button";
+import Terms from "./Terms.js"
 
 export class Name extends Component {
 
@@ -33,11 +38,11 @@ export class Name extends Component {
         if (this.props.location.state) {
             this.state = {
                 first_name: this.props.location.state.first_name, last_name: this.props.location.state.last_name,
-                email: '', birthday: new Date('2014-08-18T21:11:54'), password: '', secondPassword: '', next: false, back: false,
+                email: '', birthday: new Date('2014-08-18T21:11:54'), password: '', secondPassword: '', next: false, back: false, open: false,Accept:false,Decline:false,
             }
 
         } else {
-            this.state = { first_name: '', last_name: '', email: '', birthday: new Date('2014-08-18T21:11:54'), password: '', secondPassword: '', next: false, back: false };
+            this.state = { first_name: '', last_name: '', email: '', birthday: new Date('2014-08-18T21:11:54'), password: '', secondPassword: '', next: false, back: false, open: false,Accept:false,Decline:false, };
         }
 
         this.handleEmail = this.handleEmail.bind(this);
@@ -47,7 +52,9 @@ export class Name extends Component {
         this.handleFirstName = this.handleFirstName.bind(this);
         this.handleLastName = this.handleLastName.bind(this);
         this.handleNext = this.handleNext.bind(this);
-        this.handleBack = this.handleBack.bind(this);
+        this.handleBack = this.handleBack.bind(this);        
+        this.handleAccept = this.handleAccept.bind(this);
+        this.handleDecline = this.handleDecline.bind(this);
     }
     handleFirstName(event) {
         this.setState({ first_name: event.target.value });
@@ -69,9 +76,8 @@ export class Name extends Component {
     };
     handleNext(event) {
         event.preventDefault();
-        if (this.state.first_name && this.state.last_name && this.state.password && this.state.password == this.state.secondPassword) {
-            this.checkdata();
-            this.setState({ next: true });
+        if (this.state.first_name && this.state.last_name && this.state.password && this.state.password == this.state.secondPassword) {            
+            this.setState({ open: true });
         }
         else if (this.state.password == this.state.secondPassword) {
             alert("Todos los datos son requeridos")
@@ -80,10 +86,20 @@ export class Name extends Component {
             alert("La claves no son iguales")
         }
     }
-    handleBack(event){
+    handleBack(event) {
         event.preventDefault();
         this.setState({ back: true });
     }
+    handleAccept(event) {   
+        event.preventDefault();   
+        this.checkdata(); 
+        this.setState({Accept: true});
+    } 
+    handleDecline(event) {        
+        this.setState({Decline: true});
+    }
+
+
     render() {
         const divStyle = {
             display: 'flex',
@@ -95,16 +111,17 @@ export class Name extends Component {
                 position: 'absolute',
                 bottom: theme.spacing(2),
                 left: theme.spacing(-5),
-              },
-              fab1: {
+            },
+            fab1: {
                 position: 'absolute',
                 bottom: theme.spacing(2),
                 right: theme.spacing(5),
-              },
+            },
         }));
-        if (this.state.next) {
+        
+        if (this.state.Accept) {
             return <Redirect to={{
-                pathname: '/terms',
+                pathname: '/Services',
                 state: { first_name: this.state.first_name, last_name: this.state.last_name }
             }}
             />
@@ -115,6 +132,13 @@ export class Name extends Component {
             }}
             />
         };
+        if (this.state.Decline) {
+            return <Redirect to={{
+                pathname: '/'               
+            }}
+            />
+        }
+
 
         return (
             <div >
@@ -175,16 +199,37 @@ export class Name extends Component {
                             value={this.state.secondPassword}
                             onChange={this.handleSecondPassword}
                             margin="normal"
-                        />                        
+                        />
                     </form>
+
+
+                    <Dialog
+                        open={this.state.open}
+                    >
+                        <DialogTitle id="scroll-dialog-title">Terminos y condiciones</DialogTitle>
+                        <DialogContent dividers={"paper"}>
+                            <DialogContentText>
+                                <Terms/>
+          </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={this.handleDecline} color="primary">
+                                Cancel
+          </Button>
+                            <Button onClick={this.handleAccept} color="primary">
+                                Subscribe
+          </Button>
+                        </DialogActions>
+                    </Dialog>
                 </div>
+
                 <div>
-                        <Fab color="primary" aria-label="add" onClick={this.handleBack} className={useStyles.fab}>
-                            <LeftIcon />
-                        </Fab>  
-                        <Fab color="primary" aria-label="add" onClick={this.handleNext} className={useStyles.fab1}>
-                            <RightIcon />
-                        </Fab>                        
+                    <Fab color="primary" aria-label="add" onClick={this.handleBack} className={useStyles.fab}>
+                        <LeftIcon />
+                    </Fab>
+                    <Fab color="primary" aria-label="add" onClick={this.handleNext} className={useStyles.fab1}>
+                        <RightIcon />
+                    </Fab>
                 </div>
             </div>
         )

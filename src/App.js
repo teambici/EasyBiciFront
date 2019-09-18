@@ -5,7 +5,6 @@ import {Login} from './Components/Login';
 import Services from './Components/Services';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import { Name } from "./Components/Create_acount/Name"
-import { Information } from "./Components/Create_acount/Information"
 import { Terms } from "./Components/Create_acount/Terms"
 import { ImUser } from "./Components/ImUser"
 import { Favorite } from "./Components/Menu/Favorite"
@@ -30,7 +29,6 @@ class App extends React.Component {
           <Route path="/Services" exact component={Services} />  
           <Route path="/hostService" exact component={hostService} />   
           <Route path="/name" exact component={Name} />      
-          <Route path="/information" exact component={Information} />   
           <Route path="/terms" exact component={Terms} />
           <Route path="/user" exact component={ImUser} />
           <Route path="/favorites" exact component={Favorite} />
