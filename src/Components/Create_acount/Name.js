@@ -18,6 +18,8 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import Terms from "./Terms.js"
+import { Container } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 
 export class Name extends Component {
 
@@ -38,11 +40,11 @@ export class Name extends Component {
         if (this.props.location.state) {
             this.state = {
                 first_name: this.props.location.state.first_name, last_name: this.props.location.state.last_name,
-                email: '', birthday: new Date('2014-08-18T21:11:54'), password: '', secondPassword: '', next: false, back: false, open: false,Accept:false,Decline:false,
+                email: '', birthday: new Date('2014-08-18T21:11:54'), password: '', secondPassword: '', next: false, back: false, open: false, Accept: false, Decline: false,
             }
 
         } else {
-            this.state = { first_name: '', last_name: '', email: '', birthday: new Date('2014-08-18T21:11:54'), password: '', secondPassword: '', next: false, back: false, open: false,Accept:false,Decline:false, };
+            this.state = { first_name: '', last_name: '', email: '', birthday: new Date('2014-08-18T21:11:54'), password: '', secondPassword: '', next: false, back: false, open: false, Accept: false, Decline: false, };
         }
 
         this.handleEmail = this.handleEmail.bind(this);
@@ -52,7 +54,7 @@ export class Name extends Component {
         this.handleFirstName = this.handleFirstName.bind(this);
         this.handleLastName = this.handleLastName.bind(this);
         this.handleNext = this.handleNext.bind(this);
-        this.handleBack = this.handleBack.bind(this);        
+        this.handleBack = this.handleBack.bind(this);
         this.handleAccept = this.handleAccept.bind(this);
         this.handleDecline = this.handleDecline.bind(this);
     }
@@ -76,7 +78,7 @@ export class Name extends Component {
     };
     handleNext(event) {
         event.preventDefault();
-        if (this.state.first_name && this.state.last_name && this.state.password && this.state.password == this.state.secondPassword) {            
+        if (this.state.first_name && this.state.last_name && this.state.password && this.state.password == this.state.secondPassword) {
             this.setState({ open: true });
         }
         else if (this.state.password == this.state.secondPassword) {
@@ -90,13 +92,13 @@ export class Name extends Component {
         event.preventDefault();
         this.setState({ back: true });
     }
-    handleAccept(event) {   
-        event.preventDefault();   
-        this.checkdata(); 
-        this.setState({Accept: true});
-    } 
-    handleDecline(event) {        
-        this.setState({Decline: true});
+    handleAccept(event) {
+        event.preventDefault();
+        this.checkdata();
+        this.setState({ Accept: true });
+    }
+    handleDecline(event) {
+        this.setState({ Decline: true });
     }
 
 
@@ -118,7 +120,7 @@ export class Name extends Component {
                 right: theme.spacing(5),
             },
         }));
-        
+
         if (this.state.Accept) {
             return <Redirect to={{
                 pathname: '/Services',
@@ -134,7 +136,7 @@ export class Name extends Component {
         };
         if (this.state.Decline) {
             return <Redirect to={{
-                pathname: '/'               
+                pathname: '/'
             }}
             />
         }
@@ -142,95 +144,100 @@ export class Name extends Component {
 
         return (
             <div >
-                <h1>Informacion de registro</h1>
-                <div >
-                    <form style={divStyle} >
-                        <TextField
-                            type="text"
-                            label="FIRST NAME"
-                            id="name"
-                            value={this.state.first_name}
-                            onChange={this.handleFirstName}
-                            margin="normal"
-                        />
-                        <TextField
-                            type="text"
-                            label="LAST NAME"
-                            id="last_name"
-                            value={this.state.last_name}
-                            onChange={this.handleLastName}
-                            margin="normal"
-                        />
-                        <TextField
-                            type="email"
-                            label="EMAIL ADDRESS"
-                            id="email"
-                            value={this.state.email}
-                            onChange={this.handleEmail}
-                            margin="normal"
-                        />
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-
-                            <KeyboardDatePicker
+                <h1 align="center">Informacion de registro</h1>
+                <Container>
+                    <div>
+                        <form style={divStyle} >
+                            <TextField
+                                type="text"
+                                label="FIRST NAME"
+                                id="name"
+                                value={this.state.first_name}
+                                onChange={this.handleFirstName}
                                 margin="normal"
-                                id="birthday"
-                                label="Date picker dialog"
-                                format="MM/dd/yyyy"
-                                value={this.state.birthday}
-                                selected={this.state.birthday}
-                                onChange={this.handleBirthday}
-                                KeyboardButtonProps={{
-                                    'aria-label': 'change date',
-                                }}
                             />
-                        </MuiPickersUtilsProvider>
-                        <TextField
-                            type="password"
-                            label="Password"
-                            id="password"
-                            value={this.state.password}
-                            onChange={this.handlePassword}
-                            margin="normal"
-                        />
-                        <TextField
-                            type="password"
-                            label="REPEAT PASSWORD"
-                            id="secondPassword"
-                            value={this.state.secondPassword}
-                            onChange={this.handleSecondPassword}
-                            margin="normal"
-                        />
-                    </form>
+                            <TextField
+                                type="text"
+                                label="LAST NAME"
+                                id="last_name"
+                                value={this.state.last_name}
+                                onChange={this.handleLastName}
+                                margin="normal"
+                            />
+                            <TextField
+                                type="email"
+                                label="EMAIL ADDRESS"
+                                id="email"
+                                value={this.state.email}
+                                onChange={this.handleEmail}
+                                margin="normal"
+                            />
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+
+                                <KeyboardDatePicker
+                                    margin="normal"
+                                    id="birthday"
+                                    label="Date picker dialog"
+                                    format="MM/dd/yyyy"
+                                    value={this.state.birthday}
+                                    selected={this.state.birthday}
+                                    onChange={this.handleBirthday}
+                                    KeyboardButtonProps={{
+                                        'aria-label': 'change date',
+                                    }}
+                                />
+                            </MuiPickersUtilsProvider>
+                            <TextField
+                                type="password"
+                                label="Password"
+                                id="password"
+                                value={this.state.password}
+                                onChange={this.handlePassword}
+                                margin="normal"
+                            />
+                            <TextField
+                                type="password"
+                                label="REPEAT PASSWORD"
+                                id="secondPassword"
+                                value={this.state.secondPassword}
+                                onChange={this.handleSecondPassword}
+                                margin="normal"
+                            />
+                        </form>
 
 
-                    <Dialog
-                        open={this.state.open}
-                    >
-                        <DialogTitle id="scroll-dialog-title">Terminos y condiciones</DialogTitle>
-                        <DialogContent dividers={"paper"}>
-                            <DialogContentText>
-                                <Terms/>
-          </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button onClick={this.handleDecline} color="primary">
-                                Cancel
-          </Button>
-                            <Button onClick={this.handleAccept} color="primary">
-                                Subscribe
-          </Button>
-                        </DialogActions>
-                    </Dialog>
-                </div>
+                        <Dialog
+                            open={this.state.open}
+                        >
+                            <DialogTitle id="scroll-dialog-title">Terminos y condiciones</DialogTitle>
+                            <DialogContent dividers={"paper"}>
+                                <DialogContentText>
+                                    <Terms />
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={this.handleDecline} color="primary">
+                                    Cancel
+                                </Button>
+                                <Button onClick={this.handleAccept} color="primary">
+                                    Subscribe
+                                 </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
 
-                <div>
-                    <Fab color="primary" aria-label="add" onClick={this.handleBack} className={useStyles.fab}>
-                        <LeftIcon />
-                    </Fab>
-                    <Fab color="primary" aria-label="add" onClick={this.handleNext} className={useStyles.fab1}>
-                        <RightIcon />
-                    </Fab>
-                </div>
+                    <div>
+                     <Box display="flex" justifyContent="center" m={1} p={1}>
+                        <Fab color="primary" aria-label="add" onClick={this.handleBack} className={useStyles.fab}>
+                            <LeftIcon />
+                        </Fab>
+                        <Fab color="primary" aria-label="add" onClick={this.handleNext} className={useStyles.fab1}>
+                            <RightIcon />
+                        </Fab>
+                        </Box>
+                    </div>
+                </Container>
+
             </div>
         )
     }
