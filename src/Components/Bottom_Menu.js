@@ -36,10 +36,8 @@ export default function SimpleBottomNavigation() {
             className={classes.root}
 
         >
-            <BottomNavigationAction label="Search" icon={<SearchIcon />} component={Link} to="/Services" />
-            <BottomNavigationAction label="Favorite" icon={<FavoriteIcon />} component={Link} to="/favorites" />
-            <BottomNavigationAction label="Services" icon={<DirectionsBikeIcon />} />
-            <BottomNavigationAction label="Recents" icon={<TimelineIcon />} component={Link} to="/recents" />
+            <BottomNavigationAction label="Search" icon={<SearchIcon />} component={Link} to="/Services" />         
+            <BottomNavigationAction label="Services" icon={<DirectionsBikeIcon />} />          
             <BottomNavigationAction label="Profile" icon={<PersonIcon />} component={Link} to="/profile" />
         </BottomNavigation>
 

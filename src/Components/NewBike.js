@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 
+
 export class NewBike extends Component {
     constructor(props) {
         super(props);
@@ -61,7 +62,6 @@ export class NewBike extends Component {
     handleBack(event) {
         event.preventDefault();
         this.setState({ back: true });
-
     }
     handleNext(event) {
         event.preventDefault();
@@ -99,7 +99,7 @@ export class NewBike extends Component {
 
         return (
             <div >
-                <h1>Nueva Bicicleta</h1>
+                <h1>New Bike</h1>
                 <div >
                     <form style={divStyle} >
                         <TextField
@@ -107,6 +107,7 @@ export class NewBike extends Component {
                             label="Bike Name"
                             id="BikeName"
                             value={this.state.bike_name}
+                            onChange={this.handleBikeName}
                             margin="normal"
                         />
                         <TextField
@@ -114,6 +115,7 @@ export class NewBike extends Component {
                             label="Description"
                             id="Description"
                             value={this.state.description}
+                            onChange={this.handleDesc}
                             margin="normal"
                         />
                         <TextField
@@ -121,6 +123,7 @@ export class NewBike extends Component {
                             label="Address"
                             id="address"
                             value={this.state.address}
+                            onChange={this.handleadrress}
                             margin="normal"
                         />
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -154,7 +157,7 @@ export class NewBike extends Component {
                     </form>
                 </div>
                 <div>
-                    <Fab color="primary" aria-label="add" className={useStyles.fab}>
+                    <Fab color="primary" aria-label="add" className={useStyles.fab} onClick={this.handleBack}>
                         <LeftIcon />
                     </Fab>
                     <Fab color="primary" aria-label="add" className={useStyles.fab1}>
