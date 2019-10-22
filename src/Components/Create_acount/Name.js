@@ -45,11 +45,10 @@ export class Name extends Component {
             }
 
         } else {
-            this.state = { first_name: '', last_name: '', email: '', birthday: new Date('2014-08-18T21:11:54'), password: '', secondPassword: '', next: false, back: false, open: false, Accept: false, Decline: false, };
+            this.state = { first_name: '', last_name: '', email: '',  password: '', secondPassword: '', next: false, back: false, open: false, Accept: false, Decline: false, };
         }
 
         this.handleEmail = this.handleEmail.bind(this);
-        this.handleBirthday = this.handleBirthday.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
         this.handleSecondPassword = this.handleSecondPassword.bind(this);
         this.handleFirstName = this.handleFirstName.bind(this);
@@ -67,9 +66,6 @@ export class Name extends Component {
     };
     handleEmail(event) {
         this.setState({ email: event.target.value });
-    };
-    handleBirthday(event) {
-        this.setState({ birthday: event });
     };
     handlePassword(event) {
         this.setState({ password: event.target.value });
@@ -185,21 +181,6 @@ export class Name extends Component {
                                 onChange={this.handleEmail}
                                 margin="normal"
                             />
-                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-
-                                <KeyboardDatePicker
-                                    margin="normal"
-                                    id="birthday"
-                                    label="Date picker dialog"
-                                    format="MM/dd/yyyy"
-                                    value={this.state.birthday}
-                                    selected={this.state.birthday}
-                                    onChange={this.handleBirthday}
-                                    KeyboardButtonProps={{
-                                        'aria-label': 'change date',
-                                    }}
-                                />
-                            </MuiPickersUtilsProvider>
                             <TextField
                                 type="password"
                                 label="Password"
