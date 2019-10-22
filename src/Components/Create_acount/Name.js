@@ -41,11 +41,13 @@ export class Name extends Component {
         if (this.props.location.state) {
             this.state = {
                 first_name: this.props.location.state.first_name, last_name: this.props.location.state.last_name,
-                email: '', birthday: new Date('2014-08-18T21:11:54'), password: '', secondPassword: '', next: false, back: false, open: false, Accept: false, Decline: false,
+                email: '', birthday: new Date('2014-08-18T21:11:54'), password: '', secondPassword: '', next: false,
+                 back: false, open: false, Accept: false, Decline: false, tarjeta: '',documento:'',
             }
 
         } else {
-            this.state = { first_name: '', last_name: '', email: '',  password: '', secondPassword: '', next: false, back: false, open: false, Accept: false, Decline: false, };
+            this.state = { first_name: '', last_name: '', email: '',  password: '', secondPassword: '', next: false, back: false, open: false, Accept: false, Decline: false,
+            tarjeta:'',documento:'' };
         }
 
         this.handleEmail = this.handleEmail.bind(this);
@@ -57,6 +59,8 @@ export class Name extends Component {
         this.handleBack = this.handleBack.bind(this);
         this.handleAccept = this.handleAccept.bind(this);
         this.handleDecline = this.handleDecline.bind(this);
+        this.handleTarjeta = this.handleTarjeta.bind(this);
+        this.handleDocumento = this.handleDocumento.bind(this);
     }
     handleFirstName(event) {
         this.setState({ first_name: event.target.value });
@@ -73,6 +77,12 @@ export class Name extends Component {
     handleSecondPassword(event) {
         this.setState({ secondPassword: event.target.value });
     };
+    handleTarjeta(event){
+        this.setState({tarjeta:event.target.value});
+    }
+    handleDocumento(event){
+        this.setState({documento:event.target.value});
+    }
     handleNext(event) {
         event.preventDefault();
         if (this.state.first_name && this.state.last_name && this.state.password && this.state.password == this.state.secondPassword) {
@@ -80,10 +90,10 @@ export class Name extends Component {
             const newUser = {
                 nombre: this.state.first_name + this.state.last_name,
                 correo: this.state.email,
-                tarjeta: null,
+                tarjeta: this.state.tarjeta,
                 puntuacion: 5.0,
                 ubicacion: null,
-                documento:null,
+                documento:this.state.documento,
                 contraseña: this.state.password
             }
             axios.post('https://easybiciback.herokuapp.com/User',newUser).then(res=>{
@@ -179,6 +189,22 @@ export class Name extends Component {
                                 id="email"
                                 value={this.state.email}
                                 onChange={this.handleEmail}
+                                margin="normal"
+                            />
+                            <TextField
+                                type="text"
+                                label="CREDIT CARD"
+                                id="tarjeta"
+                                value={this.state.tarjeta}
+                                onChange={this.handleTarjeta}
+                                margin="normal"
+                            />
+                            <TextField
+                                type="text"
+                                label="DOCUMENT"
+                                id="documento"
+                                value={this.state.documento}
+                                onChange={this.handleDocumento}
                                 margin="normal"
                             />
                             <TextField
