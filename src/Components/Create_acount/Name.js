@@ -20,6 +20,7 @@ import Button from "@material-ui/core/Button";
 import Terms from "./Terms.js"
 import { Container } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
+import axios from 'axios';
 
 export class Name extends Component {
 
@@ -80,6 +81,18 @@ export class Name extends Component {
         event.preventDefault();
         if (this.state.first_name && this.state.last_name && this.state.password && this.state.password == this.state.secondPassword) {
             this.setState({ open: true });
+            const newUser = {
+                nombre: this.state.first_name + this.state.last_name,
+                correo: this.state.email,
+                tarjeta: null,
+                puntuacion: 5.0,
+                ubicacion: null,
+                documento:null,
+                contraseña: this.state.password
+            }
+            axios.post('https://easybiciback.herokuapp.com/User',newUser).then(res=>{
+                console.log("post done");
+            });
         }
         else if (this.state.password == this.state.secondPassword) {
             alert("Todos los datos son requeridos")
@@ -227,13 +240,13 @@ export class Name extends Component {
                     </div>
 
                     <div>
-                     <Box display="flex" justifyContent="center" m={1} p={1}>
-                        <Fab color="primary" aria-label="add" onClick={this.handleBack} className={useStyles.fab}>
-                            <LeftIcon />
-                        </Fab>
-                        <Fab color="primary" aria-label="add" onClick={this.handleNext} className={useStyles.fab1}>
-                            <RightIcon />
-                        </Fab>
+                        <Box display="flex" justifyContent="center" m={1} p={1}>
+                            <Fab color="primary" aria-label="add" onClick={this.handleBack} className={useStyles.fab}>
+                                <LeftIcon />
+                            </Fab>
+                            <Fab color="primary" aria-label="add" onClick={this.handleNext} className={useStyles.fab1}>
+                                <RightIcon />
+                            </Fab>
                         </Box>
                     </div>
                 </Container>
