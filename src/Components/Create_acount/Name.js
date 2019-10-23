@@ -23,7 +23,7 @@ import { Container } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import axios from 'axios';
 
-const API_KEY = "AIzaSyBhtU1mcWPQzqOXFXwXwVnfTN8UhEQ-t5I";
+const API_KEY = "";
 export class Name extends Component {
 
     checkdata() {
