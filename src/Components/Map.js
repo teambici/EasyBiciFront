@@ -8,6 +8,7 @@ import InfoWindowEx from "./InfoWindowEx";
 import { Redirect } from "react-router-dom";
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
+import bicicleta from '../img/bicicleta.jpg';
 const mapStyles = {
     height: "100%"
 };
@@ -46,6 +47,23 @@ class Maps extends Component {
             }}
             />
         };
+        const imagen={
+            width: "inherit",
+            height: "inherit",
+        }
+        const container={
+            width: "100px",
+            height: "50px",
+        }
+        const button={
+            marginTop:"5px",
+           
+        }
+        const buttonBlue={
+            height:"20px",
+           
+        }
+       
        
         return (
             <div>
@@ -88,17 +106,22 @@ class Maps extends Component {
                         visible={this.state.showingInfoWindow}
                     >
                         <div>
+                            <div style={container}>
+                                <img src={bicicleta} style={imagen} />
+                            </div>
+                            <div style={button}>
                             <Fab
                             variant="extended"
                             size="small"
                             color="primary"
                             aria-label="add"
                             onClick={this.handleOneBike}
-                            
+                           
                             >
                             <NavigationIcon  />
                                 Ver
                             </Fab>
+                            </div>            
                         
                         </div>
                     </InfoWindowEx>    

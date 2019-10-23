@@ -16,13 +16,14 @@ import RoomServiceIcon from '@material-ui/icons/RoomService';
 export class Bike extends Component {
     constructor(props) {
         super(props);
-        this.state={Check:false}
-        this.handleCheck = this.handleCheck.bind(this);
+        this.state={Check:false, booking:false}        
+        this.handleBooking= this.handleBooking.bind(this);
     }
-
-    handleCheck(event) {        
-        this.setState({Check: true});
+    handleBooking(event) {        
+        this.setState({booking: true});
     } 
+
+  
     render() {   
         const imagen={
             height: "inherit"
@@ -33,7 +34,7 @@ export class Bike extends Component {
             left:"50%",
             transform: "translateX(-50%)"
         }    
-        if (this.state.Check) {
+        if (this.state.booking) {
             return <Redirect to={{
                 pathname: '/reserve'               
             }}
@@ -68,9 +69,9 @@ export class Bike extends Component {
                         size="large"
                         color="secondary"
                         aria-label="add"
-                        onClick={this.handleOneBike}>
-                            <RoomServiceIcon  />
-                                Booking
+                        onClick={this.handleBooking}>
+                        <RoomServiceIcon  />
+                        Booking
                     </Fab>
                 </div>  
             </div>
