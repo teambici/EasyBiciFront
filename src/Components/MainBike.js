@@ -20,6 +20,10 @@ export class MainBike extends Component {
     }
     
     render() {
+        const barStyles = {
+            //modificar de acuerdo a lo que se defina como color principal
+            background: "#81d8d0"
+        };
         const Buttonstyle = {         
             position: "fixed",
             bottom: "30px",
@@ -35,7 +39,7 @@ export class MainBike extends Component {
         return (
             <div>
                 <div >
-                    <AppBar position="static">
+                    <AppBar position="static" style={barStyles}>
                         <Toolbar>
                             <MenuUserLogged />                 
                             <Typography variant="h6"  >

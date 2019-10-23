@@ -11,7 +11,7 @@ import Map from './Map';
    
   const barStyles = {
     //modificar de acuerdo a lo que se defina como color principal
-    background: "#0477A4"
+    background: "#81d8d0"
 };
 
   const Menu = () => {

@@ -20,14 +20,14 @@ export class Recents extends Component {
             
         };
       
-        const title= {
-            flexGrow: 1,
-          }
-        
+        const barStyles = {
+            //modificar de acuerdo a lo que se defina como color principal
+            background: "#81d8d0"
+        };
         return (
             <article > 
                 <div >
-                    <AppBar position="static">
+                    <AppBar position="static" style={barStyles}>
                         <Toolbar>
                             <MenuUserLogged />                 
                             <Typography variant="h6"  >

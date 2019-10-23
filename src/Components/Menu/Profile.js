@@ -22,12 +22,15 @@ export class Profile extends Component {
             justifyContent: 'space-around',
             alignItems:"center"
         };
-
+        const barStyles = {
+            //modificar de acuerdo a lo que se defina como color principal
+            background: "#81d8d0"
+        };
         return (
             <article>
                 
                 <div>
-                    <AppBar position="static">
+                    <AppBar position="static" style={barStyles}>
                         <Toolbar>
                             <MenuUserLogged ></MenuUserLogged>  
                             <Typography color="inherit">
