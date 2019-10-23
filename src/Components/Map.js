@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
 import { GoogleApiWrapper, Map, Marker, Polyline,InfoWindow } from 'google-maps-react';
 import Card from '@material-ui/core/Card';
-import TextField from '@material-ui/core/TextField';
 import { GoogleComponent } from 'react-google-location';
-import Button from '@material-ui/core/Button';
-import { runInThisContext } from 'vm';
-import logo from "../img/bikeex2.png"
-import parqueadero from "../img/parqueo.png"
-import Parker from "../img/Parker.jpg"
+import logo from "../img/bikeex2.png";
+import parqueadero from "../img/parqueo.png";
 import InfoWindowEx from "./InfoWindowEx";
 const mapStyles = {
     height: "100%"
 };
 const barStyles={
-    marginTop: "60px"
+    marginTop: "58px",
+ 
+
 }
-
-
 const API_KEY = "";
 class Maps extends Component {
     constructor(props) {
@@ -42,12 +38,12 @@ class Maps extends Component {
         return (
             <div>
                 <Card className="insertCard" style={barStyles} >
-                    <GoogleComponent                     
+                    <GoogleComponent  
+                        style={barStyles}                   
                         apiKey={API_KEY}
                         languaje={"en"}
-                        coordinates={true}
-                        
-                    ></GoogleComponent>
+                        coordinates={true}                        
+                    >aaaaaaa</GoogleComponent>
                 </Card>
                
                 <Map className="map"
@@ -55,7 +51,10 @@ class Maps extends Component {
                     zoom={this.state.zoom}
                     center={{ lat: this.state.place.lat, lng: this.state.place.lng }}
                     style={mapStyles}
-                    options={{ streetViewControl: false }}
+                    options={{ streetViewControl: false }} 
+                    fullscreenControl={false}
+                    scaleControl={false}
+                    zoomControl={false}
                 >
 
                     <Marker position={{ lat: 4.784, lng: -74.0417500 }} icon={logo} />

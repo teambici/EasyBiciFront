@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import bikerent from '../img/bikerent.jpg';
 import bikepark from '../img/parking.gif';
-import BottomMenu from "./Bottom_Menu"
 
 
 
@@ -20,8 +19,7 @@ class Services extends Component {
             <div>
                 <UpperView></UpperView>
                 <MenuUserLogged ></MenuUserLogged>                
-                <Map></Map>
-                <BottomMenu />
+                <Map></Map>              
             </div >
         );
     }
