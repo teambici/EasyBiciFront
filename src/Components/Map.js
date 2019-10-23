@@ -49,7 +49,7 @@ class Maps extends Component {
                 <Map className="map"
                     google={this.props.google}
                     zoom={this.state.zoom}
-                    center={{ lat: this.state.place.lat, lng: this.state.place.lng }}
+                    initialCenter={{ lat: this.state.place.lat, lng: this.state.place.lng }}
                     style={mapStyles}
                     options={{ streetViewControl: false }} 
                     fullscreenControl={false}
