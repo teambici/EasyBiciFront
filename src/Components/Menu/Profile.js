@@ -5,8 +5,10 @@ import BottomMenu from "../Bottom_Menu"
 import parker from '../../img/Parker.jpg';
 import { Link } from "react-router-dom";
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
-import NavBar from './NavBarProfile'
 import MenuUserLogged from "../MenuUserLogged.js"
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
 
 export class Profile extends Component {
     constructor(props) {
@@ -24,9 +26,15 @@ export class Profile extends Component {
         return (
             <article>
                 
-                <div style={divStyle}>
-                    <NavBar />
-                <MenuUserLogged ></MenuUserLogged>
+                <div>
+                    <AppBar position="static">
+                        <Toolbar>
+                            <MenuUserLogged ></MenuUserLogged>  
+                            <Typography variant="tittle" color="inherit">
+                                Profile
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>                    
                     <img width='15%' src={parker} alt="mparker" />
                     <div>
                         <h1>Profile</h1>
