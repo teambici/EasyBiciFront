@@ -17,61 +17,41 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 
 
 
-export class Login extends React.Component {
+export class Login extends React.Component{
     checkdata() {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value
 
         if (email != "" && password != "") {
+            localStorage.setItem("isLoggedin", true);
             localStorage.setItem("mailLogged", email);
             localStorage.setItem("passwordLogged", password);
+            this.setState({ Loggin: true });
         }
     }
 
     constructor(props) {
 
         super(props);
-        this.state = { createAcount: '', Loggin: '', autorization: false }
+        this.state = { createAcount: '', Loggin: '' }
         this.handleLoggin = this.handleLoggin.bind(this);
         this.handleCreateAcount = this.handleCreateAcount.bind(this);
-    }
-    confirmUser() {
-        const email = document.getElementById("email").value;
-        const setauto = () => {
-            localStorage.setItem("isLoggedin", true);
-            this.setState({ Loggin: true });
-        }
-        console.log(email);
-        fetch('https://easybiciback.herokuapp.com/User')
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(function (user) {
-                    console.log(user.correo == email)
-                    if (user.correo == email) {
-                        setauto();
-                    }
-                })
-                if (!localStorage.getElementById("isLoggedin")) {
-                    alert("El usuario ingresado no es valido, cree su cuenta")
-                }
-            });
-
     }
     handleLoggin() {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value
-        if (email !== "" && password !== "") {
+        if (email !=="" && password!==""){
             this.checkdata();
-            this.confirmUser();
-        } else {
+            this.setState({ Loggin: true });
+        }else{
             alert("El campo de email o contraseña esta vacio");
         }
-
+        
     }
     handleCreateAcount() {
         this.setState({ createAcount: true });
     }
-    render() {
+    render(){
         if (localStorage.getItem("isLoggedin")) {
             return <Redirect to={{
                 pathname: '/Services'
@@ -88,10 +68,10 @@ export class Login extends React.Component {
             <React.Fragment className="layout">
                 <CssBaseline />
                 <main className="layout">
-
+                    
                     <Paper className="paper">
-                        <img src={image1} width="60%" height="auto" />
-
+                            <img src={image1} width="60%" height="auto" />
+                        
                         <Typography variant="headline">Login</Typography>
                         <form className="form">
                             <FormControl margin="normal" fullWidth>
@@ -103,7 +83,7 @@ export class Login extends React.Component {
                                 <Input
                                     name="password"
                                     type="password"
-                                    id="password"
+                                    id="password"                                    
                                     autoComplete="current-password"
                                 />
                             </FormControl>
@@ -124,7 +104,7 @@ export class Login extends React.Component {
                                 className="submit"
                                 onClick={this.handleCreateAcount}
                             >
-                                Create Account
+                               Create Account
                             </Button>
                         </form>
                     </Paper>
