@@ -18,25 +18,25 @@ function logOut() {
   localStorage.removeItem("isLoggedin");
   window.location.replace("/");  
 }
-
-const log={
-  bottom:0
-}
 const styleMenu = {
   //modificar de acuerdo a lo que se defina como color principal
   background: "#00000",
   height:"100vh"
 };
-const styleButton ={
-  bottom:0 ,
-  position: "absolute",
+const styleButton ={   
+  position:"absolute",
   bottom:5,
-  right:"-30px"
+  right:5,
+
 
 }
 const styleAvatar={
   height:50,
   width:50,
+}
+const styleDrawer={
+
+  width:240,
 }
 const back={
   background:"white"
@@ -76,9 +76,8 @@ export default function TemporaryDrawer() {
     <div  style={styleMenu}
       role="presentation"
       onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-      <List >
+      onKeyDown={toggleDrawer(side, false)} >
+      <List  style={styleDrawer} >
         <ListItem button onClick={goProfile(true)} >
           <ListItemIcon><Avatar style={styleAvatar} >{name}</Avatar></ListItemIcon>
           <ListItemText primary={localStorage.getItem('mailLogged')}></ListItemText>     
@@ -104,19 +103,16 @@ export default function TemporaryDrawer() {
         </ListItem>       
       </List>   
       <Divider />       
-      <ListItemIcon onClick={logOut} style={styleButton}><ExitToAppIcon/></ListItemIcon>
-           
-      
-      
+      <ExitToAppIcon onClick={logOut} style={styleButton}/>
     </div>
   );
   return (
     
     <div >      
-      <IconButton className="btn" aria-label="Menu" onClick={toggleDrawer('left', true)}>
+      <IconButton className="btn" aria-label="Menu" color="inherit" onClick={toggleDrawer('left', true)}>
           <Menu></Menu>
-        </IconButton>
-      <Drawer open={state.left} onClose={toggleDrawer('left', false)} >
+      </IconButton>
+      <Drawer open={state.left} style={styleDrawer} onClose={toggleDrawer('left', false)} >
         {sideList('left')}
       </Drawer>
 

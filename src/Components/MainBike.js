@@ -6,6 +6,9 @@ import MenuUserLogged from "./MenuUserLogged.js";
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { Redirect } from "react-router-dom";
+import AppBar from '@material-ui/core/AppBar';
+import Typography from '@material-ui/core/Typography';
+import Toolbar from '@material-ui/core/Toolbar';
 export class MainBike extends Component {
     constructor(props) {
         super(props);
@@ -31,7 +34,16 @@ export class MainBike extends Component {
         
         return (
             <div>
-                <MenuUserLogged ></MenuUserLogged>                  
+                <div >
+                    <AppBar position="static">
+                        <Toolbar>
+                            <MenuUserLogged />                 
+                            <Typography variant="h6"  >
+                                Your Bikes
+                            </Typography>                        
+                        </Toolbar>                     
+                    </AppBar> 
+                </div>                    
                 <Fab color="primary" aria-label="add" style={Buttonstyle} onClick={this.handleAdd} ><AddIcon/></Fab> 
 
 
