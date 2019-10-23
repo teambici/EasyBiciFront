@@ -7,6 +7,7 @@ import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
 } from '@material-ui/pickers';
+import { GoogleComponent } from 'react-google-location';
 import Fab from '@material-ui/core/Fab';
 import RightIcon from '@material-ui/icons/KeyboardArrowRight';
 import LeftIcon from '@material-ui/icons/KeyboardArrowLeft';
@@ -22,6 +23,7 @@ import { Container } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import axios from 'axios';
 
+const API_KEY = "";
 export class Name extends Component {
 
     checkdata() {
@@ -42,12 +44,14 @@ export class Name extends Component {
             this.state = {
                 first_name: this.props.location.state.first_name, last_name: this.props.location.state.last_name,
                 email: '', birthday: new Date('2014-08-18T21:11:54'), password: '', secondPassword: '', next: false,
-                 back: false, open: false, Accept: false, Decline: false, tarjeta: '',documento:'',
+                back: false, open: false, Accept: false, Decline: false, tarjeta: '', documento: '',latitud :null, longitud:null
             }
 
         } else {
-            this.state = { first_name: '', last_name: '', email: '',  password: '', secondPassword: '', next: false, back: false, open: false, Accept: false, Decline: false,
-            tarjeta:'',documento:'' };
+            this.state = {
+                first_name: '', last_name: '', email: '', password: '', secondPassword: '', next: false, back: false, open: false, Accept: false, Decline: false,
+                tarjeta: '', documento: '',latitud :null, longitud:null
+            };
         }
 
         this.handleEmail = this.handleEmail.bind(this);
@@ -61,6 +65,7 @@ export class Name extends Component {
         this.handleDecline = this.handleDecline.bind(this);
         this.handleTarjeta = this.handleTarjeta.bind(this);
         this.handleDocumento = this.handleDocumento.bind(this);
+        this.handleLocation = this.handleLocation.bind(this);
     }
     handleFirstName(event) {
         this.setState({ first_name: event.target.value });
@@ -77,11 +82,19 @@ export class Name extends Component {
     handleSecondPassword(event) {
         this.setState({ secondPassword: event.target.value });
     };
-    handleTarjeta(event){
-        this.setState({tarjeta:event.target.value});
+    handleTarjeta(event) {
+        this.setState({ tarjeta: event.target.value });
     }
-    handleDocumento(event){
-        this.setState({documento:event.target.value});
+    handleDocumento(event) {
+        this.setState({ documento: event.target.value });
+    }
+    handleLocation(e) {
+        console.log(e.coordinates);
+        if (e.coordinates != "") {
+            this.setState({latitud:e.coordinates.lat});
+            this.setState({longitud:e.coordinates.lng})
+        }
+
     }
     handleNext(event) {
         event.preventDefault();
@@ -92,11 +105,11 @@ export class Name extends Component {
                 correo: this.state.email,
                 tarjeta: this.state.tarjeta,
                 puntuacion: 5.0,
-                ubicacion: null,
-                documento:this.state.documento,
+                ubicacion: {'latitud':this.state.latitud, 'longitud':this.state.longitud},
+                documento: this.state.documento,
                 contraseña: this.state.password
             }
-            axios.post('https://easybiciback.herokuapp.com/User',newUser).then(res=>{
+            axios.post('https://easybiciback.herokuapp.com/User', newUser).then(res => {
                 console.log("post done");
             });
         }
@@ -223,6 +236,12 @@ export class Name extends Component {
                                 onChange={this.handleSecondPassword}
                                 margin="normal"
                             />
+                             <GoogleComponent
+                                apiKey={API_KEY}
+                                languaje={"en"}
+                                coordinates={true}
+                                onChange={this.handleLocation}
+                            ></GoogleComponent>
                         </form>
 
 
