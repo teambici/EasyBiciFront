@@ -50,7 +50,7 @@ export class Name extends Component {
         } else {
             this.state = {
                 first_name: '', last_name: '', email: '', password: '', secondPassword: '', next: false, back: false, open: false, Accept: false, Decline: false,
-                tarjeta: '', documento: '',latitud :null, longitud:null
+                tarjeta: '', documento: '',latitud :null, longitud:null,
             };
         }
 
