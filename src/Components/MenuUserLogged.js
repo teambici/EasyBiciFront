@@ -10,9 +10,9 @@ import Menu from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import ExploreIcon from '@material-ui/icons/Explore';
-import SettingsIcon from '@material-ui/icons/Settings';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import MapIcon from '@material-ui/icons/Map';
 import { Redirect } from "react-router-dom";
 function logOut() {
   localStorage.removeItem("isLoggedin");
@@ -59,6 +59,11 @@ export default function TemporaryDrawer() {
   const goBikes = (site) => event=> {    
     setBikes(site);   
   };
+
+  const [map, setMap] = React.useState(false);
+  const goMap = (site) => event=> {    
+    setMap(site);   
+  };
   
   const name=localStorage.getItem("mailLogged").charAt(0);  
   const toggleDrawer = (side, open) => event => {
@@ -82,6 +87,11 @@ export default function TemporaryDrawer() {
       </List>
       <Divider />
       <List style={back}>
+        <ListItem button onClick={goMap(true)} >
+          <ListItemIcon><MapIcon/></ListItemIcon>
+          <ListItemText primary="Map" ></ListItemText>          
+          {map &&  <Redirect to={{  pathname: '/services' }}/>} 
+        </ListItem>
         <ListItem button onClick={goTrips(true)} >
           <ListItemIcon><ExploreIcon/></ListItemIcon>
           <ListItemText primary="Your Trips" ></ListItemText>          
@@ -90,7 +100,7 @@ export default function TemporaryDrawer() {
         <ListItem button onClick={goBikes(true)}>
           <ListItemIcon><DirectionsBikeIcon/></ListItemIcon>
           <ListItemText primary="Your Bikes" ></ListItemText>      
-          {bikes &&  <Redirect to={{  pathname: '/bike' }}/>}     
+          {bikes &&  <Redirect to={{  pathname: '/Bikes' }}/>}     
         </ListItem>       
       </List>   
       <Divider />       

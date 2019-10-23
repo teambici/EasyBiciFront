@@ -21,13 +21,13 @@ import Map from './Map';
   const Menu = () => {
     return (
         <div>
-        <TopAppBar fixed="true" style={barStyles}>
+        <TopAppBar fixed="true"  style={barStyles}>
           <TopAppBarRow>
             <TopAppBarSection align='start' >
                 <MenuUserLogged></MenuUserLogged>
             </TopAppBarSection>
             <TopAppBarSection align='center' >
-            <TopAppBarTitle className="Title">Easy Bici</TopAppBarTitle>
+            <TopAppBarTitle className="Title">EasyBici</TopAppBarTitle>
             </TopAppBarSection>
             
           </TopAppBarRow>
