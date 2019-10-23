@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import bikerent from '../img/bikeex.png';
-import bike from '../img/bikerent.jpg';
-import { Link } from "react-router-dom";
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import MenuUserLogged from "./MenuUserLogged.js";
 export class BikeReserve extends Component {    
     render() {         
         const paper={
@@ -24,6 +20,10 @@ export class BikeReserve extends Component {
         }
         return (
             <div style={fondo}>   
+                <div >                    
+                    <MenuUserLogged /> 
+                        
+                </div>   
                 <div style={title}>
                     <h1>YOUR BIKE</h1>  
                     <CircularProgress  />
