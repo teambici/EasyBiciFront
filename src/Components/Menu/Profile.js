@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+
 import { Redirect } from "react-router-dom";
 import BottomMenu from "../Bottom_Menu"
 import parker from '../../img/Parker.jpg';
 import { Link } from "react-router-dom";
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
-
+import MenuUserLogged from "../MenuUserLogged.js"
 export class Profile extends Component {
     constructor(props) {
         super(props)
@@ -20,7 +21,9 @@ export class Profile extends Component {
 
         return (
             <article>
+                
                 <div style={divStyle}>
+                <MenuUserLogged ></MenuUserLogged>
                     <img width='15%' src={parker} alt="mparker" />
                     <div>
                         <h1>Profile</h1>
@@ -28,10 +31,7 @@ export class Profile extends Component {
                     </div>
                    
                     <Link to="/notifications"><NotificationsActiveIcon  /></Link>
-                </div>
-
-
-                <BottomMenu />
+                </div>               
             </article>
 
         )

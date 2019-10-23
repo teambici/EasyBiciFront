@@ -27,7 +27,7 @@ import Map from './Map';
                 <MenuUserLogged></MenuUserLogged>
             </TopAppBarSection>
             <TopAppBarSection align='center' >
-            <TopAppBarTitle className="Title">Easy Bici</TopAppBarTitle>
+            <TopAppBarTitle className="Title">EasyBici</TopAppBarTitle>
             </TopAppBarSection>
             
           </TopAppBarRow>
