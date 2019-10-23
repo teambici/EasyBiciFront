@@ -15,6 +15,9 @@ import { Container } from '@material-ui/core';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
 import Camera from 'react-html5-camera-photo';
+import { GoogleComponent } from 'react-google-location';
+import  { FACING_MODES } from 'react-html5-camera-photo'
+const API_KEY = "";
 export class NewBike extends Component {
     constructor(props) {
         super(props);
@@ -35,14 +38,24 @@ export class NewBike extends Component {
         this.handlephone = this.handlephone.bind(this);
         this.onTakePhoto = this.onTakePhoto.bind(this);
         this.handlecamera = this.handlecamera.bind(this);
+        this.handleLocation = this.handleLocation.bind(this);
 
     }
     handlecamera() {
         this.setState({ photo: true })
     }
     onTakePhoto(event) {
+        alert("entra")
         this.setState({ image: event });
-        this.setState({photo: false});
+        this.setState({ photo: false });
+    }
+    handleLocation(e) {
+        console.log(e.coordinates);
+        if (e.coordinates != "") {
+            this.setState({ latitud: e.coordinates.lat });
+            this.setState({ longitud: e.coordinates.lng })
+        }
+
     }
     handleBikeName(event) {
         this.setState({ bike_name: event.target.value });
@@ -111,6 +124,13 @@ export class NewBike extends Component {
         if (this.state.photo) {
             return (<Camera
                 onTakePhoto={(dataUri) => { this.onTakePhoto(dataUri); }}
+                idealFacingMode={FACING_MODES.ENVIRONMENT}
+                idealResolution={{ height: 1334 }}
+                imageCompression={0.5}
+                isMaxResolution={false}
+                isImageMirror={false}
+                isSilentMode={true}
+                isDisplayStartCameraError={true}
             />)
         } else {
             return (
@@ -133,14 +153,6 @@ export class NewBike extends Component {
                                     id="Description"
                                     value={this.state.description}
                                     onChange={this.handleDesc}
-                                    margin="normal"
-                                />
-                                <TextField
-                                    type="text"
-                                    label="Address"
-                                    id="address"
-                                    value={this.state.address}
-                                    onChange={this.handleadrress}
                                     margin="normal"
                                 />
                                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -171,6 +183,13 @@ export class NewBike extends Component {
                                     value={this.state.secondPassword}
                                     margin="normal"
                                 />
+                                <GoogleComponent
+                                    apiKey={API_KEY}
+                                    languaje={"en"}
+                                    label="ADRRESS"
+                                    coordinates={true}
+                                    onChange={this.handleLocation}
+                                ></GoogleComponent>
                                 <IconButton
                                     color="primary"
                                     aria-label="upload picture"
