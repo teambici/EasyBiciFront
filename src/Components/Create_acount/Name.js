@@ -97,7 +97,6 @@ export class Name extends Component {
 
     }
     handleNext(event) {
-        event.preventDefault();
         if (this.state.first_name && this.state.last_name && this.state.password && this.state.password == this.state.secondPassword) {
             this.setState({ open: true });
             const newUser = {
@@ -107,7 +106,7 @@ export class Name extends Component {
                 puntuacion: 5.0,
                 ubicacion: {'latitud':this.state.latitud, 'longitud':this.state.longitud},
                 documento: this.state.documento,
-                contraseña: this.state.password
+                contrasena: this.state.password
             }
             axios.post('https://easybiciback.herokuapp.com/User', newUser).then(res => {
                 console.log("post done");
