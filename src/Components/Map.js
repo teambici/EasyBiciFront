@@ -5,6 +5,9 @@ import { GoogleComponent } from 'react-google-location';
 import logo from "../img/bikeex2.png";
 import parqueadero from "../img/parqueo.png";
 import InfoWindowEx from "./InfoWindowEx";
+import { Redirect } from "react-router-dom";
+import Fab from '@material-ui/core/Fab';
+import NavigationIcon from '@material-ui/icons/Navigation';
 const mapStyles = {
     height: "100%"
 };
@@ -19,10 +22,10 @@ class Maps extends Component {
         super(props)
         
         this.state = { place: { lat: 4.6897100, lng: -74.0817500 }, zoom: 13 ,selectBike:null, showingInfoWindow: false,
-        activeMarker: {},
-        selectedPlace: {}};
+        activeMarker: {}, selectedPlace: {}, goToBike:false };
         this.handleLocation = this.handleLocation.bind(this);
         this.handleBike = this.handleBike.bind(this);
+        this.handleOneBike = this.handleOneBike.bind(this);
     }
     onMarkerClick = (props, marker, e) => {
         this.setState({
@@ -31,9 +34,18 @@ class Maps extends Component {
           showingInfoWindow: true
         });
       };
+    handleOneBike(e){
+        this.setState({goToBike:true})       
     
+    }
 
     render() {
+        if (this.state.goToBike) {
+            return <Redirect to={{
+                pathname: '/bike',
+            }}
+            />
+        };
        
         return (
             <div>
@@ -76,13 +88,18 @@ class Maps extends Component {
                         visible={this.state.showingInfoWindow}
                     >
                         <div>
-                       
-                        <button
-                            type="button"
-                           
-                        >
-                            Show details
-                        </button>
+                            <Fab
+                            variant="extended"
+                            size="small"
+                            color="primary"
+                            aria-label="add"
+                            onClick={this.handleOneBike}
+                            
+                            >
+                            <NavigationIcon  />
+                                Ver
+                            </Fab>
+                        
                         </div>
                     </InfoWindowEx>    
                 

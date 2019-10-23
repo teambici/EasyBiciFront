@@ -4,28 +4,34 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import bike from '../img/bikeex.png';
+import bicicleta from '../img/bicicleta.jpg';
+import { height } from '@material-ui/system';
 export class Info extends Component {
-    render() {
+    render() {        
+        const divStyle = {            
+            marginTop:"50px",
+            width:"70%"
+          
+        };
         
 
         return (
-            <Card >
+            <Card  style={divStyle}>
                 <CardActionArea>
                     <CardMedia
                         component="img"
-                        alt="Contemplative Reptile"
-                        height="140"
-                        image={bike}
+                        alt="Contemplative Reptile"                        
+                        
+                        image={bicicleta}
                         title="Contemplative Reptile"
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
                             {this.props.title}
-          </Typography>
+                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
                            {this.props.parrafo}
-          </Typography>
+                        </Typography>                        
                     </CardContent>
                 </CardActionArea>
                

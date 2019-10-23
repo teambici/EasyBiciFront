@@ -1,15 +1,11 @@
 import React from 'react';
 import '@material/react-top-app-bar/dist/top-app-bar.css';
 import '@material/react-material-icon/dist/material-icon.css';
-import TopAppBar, {
-    TopAppBarFixedAdjust, 
-    TopAppBarIcon,
-    TopAppBarRow,
-    TopAppBarSection,
-    TopAppBarTitle,
-  } from '@material/react-top-app-bar';
-  import MaterialIcon from '@material/react-material-icon';
-  import MenuUserLogged from "./MenuUserLogged.js"
+import TopAppBar from '@material/react-top-app-bar';
+import MaterialIcon from '@material/react-material-icon';
+import MenuUserLogged from "./MenuUserLogged.js"
+import Typography from '@material-ui/core/Typography';
+import Toolbar from '@material-ui/core/Toolbar';
 import { isUserWhitespacable } from '@babel/types';
 import Map from './Map';
    
@@ -22,15 +18,12 @@ import Map from './Map';
     return (
         <div>
         <TopAppBar fixed="true"  style={barStyles}>
-          <TopAppBarRow>
-            <TopAppBarSection align='start' >
-                <MenuUserLogged></MenuUserLogged>
-            </TopAppBarSection>
-            <TopAppBarSection align='center' >
-            <TopAppBarTitle className="Title">EasyBici</TopAppBarTitle>
-            </TopAppBarSection>
-            
-          </TopAppBarRow>
+          <Toolbar>
+            <MenuUserLogged />                 
+              <Typography variant="h6"  >
+                EasyBici
+              </Typography>                        
+          </Toolbar>         
         </TopAppBar>
       </div>
     );
