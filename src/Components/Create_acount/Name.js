@@ -7,6 +7,7 @@ import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
 } from '@material-ui/pickers';
+import { GoogleComponent } from 'react-google-location';
 import Fab from '@material-ui/core/Fab';
 import RightIcon from '@material-ui/icons/KeyboardArrowRight';
 import LeftIcon from '@material-ui/icons/KeyboardArrowLeft';
@@ -42,12 +43,14 @@ export class Name extends Component {
             this.state = {
                 first_name: this.props.location.state.first_name, last_name: this.props.location.state.last_name,
                 email: '', birthday: new Date('2014-08-18T21:11:54'), password: '', secondPassword: '', next: false,
-                 back: false, open: false, Accept: false, Decline: false, tarjeta: '',documento:'',
+                back: false, open: false, Accept: false, Decline: false, tarjeta: '', documento: '',
             }
 
         } else {
-            this.state = { first_name: '', last_name: '', email: '',  password: '', secondPassword: '', next: false, back: false, open: false, Accept: false, Decline: false,
-            tarjeta:'',documento:'' };
+            this.state = {
+                first_name: '', last_name: '', email: '', password: '', secondPassword: '', next: false, back: false, open: false, Accept: false, Decline: false,
+                tarjeta: '', documento: ''
+            };
         }
 
         this.handleEmail = this.handleEmail.bind(this);
@@ -77,11 +80,11 @@ export class Name extends Component {
     handleSecondPassword(event) {
         this.setState({ secondPassword: event.target.value });
     };
-    handleTarjeta(event){
-        this.setState({tarjeta:event.target.value});
+    handleTarjeta(event) {
+        this.setState({ tarjeta: event.target.value });
     }
-    handleDocumento(event){
-        this.setState({documento:event.target.value});
+    handleDocumento(event) {
+        this.setState({ documento: event.target.value });
     }
     handleNext(event) {
         event.preventDefault();
@@ -93,10 +96,10 @@ export class Name extends Component {
                 tarjeta: this.state.tarjeta,
                 puntuacion: 5.0,
                 ubicacion: null,
-                documento:this.state.documento,
+                documento: this.state.documento,
                 contraseña: this.state.password
             }
-            axios.post('https://easybiciback.herokuapp.com/User',newUser).then(res=>{
+            axios.post('https://easybiciback.herokuapp.com/User', newUser).then(res => {
                 console.log("post done");
             });
         }
@@ -207,6 +210,12 @@ export class Name extends Component {
                                 onChange={this.handleDocumento}
                                 margin="normal"
                             />
+                            <GoogleComponent
+                                style={barStyles}
+                                apiKey={API_KEY}
+                                languaje={"en"}
+                                coordinates={true}
+                            ></GoogleComponent>
                             <TextField
                                 type="password"
                                 label="Password"
