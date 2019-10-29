@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import './Login.css'
 import { Redirect } from "react-router-dom";
 import image1 from '../img/logoF.png';
+import axios from 'axios';
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -19,15 +20,22 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 
 export class Login extends React.Component{
     checkdata() {
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value
-
-        if (email != "" && password != "") {
-            localStorage.setItem("isLoggedin", true);
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        const user={correo:email, contrasena: password};
+        
+        console.log(user);
+        axios.post('http://easybiciback.herokuapp.com/login',user)
+          .then(function (response) {
+              console.log(response.data);
+              localStorage.setItem("token",response.data);
+              localStorage.setItem("isLoggedIn", true);
             localStorage.setItem("mailLogged", email);
-            localStorage.setItem("passwordLogged", password);
-            this.setState({ Loggin: true });
-        }
+            window.location.replace("/Services");
+          })
+          .catch(function (error) {
+              alert("datos Incorrectos");
+          });
     }
 
     constructor(props) {
@@ -42,7 +50,6 @@ export class Login extends React.Component{
         const password = document.getElementById("password").value
         if (email !=="" && password!==""){
             this.checkdata();
-            this.setState({ Loggin: true });
         }else{
             alert("El campo de email o contraseña esta vacio");
         }
@@ -52,7 +59,7 @@ export class Login extends React.Component{
         this.setState({ createAcount: true });
     }
     render(){
-        if (localStorage.getItem("isLoggedin")) {
+        if (localStorage.getItem("isLoggedIn")) {
             return <Redirect to={{
                 pathname: '/Services'
             }}
@@ -88,11 +95,11 @@ export class Login extends React.Component{
                                 />
                             </FormControl>
                             <Button
-                                type="submit"
+                                type="button"
                                 variant="raised"
                                 color="primary"
                                 className="submit"
-                                onClick={this.handleLoggin}
+                                onClick={this.checkdata}
                             >
                                 Sign in
                             </Button>
