@@ -17,6 +17,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Camera from 'react-html5-camera-photo';
 import axios from 'axios';
 import { GoogleComponent } from 'react-google-location';
+
 import  { FACING_MODES } from 'react-html5-camera-photo'
 const API_KEY = "";
 export class NewBike extends Component {
@@ -96,12 +97,20 @@ export class NewBike extends Component {
         this.setState({ back: true });
     }
     handleNext(event) {
-        event.preventDefault();
-        if (this.state.first_name && this.state.last_name && this.state.password && this.state.password == this.state.secondPassword) {
-            this.setState({ next: true });
-        }
-        else {
-            alert("La claves no son iguales")
+        if (this.state.description && this.state.type && this.state.last_mantein && this.state){
+            const newUser = {
+                descripcion: this.state.description,
+                puntuacion: 5.0,
+                imagen: "null",
+                hogar:"null",
+                disponible:"true"
+            }
+            axios.post('https://easybiciback.herokuapp.com/Cicla', newUser).then(res => {
+                console.log("post done");
+            });
+            this.handleBack();
+        } else {
+            alert("Todos los campos son obligatorios")
         }
     }
     postcicla(){
@@ -158,10 +167,10 @@ export class NewBike extends Component {
                             <form style={divStyle} >
                                 <TextField
                                     type="text"
-                                    label="Bike Name"
-                                    id="BikeName"
-                                    value={this.state.bike_name}
-                                    onChange={this.handleBikeName}
+                                    label="Bike type"
+                                    id="BikeType"
+                                    value={this.state.type}
+                                    onChange={this.handleType}
                                     margin="normal"
                                 />
                                 <TextField
@@ -191,14 +200,18 @@ export class NewBike extends Component {
                                     type="text"
                                     label="Phone number"
                                     id="password"
-                                    value={this.state.password}
+                                    value={this.state.phone}
+                                    selected={this.state.phone}
+                                    onChange={this.handlephone}
                                     margin="normal"
                                 />
                                 <TextField
                                     type="text"
                                     label="Bike code"
                                     id="secondPassword"
-                                    value={this.state.secondPassword}
+                                    value={this.state.bikeNumber}
+                                    selected={this.state.bikeNumber}
+                                    onchange={this.handleNumber}
                                     margin="normal"
                                 />
                                 
