@@ -102,7 +102,7 @@ export class Name extends Component {
             const newUser = {
                 nombre: this.state.first_name + this.state.last_name,
                 correo: this.state.email,
-                tarjeta: this.state.tarjeta,
+                tarjeta: null,
                 puntuacion: 5.0,
                 ubicacion: {'latitud':this.state.latitud, 'longitud':this.state.longitud},
                 documento: this.state.documento,
@@ -201,14 +201,6 @@ export class Name extends Component {
                                 id="email"
                                 value={this.state.email}
                                 onChange={this.handleEmail}
-                                margin="normal"
-                            />
-                            <TextField
-                                type="text"
-                                label="CREDIT CARD"
-                                id="tarjeta"
-                                value={this.state.tarjeta}
-                                onChange={this.handleTarjeta}
                                 margin="normal"
                             />
                             <TextField
