@@ -15,7 +15,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MapIcon from '@material-ui/icons/Map';
 import { Redirect } from "react-router-dom";
 function logOut() {
-  localStorage.removeItem("isLoggedin");
+  localStorage.removeItem("isLoggedIn");
   window.location.replace("/");  
 }
 const styleMenu = {
