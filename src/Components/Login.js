@@ -27,8 +27,8 @@ export class Login extends React.Component{
         console.log(user);
         axios.post('http://easybiciback.herokuapp.com/login',user)
           .then(function (response) {
-              console.log(response.data);
-              localStorage.setItem("token",response.data);
+              console.log(response.data.accessToken);
+              localStorage.setItem("token",response.data.accessToken);
               localStorage.setItem("isLoggedIn", true);
             localStorage.setItem("mailLogged", email);
             window.location.replace("/Services");

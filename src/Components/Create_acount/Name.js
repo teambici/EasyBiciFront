@@ -203,14 +203,7 @@ export class Name extends Component {
                                 onChange={this.handleEmail}
                                 margin="normal"
                             />
-                            <TextField
-                                type="text"
-                                label="CREDIT CARD"
-                                id="tarjeta"
-                                value={this.state.tarjeta}
-                                onChange={this.handleTarjeta}
-                                margin="normal"
-                            />
+                           
                             <TextField
                                 type="text"
                                 label="DOCUMENT"
