@@ -9,6 +9,8 @@ export class ViñetaCiclas extends React.Component {
     }
 
     render() {
+        console.log("iwi")
+        console.log(this.props)
         return (
             <div >
                 <p></p>
@@ -21,7 +23,7 @@ export class ViñetaCiclas extends React.Component {
                         puntuacion= {this.props.res.puntuacion} {"                  -          ".replace(/ /g, "\u00a0")} disponible= {JSON.stringify(this.props.res.disponible)}
                     </Typography>
                     <Typography color="textSecondary" gutterBottom>
-                         dueño = {this.props.res.dueno}  {"           -          ".replace(/ /g, "\u00a0")}   
+                        Tipo= {this.props.res.tipo} {"                  -          ".replace(/ /g, "\u00a0")} Ultimo mantenimiento= {this.props.res.fechamante}
                     </Typography>
                 </Card>
                 <p></p>
