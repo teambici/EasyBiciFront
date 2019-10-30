@@ -27,7 +27,8 @@ export class NewBike extends Component {
         super(props);
         this.state = {
             bike_name: '', description: '', type: '', size: '', last_mantein: new Date('2014-08-18T21:11:54')
-            , cost: '', address: '', phone: '', bikeNumber: '', back: false, next: true, image: '', photo: false,
+            , cost: '', address: '', phone: '', bikeNumber: '', back: false, next: true, image: '', 
+            photo: false,latitud :'', longitud: ''
         };
         this.handleBikeName = this.handleBikeName.bind(this);
         this.handleDesc = this.handleDesc.bind(this);
@@ -108,6 +109,7 @@ export class NewBike extends Component {
                 dueno: localStorage.getItem("mailLogged"),
                 tipo:this.state.type,
                 fechamante: this.state.last_mantein,
+                ubicacion: {'latitud':this.state.latitud, 'longitud':this.state.longitud},
             }
             axios.post('https://easybiciback.herokuapp.com/Cicla', newUser).then(res => {
                 console.log("post done");

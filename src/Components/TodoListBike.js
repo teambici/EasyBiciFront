@@ -18,7 +18,6 @@ export class TodoListBike extends React.Component {
             console.log(data)
               let tasksList = [];
               data.forEach(function (task) {
-                 
                   if (task.dueno === localStorage.getItem("mailLogged")) {
                       tasksList.push({
                           descripcion: task.descripcion,
