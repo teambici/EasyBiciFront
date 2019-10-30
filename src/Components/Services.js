@@ -30,7 +30,7 @@ class Services extends Component {
         }
         if (this.state.List){
             return <Redirect to={{
-                pathname: '/notifications'
+                pathname: '/ListBikes'
             }}
             />
         }
