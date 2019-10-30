@@ -9,8 +9,7 @@ import { height } from '@material-ui/system';
 export class Info extends Component {
     render() {        
         const divStyle = {            
-            marginTop:"50px",
-            width:"70%"
+            marginBottom:"20px"
           
         };
         
