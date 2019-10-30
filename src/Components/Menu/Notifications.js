@@ -6,7 +6,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import MenuUserLogged from "../MenuUserLogged.js"
-
+import UpperView from '../UpperVIew';
 export class Notifications extends Component {
     constructor(props) {
         super(props)
@@ -38,14 +38,9 @@ export class Notifications extends Component {
         return (
             <article>
                 <div>
-                    <AppBar position="static" style={barStyles}>
-                        <Toolbar>
-                            <MenuUserLogged ></MenuUserLogged>  
-                            <Typography color="inherit">
-                                Notifications
-                            </Typography>
-                        </Toolbar>
-                    </AppBar>  
+                    <UpperView title="Notifications" inNoti="true" ></UpperView>      
+
+
                     <div style={divStyle} onClick={this.handleButton}>
                         <Info title="alquiler" parrafo="servicio de alquiler para Jonathan Cuesta" />
                     </div>

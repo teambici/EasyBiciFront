@@ -13,9 +13,6 @@ const mapStyles = {
     height: "100%"
 };
 const barStyles={
-    marginTop: "58px",
- 
-
 }
 const API_KEY = "";
 class Maps extends Component {
@@ -56,7 +53,7 @@ class Maps extends Component {
             height: "50px",
         }
         const button={
-            marginTop:"5px",
+          
            
         }
         const buttonBlue={
