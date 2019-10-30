@@ -12,7 +12,8 @@ export class ListBikes extends Component {
         axios.get(`https://easybiciback.herokuapp.com/Cicla`)
           .then(res => {
             const BikesList = res.data;
-            this.setState({Bikes: BikesList});           
+            this.setState({Bikes: BikesList});              
+            
         })         
       }
     render() { 
