@@ -59,9 +59,7 @@ export default function CardProfile() {
             P
           </Avatar>
         }
-        action={
-            <Link to="/notifications"><NotificationsActiveIcon /></Link>
-        }
+        
         title="Hi, I´m Usuario Parker"
         subheader="Joined in August,2019"
       />
