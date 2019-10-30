@@ -9,11 +9,8 @@ import { Redirect } from "react-router-dom";
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import bicicleta from '../img/bicicleta.jpg';
-const mapStyles = {
-    height: "100%"
-};
-const barStyles={
-}
+
+const barStyles={}
 const API_KEY = "";
 class Maps extends Component {
     constructor(props) {
@@ -64,25 +61,22 @@ class Maps extends Component {
        
         return (
             <div>
-                <Card className="insertCard" style={barStyles} >
-                    <GoogleComponent  
-                        style={barStyles}                   
+                <Card className="insertCard"  >
+                    <GoogleComponent                                          
                         apiKey={API_KEY}
                         languaje={"en"}
                         coordinates={true}                        
                     >aaaaaaa</GoogleComponent>
                 </Card>
                
-                <Map className="map"
+                <Map 
                     google={this.props.google}
                     zoom={this.state.zoom}
-                    initialCenter={{ lat: this.state.place.lat, lng: this.state.place.lng }}
-                    style={mapStyles}
+                    initialCenter={{ lat: this.state.place.lat, lng: this.state.place.lng }}                 
                     options={{ streetViewControl: false }} 
                     fullscreenControl={false}
                     scaleControl={false}
-                    zoomControl={false}
-                >
+                    zoomControl={false}                >
 
                     <Marker position={{ lat: 4.784, lng: -74.0417500 }} icon={logo} />
                     <Marker position={{ lat: 4.785, lng: -74.0917500 }} icon={logo}   onClick={this.onMarkerClick}/>
@@ -112,8 +106,7 @@ class Maps extends Component {
                             size="small"
                             color="primary"
                             aria-label="add"
-                            onClick={this.handleOneBike}
-                           
+                            onClick={this.handleOneBike}                           
                             >
                             <NavigationIcon  />
                                 Ver
@@ -121,8 +114,7 @@ class Maps extends Component {
                             </div>            
                         
                         </div>
-                    </InfoWindowEx>    
-                
+                    </InfoWindowEx>  
 
 
                 </Map>
