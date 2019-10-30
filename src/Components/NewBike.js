@@ -17,7 +17,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Camera from 'react-html5-camera-photo';
 import { GoogleComponent } from 'react-google-location';
 import axios from 'axios';
-import  { FACING_MODES } from 'react-html5-camera-photo'
+import MenuItem from '@material-ui/core/MenuItem';
+import { FACING_MODES } from 'react-html5-camera-photo'
 const API_KEY = "";
 export class NewBike extends Component {
     constructor(props) {
@@ -90,23 +91,28 @@ export class NewBike extends Component {
         this.setState({ back: true });
     }
     handleNext(event) {
-        if (this.state.description && this.state.type && this.state.last_mantein && this.state){
+        if (this.state.description && this.state.type && this.state.last_mantein && this.state.bikeNumber) {
             const newUser = {
                 descripcion: this.state.description,
                 puntuacion: 5.0,
                 imagen: "null",
-                hogar:"null",
-                disponible:"true"
+                disponible: "true",
+                dueno: localStorage.getItem("mailLogged"),
+                tipo:this.state.type,
+                fechamante: this.state.last_mantein,
             }
             axios.post('https://easybiciback.herokuapp.com/Cicla', newUser).then(res => {
                 console.log("post done");
             });
-            this.handleBack();
+            this.setState({ back: true });
         } else {
             alert("Todos los campos son obligatorios")
         }
     }
     render() {
+        const estates = [
+            { type: "Urbana" }, { type: "De Montaña" }, { type: "De Ruta" },{ type: "Plegable" },{ type: "BMX" },{ type: "Electrica" }
+          ]
         const divStyle = {
             display: 'flex',
             flexDirection: 'column',
@@ -149,19 +155,32 @@ export class NewBike extends Component {
                         <div >
                             <form style={divStyle} >
                                 <TextField
-                                    type="text"
-                                    label="Bike type"
                                     id="BikeType"
-                                    value={this.state.type}
+                                    select
+                                    label="Bike Type"
                                     onChange={this.handleType}
-                                    margin="normal"
-                                />
+                                    value={this.state.type}
+                                >
+                                    {estates.map(option => (
+                                        <MenuItem key={option.type} value={option.type}>
+                                            {option.type}
+                                        </MenuItem>
+                                    ))}
+                                </TextField>
                                 <TextField
                                     type="text"
                                     label="Description"
                                     id="Description"
                                     value={this.state.description}
                                     onChange={this.handleDesc}
+                                    margin="normal"
+                                />
+                                <TextField
+                                    type="text"
+                                    label="Bike code"
+                                    id="BikeNumber"
+                                    value={this.state.bikeNumber}
+                                    onChange={this.handleNumber}
                                     margin="normal"
                                 />
                                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -178,24 +197,6 @@ export class NewBike extends Component {
                                         }}
                                     />
                                 </MuiPickersUtilsProvider>
-                                <TextField
-                                    type="text"
-                                    label="Phone number"
-                                    id="password"
-                                    value={this.state.phone}
-                                    selected={this.state.phone}
-                                    onChange={this.handlephone}
-                                    margin="normal"
-                                />
-                                <TextField
-                                    type="text"
-                                    label="Bike code"
-                                    id="secondPassword"
-                                    value={this.state.bikeNumber}
-                                    selected={this.state.bikeNumber}
-                                    onchange={this.handleNumber}
-                                    margin="normal"
-                                />
                                 <GoogleComponent
                                     apiKey={API_KEY}
                                     languaje={"en"}
@@ -205,11 +206,10 @@ export class NewBike extends Component {
                                 ></GoogleComponent>
                                 <IconButton
                                     color="primary"
-                                    aria-label="upload picture"
+                                    aria-label="selectpicture"
                                     component="span"
-                                    onClick={this.handlecamera}
                                 >
-                                    <PhotoCamera onClick={this.handlecamera} />
+                                    <input type="file" />
                                 </IconButton>
                             </form>
                         </div>
