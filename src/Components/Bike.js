@@ -7,13 +7,22 @@ import bicicleta from '../img/bicicleta.jpg';
 import Fab from '@material-ui/core/Fab';
 import RoomServiceIcon from '@material-ui/icons/RoomService';
 import UpperView from './UpperVIew';
-
-
+import axios from 'axios';
 export class Bike extends Component {
     constructor(props) {
-        super(props);
-        this.state={Check:false, booking:false}        
-        this.handleBooking= this.handleBooking.bind(this);
+        super(props);      
+        this.state={Check:false, booking:false,bike:{} }        
+        this.handleBooking= this.handleBooking.bind(this);      
+        console.log("1")
+    }
+    componentDidMount() {      
+        axios.get(`https://easybiciback.herokuapp.com/Cicla/`+this.props.location.id)
+          .then(res => {
+            const BikesList = res.data;
+            this.setState({bike: BikesList});   
+            console.log(this.state.bike)                         
+        })     
+          
     }
     handleBooking(event) {        
         this.setState({booking: true});
@@ -48,7 +57,7 @@ export class Bike extends Component {
                         <GridListTile >
                             <img src={bicicleta}   style={imagen} />
                             <GridListTileBar
-                                title={"Bicicleta de ruta"}                           
+                                title={this.state.bike.tipo}                           
                             />
                         </GridListTile>
                         ))}

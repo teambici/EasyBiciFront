@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UpperView from './UpperVIew';
 import axios from 'axios';
 import { Info } from "./Info";
+import { Redirect} from "react-router-dom";
 export class ListBikes extends Component {
     constructor(props) {
         super(props);
@@ -18,7 +19,7 @@ export class ListBikes extends Component {
       }
     render() { 
         const listItems = this.state.Bikes.map((list,i) =>
-            list.disponible&& <Info key={i} title={list.tipo} parrafo={list.descripcion}  /> 
+            list.disponible&& <Info key={i} title={list.tipo} parrafo={list.descripcion} id={list.id} /> 
          );   
          const format={
             paddingInlineEnd: 40
