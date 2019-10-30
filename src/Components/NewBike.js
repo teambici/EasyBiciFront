@@ -38,7 +38,6 @@ export class NewBike extends Component {
         this.handlecost = this.handlecost.bind(this);
         this.handleadrress = this.handleadrress.bind(this);
         this.handleNumber = this.handleNumber.bind(this);
-        this.handleNext = this.handleNext.bind(this);
         this.handleBack = this.handleBack.bind(this);
         this.handlephone = this.handlephone.bind(this);
         this.onTakePhoto = this.onTakePhoto.bind(this);
@@ -99,35 +98,18 @@ export class NewBike extends Component {
         event.preventDefault();
         this.setState({ back: true });
     }
-    handleNext(event) {
-        if (this.state.description && this.state.type && this.state.last_mantein && this.state.bikeNumber) {
-            const newUser = {
-                descripcion: this.state.description,
-                puntuacion: 5.0,
-                imagen: "null",
-                disponible: "true",
-                dueno: localStorage.getItem("mailLogged"),
-                tipo:this.state.type,
-                fechamante: this.state.last_mantein,
-                ubicacion: {'latitud':this.state.latitud, 'longitud':this.state.longitud},
-            }
-            axios.post('https://easybiciback.herokuapp.com/Cicla', newUser).then(res => {
-                console.log("post done");
-            });
-            this.setState({ back: true });
-        } else {
-            alert("Todos los campos son obligatorios")
-        }
-    }
+    
     postcicla(){
         const cicla={
-            descripcion:this.state.description,
+            descripcion:this.state.description+"   bikecode = "+this.state.bikeNumber,
             puntuacion:5.0,
             imagen:null,
             disponible:true,
-            dueno:localStorage.getItem("mailLogged")
+            dueno:localStorage.getItem("mailLogged"),
+            tipo: this.state.type,
+            fechamante:this.state.last_mantein
         }
-        axios.post("http://localhost:8080/Cicla",cicla).then(window.location.replace("/services"));
+        axios.post("https://easybiciback.herokuapp.com/Cicla",cicla).then(window.location.replace("/services"));
     }
     render() {
         const estates = [

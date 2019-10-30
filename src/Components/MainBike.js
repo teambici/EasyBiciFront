@@ -34,8 +34,7 @@ export class MainBike extends Component {
         return (
             <div>
                 <UpperView title="Your Bikes"></UpperView>
-                <Fab color="primary" aria-label="add" style={Buttonstyle} onClick={this.handleAdd} ><AddIcon /></Fab>
-
+                    <Fab color="primary" aria-label="add" style={Buttonstyle} onClick={this.handleAdd} ><AddIcon /></Fab>
                 <TodoListBike />
             </div>
 

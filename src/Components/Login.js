@@ -11,7 +11,8 @@ import { Redirect } from "react-router-dom";
 import image1 from '../img/logoF.png';
 import axios from 'axios';
 export class Login extends React.Component{
-    checkdata() {
+    checkdata(event) {
+        event.preventDefault();
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
         const user={correo:email, contrasena: password};
@@ -38,6 +39,7 @@ export class Login extends React.Component{
         this.handleCreateAcount = this.handleCreateAcount.bind(this);
     }
     handleLoggin() {
+
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value
         if (email !=="" && password!==""){
