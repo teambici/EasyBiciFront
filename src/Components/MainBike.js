@@ -3,6 +3,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { Redirect } from "react-router-dom";
 import UpperView from './UpperVIew';
+import TodoListBike from './TodoListBike';
 
 export class MainBike extends Component {
     constructor(props) {
@@ -33,10 +34,10 @@ export class MainBike extends Component {
         
         return (
             <div>
-                <UpperView title="Your Bikes"></UpperView>                   
-                <Fab color="primary" aria-label="add" style={Buttonstyle} onClick={this.handleAdd} ><AddIcon/></Fab> 
+                <UpperView title="Your Bikes"></UpperView>                  
+                <Fab color="primary" aria-label="add" style={Buttonstyle} onClick={this.handleAdd} ><AddIcon/></Fab>           
 
-
+                <TodoListBike/>
             </div>
            
         )

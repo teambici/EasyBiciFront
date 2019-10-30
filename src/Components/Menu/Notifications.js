@@ -38,19 +38,7 @@ export class Notifications extends Component {
         return (
             <article>
                 <div>
-                    <UpperView title="Notifications" inNoti="true" ></UpperView>      
-
-
-                    <div style={divStyle} onClick={this.handleButton}>
-                        <Info title="alquiler" parrafo="servicio de alquiler para Jonathan Cuesta" />
-                    </div>
-                    <div style={divStyle} onClick={this.handleButton}>
-                        <Info title="alquiler" parrafo="servicio de alquiler para Alejandro Rodriguez" />
-
-                    </div>
-                    <div style={divStyle} onClick={this.handleButton}>
-                        <Info title="alquiler" parrafo="servicio de alquiler para Sergio Peña" />
-                    </div>
+                    <UpperView title="Notifications" inNoti="true" ></UpperView>               
                 </div>
             </article>
         )
