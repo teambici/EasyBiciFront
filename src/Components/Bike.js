@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import {Redirect} from "react-router-dom";
-import MenuUserLogged from "./MenuUserLogged.js";
-import AppBar from '@material-ui/core/AppBar';
-import Typography from '@material-ui/core/Typography';
-import Toolbar from '@material-ui/core/Toolbar';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import IconButton from '@material-ui/core/IconButton';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
 import bicicleta from '../img/bicicleta.jpg';
 import Fab from '@material-ui/core/Fab';
 import RoomServiceIcon from '@material-ui/icons/RoomService';
+import UpperView from './UpperVIew';
+
 
 export class Bike extends Component {
     constructor(props) {
@@ -46,16 +42,7 @@ export class Bike extends Component {
         }              
         return (
             <div>
-                <div >
-                    <AppBar position="static" style={barStyles}>
-                        <Toolbar>
-                            <MenuUserLogged />                 
-                            <Typography variant="h6"  >
-                                Bike
-                            </Typography>                        
-                        </Toolbar>                     
-                    </AppBar> 
-                </div> 
+                <UpperView title="Bike"></UpperView>
                 <div  >
                     <GridList  cols={1}>                        
                         <GridListTile >

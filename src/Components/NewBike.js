@@ -15,10 +15,12 @@ import { Container } from '@material-ui/core';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
 import Camera from 'react-html5-camera-photo';
-import { GoogleComponent } from 'react-google-location';
 import axios from 'axios';
 import MenuItem from '@material-ui/core/MenuItem';
 import { FACING_MODES } from 'react-html5-camera-photo'
+
+import { GoogleComponent } from 'react-google-location';
+
 const API_KEY = "";
 export class NewBike extends Component {
     constructor(props) {
@@ -41,6 +43,8 @@ export class NewBike extends Component {
         this.onTakePhoto = this.onTakePhoto.bind(this);
         this.handlecamera = this.handlecamera.bind(this);
         this.handleLocation = this.handleLocation.bind(this);
+        this.handleMaintain=this.handleMaintain.bind(this);
+        this.postcicla=this.postcicla.bind(this);
 
     }
     handlecamera() {
@@ -67,6 +71,10 @@ export class NewBike extends Component {
     }
     handleType(event) {
         this.setState({ type: event.target.value });
+    }
+    handleMaintain(event){
+        console.log(event);
+        this.setState({last_mantein:event});
     }
     handlesize(event) {
         this.setState({ size: event.target.value });
@@ -108,6 +116,16 @@ export class NewBike extends Component {
         } else {
             alert("Todos los campos son obligatorios")
         }
+    }
+    postcicla(){
+        const cicla={
+            descripcion:this.state.description,
+            puntuacion:5.0,
+            imagen:null,
+            disponible:true,
+            dueno:localStorage.getItem("mailLogged")
+        }
+        axios.post("http://localhost:8080/Cicla",cicla).then(window.location.replace("/services"));
     }
     render() {
         const estates = [
@@ -192,11 +210,13 @@ export class NewBike extends Component {
                                         format="MM/dd/yyyy"
                                         value={this.state.last_mantein}
                                         selected={this.state.last_mantein}
+                                        onChange={this.handleMaintain}
                                         KeyboardButtonProps={{
                                             'aria-label': 'change date',
                                         }}
                                     />
                                 </MuiPickersUtilsProvider>
+
                                 <GoogleComponent
                                     apiKey={API_KEY}
                                     languaje={"en"}
@@ -217,7 +237,7 @@ export class NewBike extends Component {
                             <Fab color="primary" aria-label="add" className={useStyles.fab} onClick={this.handleBack}>
                                 <LeftIcon />
                             </Fab>
-                            <Fab color="primary" aria-label="add" className={useStyles.fab1} onClick={this.handleNext}>
+                            <Fab color="primary" aria-label="add" className={useStyles.fab1} onClick={this.postcicla}>
                                 <RightIcon />
                             </Fab>
                         </div>

@@ -1,0 +1,32 @@
+import React from 'react';
+import Card from '@material-ui/core/Card';
+import Typography from '@material-ui/core/Typography';
+
+export class ViñetaCiclas extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div >
+                <p></p>
+                <p></p>
+                <Card style={{flex:1, backgroundColor:'#92a8d1'}} >
+                    <Typography color="textSecondary" gutterBottom>
+                        Descripcion= {this.props.res.descripcion}
+                    </Typography>
+                    <Typography color="textSecondary" gutterBottom>
+                        puntuacion= {this.props.res.puntuacion} {"                  -          ".replace(/ /g, "\u00a0")} disponible= {JSON.stringify(this.props.res.disponible)}
+                    </Typography>
+                    <Typography color="textSecondary" gutterBottom>
+                         dueño = {this.props.res.dueno}  {"           -          ".replace(/ /g, "\u00a0")}   
+                    </Typography>
+                </Card>
+                <p></p>
+                <p></p>
+            </div>
+        );
+    }
+}
