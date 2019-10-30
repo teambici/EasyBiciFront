@@ -16,9 +16,6 @@ export class Notifications extends Component {
     handleButton(event){
         this.setState({host: true});
     }
-    
-
-
     render() {
         if (this.state.host){
             return <Redirect to={{
