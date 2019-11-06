@@ -83,7 +83,7 @@ export default function TemporaryDrawer() {
         <ListItem button onClick={goProfile(true)} >
         <CardMedia
           component="img"
-          image={"http://localhost:8080/Image/"+localStorage.getItem("mailLogged")}
+          image={"https://easybiciback.herokuapp.com/Image/"+localStorage.getItem("mailLogged")}
         />           
           {profile &&  <Redirect to={{  pathname: '/Profile' }}/>}     
         </ListItem>

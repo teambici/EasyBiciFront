@@ -61,7 +61,7 @@ export default function CardProfile() {
       />
       <CardMedia
         className={classes.media}
-        image={"http://localhost:8080/Image/"+localStorage.getItem("mailLogged")}
+        image={"https://easybiciback.herokuapp.com/Image/"+localStorage.getItem("mailLogged")}
         title="Parker"
       />
       <CardContent>

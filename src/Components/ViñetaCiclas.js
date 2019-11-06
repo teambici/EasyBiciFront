@@ -19,7 +19,7 @@ export class ViñetaCiclas extends React.Component {
                 <Card style={{flex:1, backgroundColor:'#92a8d1'}} >
                 <CardMedia
                        component="img"
-                        image={"http://localhost:8080/Image/"+this.props.res.imagen}
+                        image={"https://easybiciback.herokuapp.com/Image/"+this.props.res.imagen}
                     />  
                     <Typography color="textSecondary" gutterBottom>
                         Descripcion= {this.props.res.descripcion}
