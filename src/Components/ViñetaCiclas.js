@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
+import CardMedia from '@material-ui/core/CardMedia';
 
 export class ViñetaCiclas extends React.Component {
 
@@ -9,13 +10,17 @@ export class ViñetaCiclas extends React.Component {
     }
 
     render() {
-        console.log("iwi")
+       
         console.log(this.props)
         return (
             <div >
                 <p></p>
                 <p></p>
                 <Card style={{flex:1, backgroundColor:'#92a8d1'}} >
+                <CardMedia
+                       component="img"
+                        image={"http://localhost:8080/Image/"+this.props.res.imagen}
+                    />  
                     <Typography color="textSecondary" gutterBottom>
                         Descripcion= {this.props.res.descripcion}
                     </Typography>

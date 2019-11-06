@@ -52,7 +52,13 @@ export class Login extends React.Component{
     handleCreateAcount() {
         this.setState({ createAcount: true });
     }
+    log() {
+        if (localStorage.isLoggedIn === "true") {
+            window.location.replace("/Services");
+        }
+    }
     render(){
+        this.log();
         if (localStorage.getItem("isLoggedIn")) {
             return <Redirect to={{
                 pathname: '/Services'

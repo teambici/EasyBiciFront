@@ -18,8 +18,9 @@ import Camera from 'react-html5-camera-photo';
 import axios from 'axios';
 import MenuItem from '@material-ui/core/MenuItem';
 import { FACING_MODES } from 'react-html5-camera-photo'
-
+import { Input } from '@material-ui/core';
 import { GoogleComponent } from 'react-google-location';
+import uuid from 'react-uuid';
 
 const API_KEY = "";
 export class NewBike extends Component {
@@ -45,6 +46,7 @@ export class NewBike extends Component {
         this.handleLocation = this.handleLocation.bind(this);
         this.handleMaintain=this.handleMaintain.bind(this);
         this.postcicla=this.postcicla.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
 
     }
     handlecamera() {
@@ -98,18 +100,37 @@ export class NewBike extends Component {
         event.preventDefault();
         this.setState({ back: true });
     }
+    handleInputChange(e) {        
+        this.setState({
+              file: e.target.files[0]
+          });             
+    }
     
     postcicla(){
+        const fotcicla=uuid();
+        let data = new FormData();
+        data.append('file', this.state.file);
+        axios.post('http://localhost:8080/Image/'+fotcicla, data)
+        .then(function (response) {
+            console.log("file uploaded!", data);
+        })
+        .catch(function (error) {
+            console.log(error);
+            alert("failed file upload", error);
+    }); 
         const cicla={
             descripcion:this.state.description+"   bikecode = "+this.state.bikeNumber,
             puntuacion:5.0,
-            imagen:null,
+            imagen:fotcicla,
             disponible:true,
             dueno:localStorage.getItem("mailLogged"),
             tipo: this.state.type,
-            fechamante:this.state.last_mantein
+            fechamante:this.state.last_mantein,
+            
         }
         axios.post("https://easybiciback.herokuapp.com/Cicla",cicla).then(window.location.replace("/services"));
+
+       
     }
     render() {
         const estates = [
@@ -213,7 +234,8 @@ export class NewBike extends Component {
                                     aria-label="selectpicture"
                                     component="span"
                                 >
-                                    <input type="file" />
+                                    <td align="center" font-size= "50px" >Imagen de Cicla : {"   ".replace(/ /g, "\u00a0")}  </td>
+                                    <Input type="file" id="file" onChange={this.handleInputChange}/>
                                 </IconButton>
                             </form>
                         </div>

@@ -22,6 +22,7 @@ import Terms from "./Terms.js"
 import { Container } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import axios from 'axios';
+import { Input } from '@material-ui/core';
 
 const API_KEY = "";
 export class Name extends Component {
@@ -31,7 +32,7 @@ export class Name extends Component {
         const password = document.getElementById("password").value
 
         if (email != "" && password != "") {
-            localStorage.setItem("isLoggedin", true);
+            localStorage.setItem("isLoggedIn", true);
             localStorage.setItem("mailLogged", email);
             localStorage.setItem("passwordLogged", password);
             this.setState({ Loggin: true });
@@ -44,13 +45,13 @@ export class Name extends Component {
             this.state = {
                 first_name: this.props.location.state.first_name, last_name: this.props.location.state.last_name,
                 email: '', birthday: new Date('2014-08-18T21:11:54'), password: '', secondPassword: '', next: false,
-                back: false, open: false, Accept: false, Decline: false, tarjeta: '', documento: '',latitud :null, longitud:null
+                back: false, open: false, Accept: false, Decline: false, tarjeta: '', documento: '',latitud :null, longitud:null,file: null
             }
 
         } else {
             this.state = {
                 first_name: '', last_name: '', email: '', password: '', secondPassword: '', next: false, back: false, open: false, Accept: false, Decline: false,
-                tarjeta: '', documento: '',latitud :null, longitud:null,
+                tarjeta: '', documento: '',latitud :null, longitud:null,file: null,
             };
         }
 
@@ -66,6 +67,7 @@ export class Name extends Component {
         this.handleTarjeta = this.handleTarjeta.bind(this);
         this.handleDocumento = this.handleDocumento.bind(this);
         this.handleLocation = this.handleLocation.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
     handleFirstName(event) {
         this.setState({ first_name: event.target.value });
@@ -97,10 +99,10 @@ export class Name extends Component {
 
     }
     handleNext(event) {
-        if (this.state.first_name && this.state.last_name && this.state.password && this.state.password == this.state.secondPassword) {
+        if (this.state.first_name && this.state.last_name && this.state.password && this.state.password == this.state.secondPassword && this.state.file!==null) {
             this.setState({ open: true });
             const newUser = {
-                nombre: this.state.first_name + this.state.last_name,
+                nombre: this.state.first_name +" "+ this.state.last_name,
                 correo: this.state.email,
                 tarjeta: null,
                 puntuacion: 5.0,
@@ -111,6 +113,16 @@ export class Name extends Component {
             axios.post('https://easybiciback.herokuapp.com/User', newUser).then(res => {
                 console.log("post done");
             });
+            let data = new FormData();
+            data.append('file', this.state.file);
+            axios.post('http://localhost:8080/Image/'+this.state.email, data)
+            .then(function (response) {
+                console.log("file uploaded!", data);
+            })
+            .catch(function (error) {
+                console.log(error);
+                alert("failed file upload", error);
+            }); 
         }
         else if (this.state.password == this.state.secondPassword) {
             alert("Todos los datos son requeridos")
@@ -130,6 +142,11 @@ export class Name extends Component {
     }
     handleDecline(event) {
         this.setState({ Decline: true });
+    }
+    handleInputChange(e) {        
+        this.setState({
+              file: e.target.files[0]
+          });             
     }
 
 
@@ -179,6 +196,10 @@ export class Name extends Component {
                 <Container>
                     <div>
                         <form style={divStyle} >
+                        <Container>
+                            <td font-size= "50px" >Imagen de perfil </td>
+                            <Input type="file" id="file" onChange={this.handleInputChange}/>
+                        </Container>
                             <TextField
                                 type="text"
                                 label="FIRST NAME"

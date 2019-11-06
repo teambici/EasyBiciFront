@@ -40,6 +40,7 @@ class Services extends Component {
                 <UpperView title="EasyBici"></UpperView>                              
                 <Map></Map>  
                 <Fab  variant="extended" color="primary" style={button} onClick={this.handleList}>
+                    
                     <DirectionsBikeIcon style={icon}/>
                     List
                 </Fab>

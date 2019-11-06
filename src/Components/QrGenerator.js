@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import "./LoginHome.css";
 import { Redirect } from "react-router-dom";
+import uuid from 'react-uuid'; 
+
 class QrGenerator extends Component {
   constructor(props) {
     super(props);
@@ -19,9 +21,7 @@ handleback(event){
         />
     }
     var QRCode = require('qrcode.react');
-    var min=1;
-    var max=100000;
-    var seed= Math.floor(Math.random()*(max-min)*Math.random());
+    var seed= uuid();
     return (
       <div className="QrGenrator">
 

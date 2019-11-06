@@ -14,10 +14,6 @@ import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { Link } from "react-router-dom";
-import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
-import parker from '../../img/Parker.jpg';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -65,7 +61,7 @@ export default function CardProfile() {
       />
       <CardMedia
         className={classes.media}
-        image={parker}
+        image={"http://localhost:8080/Image/"+localStorage.getItem("mailLogged")}
         title="Parker"
       />
       <CardContent>

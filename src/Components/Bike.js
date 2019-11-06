@@ -8,6 +8,7 @@ import Fab from '@material-ui/core/Fab';
 import RoomServiceIcon from '@material-ui/icons/RoomService';
 import UpperView from './UpperVIew';
 import axios from 'axios';
+import { Container } from '@material-ui/core';
 export class Bike extends Component {
     constructor(props) {
         super(props);      
@@ -34,9 +35,6 @@ export class Bike extends Component {
             //modificar de acuerdo a lo que se defina como color principal
             background: "#81d8d0"
         }; 
-        const imagen={
-            height: "inherit"
-        }   
         const buttonBooking={
             position:"fixed",
             bottom:"3%",
@@ -52,17 +50,11 @@ export class Bike extends Component {
         return (
             <div>
                 <UpperView title="Bike"></UpperView>
-                <div  >
-                    <GridList  cols={1}>                        
-                        <GridListTile >
-                            <img src={bicicleta}   style={imagen} />
-                            <GridListTileBar
-                                title={this.state.bike.tipo}                           
-                            />
-                        </GridListTile>
-                        ))}
-                    </GridList>
-                </div>  
+                    <Container>
+                    <img src={bicicleta}  />                                            
+                            
+                    </Container>
+                    
                 <div style={buttonBooking}>
                     <Fab
                         variant="extended"

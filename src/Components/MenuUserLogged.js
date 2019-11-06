@@ -14,6 +14,8 @@ import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MapIcon from '@material-ui/icons/Map';
 import { Redirect } from "react-router-dom";
+import CardMedia from '@material-ui/core/CardMedia';
+
 function logOut() {
   localStorage.removeItem("isLoggedIn");
   window.location.replace("/");  
@@ -79,11 +81,14 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(side, false)} >
       <List  style={styleDrawer} >
         <ListItem button onClick={goProfile(true)} >
-          <ListItemIcon><Avatar style={styleAvatar} >{name}</Avatar></ListItemIcon>
-          <ListItemText primary={localStorage.getItem('mailLogged')}></ListItemText>     
+        <CardMedia
+          component="img"
+          image={"http://localhost:8080/Image/"+localStorage.getItem("mailLogged")}
+        />           
           {profile &&  <Redirect to={{  pathname: '/Profile' }}/>}     
         </ListItem>
       </List>
+      <ListItemText primary={localStorage.getItem('mailLogged')} align="center"></ListItemText>
       <Divider />
       <List style={back}>
         <ListItem button onClick={goMap(true)} >
