@@ -19,7 +19,7 @@ export class ListBikes extends Component {
       }
     render() { 
         const listItems = this.state.Bikes.map((list,i) =>
-            list.disponible&& <Info key={i} title={list.tipo} parrafo={list.descripcion} id={list.id} /> 
+            list.disponible&& <Info key={i} title={list.tipo} parrafo={list.descripcion} id={list.id} Image={list.imagen}/> 
          );   
          const format={
             paddingInlineEnd: 40

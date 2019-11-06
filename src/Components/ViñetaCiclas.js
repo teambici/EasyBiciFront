@@ -2,6 +2,7 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
+import { Container } from '@material-ui/core';
 
 export class ViñetaCiclas extends React.Component {
 
@@ -17,10 +18,13 @@ export class ViñetaCiclas extends React.Component {
                 <p></p>
                 <p></p>
                 <Card style={{flex:1, backgroundColor:'#92a8d1'}} >
-                <CardMedia
+                    <Container>
+                    <CardMedia
                        component="img"
                         image={"https://easybiciback.herokuapp.com/Image/"+this.props.res.imagen}
-                    />  
+                    /> 
+                    </Container>
+                     
                     <Typography color="textSecondary" gutterBottom>
                         Descripcion= {this.props.res.descripcion}
                     </Typography>

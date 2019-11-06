@@ -16,8 +16,12 @@ export class Info extends Component {
         this.setState({ next: true });        
     }
     render() {        
-        const divStyle = {            
-            marginBottom:"20px",         
+        const divStyle = {
+            card: {
+                maxWidth: 345,
+               
+                marginBottom:"20px", 
+            }        
           
         };
         if (this.state.next) {
@@ -30,13 +34,13 @@ export class Info extends Component {
         
 
         return (
-            <Card  style={divStyle} onClick={this.handleNext}>
+            <Card  style={divStyle.card} onClick={this.handleNext}>
                 <CardActionArea>
                     <CardMedia
                         component="img"
                         alt="Contemplative Reptile"                        
                         
-                        image={bicicleta}
+                        image={"https://easybiciback.herokuapp.com/Image/"+this.props.Image}
                         title="Contemplative Reptile"
                     />
                     <CardContent>
