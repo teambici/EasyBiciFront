@@ -115,7 +115,7 @@ export class Name extends Component {
             });
             let data = new FormData();
             data.append('file', this.state.file);
-            axios.post('http://localhost:8080/Image/'+this.state.email, data)
+            axios.post('https://easybiciback.herokuapp.com/Image/'+this.state.email, data)
             .then(function (response) {
                 console.log("file uploaded!", data);
             })
