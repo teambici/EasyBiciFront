@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from "react-router-dom";
 import "../LoginHome.css"
 import TextField from '@material-ui/core/TextField';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-    MuiPickersUtilsProvider,
-    KeyboardDatePicker,
-} from '@material-ui/pickers';
+import Typography from '@material-ui/core/Typography';
 import { GoogleComponent } from 'react-google-location';
 import Fab from '@material-ui/core/Fab';
 import RightIcon from '@material-ui/icons/KeyboardArrowRight';
@@ -23,7 +19,7 @@ import { Container } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import axios from 'axios';
 import { Input } from '@material-ui/core';
-
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 const API_KEY = "";
 export class Name extends Component {
 
@@ -154,7 +150,8 @@ export class Name extends Component {
         const divStyle = {
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-between'
+            alignItems: "center"   ,   
+            marginTop:20  
         };
         const useStyles = makeStyles(theme => ({
             fab: {
@@ -188,37 +185,71 @@ export class Name extends Component {
             }}
             />
         }
+        const boton={
+            position:"fixed",
+            right:"5%",
+            bottom:"5%",
+            background: "#81d8d0"
 
-
+        }
+        const content={
+            display:"flex",
+            flexDirection:"column",
+            
+        }
+        const back={          
+            margin:"5%"
+        }
+     
+        const inputs={
+            minWidth: "200px",
+            width: "70vw"
+        }
+        const inputs2={
+            minWidth: "100px",
+            width: "35vw"
+        }
+        const InputGoogle={
+            minWidth: "200px",
+            width: "70vw",
+            marginTop:16
+        }
         return (
-            <div >
-                <h1 align="center">Informacion de registro</h1>
-                <Container>
+            <div>    
+                <div style={content}>
+                    <KeyboardBackspaceIcon style={back} onClick={this.handleBack}/>
+                    <Typography  variant="h5"  >
+                        Your information
+                    </Typography>
+                </div>               
+                <Container >
                     <div>
-                        <form style={divStyle} >
-                        <Container>
-                            <td font-size= "50px" >Imagen de perfil </td>
-                            <Input type="file" id="file" onChange={this.handleInputChange}/>
-                        </Container>
+                        <form style={divStyle} >                            
+                            <div>
                             <TextField
+                                style={inputs2}
                                 type="text"
-                                label="FIRST NAME"
+                                label="First Name"
                                 id="name"
                                 value={this.state.first_name}
                                 onChange={this.handleFirstName}
                                 margin="normal"
                             />
                             <TextField
+                                style={inputs2}
                                 type="text"
-                                label="LAST NAME"
+                                label="Last Name"
                                 id="last_name"
                                 value={this.state.last_name}
                                 onChange={this.handleLastName}
                                 margin="normal"
                             />
+                            </div>
+                            
                             <TextField
+                                style={inputs}
                                 type="email"
-                                label="EMAIL ADDRESS"
+                                label="Email Address"
                                 id="email"
                                 value={this.state.email}
                                 onChange={this.handleEmail}
@@ -226,14 +257,17 @@ export class Name extends Component {
                             />
                            
                             <TextField
+                                style={inputs}
                                 type="text"
-                                label="DOCUMENT"
+                                label="Document"
                                 id="documento"
                                 value={this.state.documento}
                                 onChange={this.handleDocumento}
                                 margin="normal"
                             />
+                            <div>
                             <TextField
+                                style={inputs2}
                                 type="password"
                                 label="Password"
                                 id="password"
@@ -242,22 +276,31 @@ export class Name extends Component {
                                 margin="normal"
                             />
                             <TextField
+                                style={inputs2}
                                 type="password"
-                                label="REPEAT PASSWORD"
+                                label="Repeat "
                                 id="secondPassword"
                                 value={this.state.secondPassword}
                                 onChange={this.handleSecondPassword}
                                 margin="normal"
                             />
-                             <GoogleComponent
+                            </div>
+                            
+                            <div style={InputGoogle}>
+                            <GoogleComponent                               
                                 apiKey={API_KEY}
                                 languaje={"en"}
                                 coordinates={true}
                                 onChange={this.handleLocation}
                             ></GoogleComponent>
+                            </div>
+                            <Container>                                
+                                <Input style={InputGoogle} type="file" id="file" label="Imagen de perfil" onChange={this.handleInputChange}/>
+                            </Container>
+                            <Fab aria-label="add" style={boton} onClick={this.handleNext}>
+                                <RightIcon />
+                            </Fab>
                         </form>
-
-
                         <Dialog
                             open={this.state.open}
                         >
@@ -276,18 +319,11 @@ export class Name extends Component {
                                  </Button>
                             </DialogActions>
                         </Dialog>
-                    </div>
-
-                    <div>
-                        <Box display="flex" justifyContent="center" m={1} p={1}>
-                            <Fab color="primary" aria-label="add" onClick={this.handleBack} className={useStyles.fab}>
-                                <LeftIcon />
-                            </Fab>
-                            <Fab color="primary" aria-label="add" onClick={this.handleNext} className={useStyles.fab1}>
-                                <RightIcon />
-                            </Fab>
-                        </Box>
-                    </div>
+                    </div>                                         
+                            
+                   
+                      
+                   
                 </Container>
 
             </div>

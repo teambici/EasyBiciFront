@@ -1,14 +1,12 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import Fab from '@material-ui/core/Fab';
 import './Login.css'
 import { Redirect } from "react-router-dom";
-import image1 from '../img/logoF.png';
+import image1 from '../img/LogoLogin.JPG';
 import axios from 'axios';
 export class Login extends React.Component{
     checkdata(event) {
@@ -71,52 +69,49 @@ export class Login extends React.Component{
             }}
             />
         }
+        const boton={
+            background:"#81d8d0"
+        }
         return (
-            <React.Fragment className="layout">
-                <CssBaseline />
-                <main className="layout">
-                    
-                    <Paper className="paper">
-                            <img src={image1} width="60%" height="auto" />
-                        
-                        <Typography variant="headline">Login</Typography>
-                        <form className="form">
-                            <FormControl margin="normal" fullWidth>
-                                <InputLabel htmlFor="email">Email Address</InputLabel>
-                                <Input id="email" name="email" autoComplete="email" autoFocus />
-                            </FormControl>
-                            <FormControl margin="normal" fullWidth>
-                                <InputLabel htmlFor="password">Password</InputLabel>
-                                <Input
-                                    name="password"
-                                    type="password"
-                                    id="password"                                    
-                                    autoComplete="current-password"
-                                />
-                            </FormControl>
-                            <Button
-                                type="button"
-                                variant="raised"
-                                color="primary"
-                                className="submit"
-                                onClick={this.checkdata}
-                            >
-                                Sign in
-                            </Button>
-                            <Button
-                                className="ButtonLindo"
-                                type="submit"
-                                variant="raised"
-                                color="primary"
-                                className="submit"
-                                onClick={this.handleCreateAcount}
-                            >
-                               Create Account
-                            </Button>
-                        </form>
-                    </Paper>
-                </main>
-            </React.Fragment>
+            <div className="fondo">
+                <img src={image1} width="60%" />
+                <form className="formulario">
+                    <FormControl className="submit" >
+                        <InputLabel htmlFor="email">Email Address</InputLabel>
+                        <Input id="email" name="email" autoComplete="email" autoFocus />
+                    </FormControl>
+                    <FormControl margin="normal" >
+                        <InputLabel htmlFor="password">Password</InputLabel>
+                        <Input
+                            name="password"
+                            type="password"
+                            id="password"                                    
+                            autoComplete="current-password"
+                            className="submit"
+                        />
+                    </FormControl>
+                    <FormControl margin="normal" className="submit"  > 
+                        <Fab variant="extended" aria-label="like" style={boton} onClick={this.checkdata} >                               
+                            Log in
+                        </Fab>
+                        </FormControl>
+                    <FormControl margin="normal"  >                            
+                        <Button
+                            className="ButtonLindo"
+                            type="submit"
+                            variant="raised"
+                            color="primary"                            
+                            onClick={this.handleCreateAcount}
+                        >
+                            Create Account
+                        </Button>
+                        </FormControl>
+                </form>
+
+            </div>
+
+
+            
         );
     }
 
