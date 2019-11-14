@@ -37,6 +37,7 @@ messaging.requestPermission()
   return messaging.getToken();
 })
 .then(function(token){
+  alert(token);
   localStorage.setItem("noti",token)
 })
 .catch(function(err){
