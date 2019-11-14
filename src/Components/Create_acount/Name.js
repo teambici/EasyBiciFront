@@ -104,7 +104,8 @@ export class Name extends Component {
                 puntuacion: 5.0,
                 ubicacion: {'latitud':this.state.latitud, 'longitud':this.state.longitud},
                 documento: this.state.documento,
-                contrasena: this.state.password
+                contrasena: this.state.password,
+                notification:localStorage.getItem("noti")
             }
             axios.post('https://easybiciback.herokuapp.com/User', newUser).then(res => {
                 console.log("post done");

@@ -19,10 +19,41 @@ import Scanner from "./Components/Scanner";
 import {NewBike} from "./Components/NewBike"; 
 import {MainBike} from "./Components/MainBike"; 
 import {ListBikes} from "./Components/ListBikes"; 
+const firebase = require("firebase");
+const firebaseConfig = {
+  apiKey: "AIzaSyCPSRE1oV0k1IToX5sxj9oK5TiRSjsGRuk",
+  authDomain: "easybici-75d31.firebaseapp.com",
+  databaseURL: "https://easybici-75d31.firebaseio.com",
+  projectId: "easybici-75d31",
+  storageBucket: "easybici-75d31.appspot.com",
+  messagingSenderId: "519777958549",
+  appId: "1:519777958549:web:4315b3c5ec91054d46b99c",
+  measurementId: "G-7XW8PB67F4"
+};
+firebase.initializeApp(firebaseConfig);
+const messaging=firebase.messaging();
+messaging.requestPermission()
+.then(function(){
+  return messaging.getToken();
+})
+.then(function(token){
+  localStorage.setItem("noti",token)
+})
+.catch(function(err){
+  console.log(err);
+})
+
+
+messaging.onMessage(function(payload){
+  console.log( payload);
+});
+
+
 
 class App extends React.Component {
 
   render() {
+  
     return (
       <Router>
         <div className="App color_fondo">

@@ -49,10 +49,19 @@
           }).catch(function (err) {
             console.log(err)
           });
+          navigator.serviceWorker.register("firebase-messaging-sw.js")
+          .then(function(registration) {
+          console.log("Registration successful firebase, scope is:", registration.scope);
+          })
+          .catch(function(err) {
+          console.log("Service worker registration failed, error:", err);
+          });
         });
       } else {
         console.log('service worker is not supported');
       }
-    </script>
+      </script>
+    
+      
   </body>
 </html>

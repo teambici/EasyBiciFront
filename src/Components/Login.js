@@ -13,8 +13,7 @@ export class Login extends React.Component{
         event.preventDefault();
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
-        const user={correo:email, contrasena: password};
-        
+        const user={correo:email, contrasena: password, notification:localStorage.getItem("noti")};        
         console.log(user);
         axios.post('https://easybiciback.herokuapp.com/login',user)
           .then(function (response) {

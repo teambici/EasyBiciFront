@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import {Redirect} from "react-router-dom";
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import bicicleta from '../img/bicicleta.jpg';
 import Fab from '@material-ui/core/Fab';
 import RoomServiceIcon from '@material-ui/icons/RoomService';
 import UpperView from './UpperVIew';
 import axios from 'axios';
 import { Container } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import CardMedia from '@material-ui/core/CardMedia';
 export class Bike extends Component {
     constructor(props) {
         super(props);      
@@ -40,32 +38,63 @@ export class Bike extends Component {
             bottom:"3%",
             left:"50%",
             transform: "translateX(-50%)"
-        }    
+        }   
+        const imagen={
+            width:"80vw",
+            
+        } 
         if (this.state.booking) {
+            const reserva={
+                user:localStorage.getItem("mailLogged"),
+                bici:this.state.bike.id,         
+
+            }
+            console.log(reserva)
+            axios.post(`https://easybiciback.herokuapp.com/Reserva`,reserva)
+            .then(function(){  
+                                                  
+            })
+            .catch(function(){
+                console.log("fallo todo")
+            })  
             return <Redirect to={{
                 pathname: '/reserve'               
             }}
-            />
+            />  
+            
         }              
         return (
             <div>
-                <UpperView title="Bike"></UpperView>
-                    <Container>
-                    <img src={bicicleta}  />                                            
-                            
-                    </Container>
-                    
-                <div style={buttonBooking}>
-                    <Fab
-                        variant="extended"
-                        size="large"
-                        color="secondary"
-                        aria-label="add"
-                        onClick={this.handleBooking}>
-                        <RoomServiceIcon  />
-                        Booking
-                    </Fab>
-                </div>  
+                <UpperView title="Bike"></UpperView>                          
+                <Container>
+                    <img style={imagen} src={"https://easybiciback.herokuapp.com/Image/"+this.state.bike.imagen}  />                         
+                </Container>    
+                <Typography variant="body1" color="textSecondary" component="p">
+                   Owner : {this.state.bike.dueno}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                    Maintenance date : {this.state.bike.fechamante}
+                </Typography>
+                <Typography variant="body1" color="textSecondary" component="p">
+                    Type : {this.state.bike.tipo}
+                </Typography>
+                <Typography variant="body1" color="textSecondary" component="p">
+                    Score :{this.state.bike.puntuacion}
+                </Typography>
+                <Typography variant="body1" color="textSecondary" component="p">
+                   Description : {this.state.bike.descripcion}
+                </Typography>     
+                <Fab
+                    style={buttonBooking}
+                    variant="extended"
+                    size="large"
+                    color="secondary"
+                    aria-label="add"
+                    onClick={this.handleBooking}>
+                    <RoomServiceIcon  />
+                    Booking
+                </Fab>
+                  
             </div>
         )
     }
