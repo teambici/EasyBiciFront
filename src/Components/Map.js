@@ -3,13 +3,12 @@ import { GoogleApiWrapper, Map, Marker, Polyline,InfoWindow } from 'google-maps-
 import Card from '@material-ui/core/Card';
 import { GoogleComponent } from 'react-google-location';
 import logo from "../img/bikeex2.png";
-import parqueadero from "../img/parqueo.png";
 import InfoWindowEx from "./InfoWindowEx";
 import { Redirect } from "react-router-dom";
 import Fab from '@material-ui/core/Fab';
-import NavigationIcon from '@material-ui/icons/Navigation';
-import bicicleta from '../img/bicicleta.jpg';
+import RoomServiceIcon from '@material-ui/icons/RoomService';
 import axios from 'axios';
+
 
 const API_KEY = "";
 class Maps extends Component {
@@ -37,7 +36,7 @@ class Maps extends Component {
         });
       };
     handleOneBike(e){
-        this.setState({goToBike:true})       
+        this.setState({goToBike:true})    
     
     }
 
@@ -48,25 +47,23 @@ class Maps extends Component {
         if (this.state.goToBike) {
             return <Redirect to={{
                 pathname: '/bike',
+                id: this.state.selectBike.id
             }}
             />
         };
         const imagen={
-            width: "inherit",
-            height: "inherit",
+            width: "100px",
+            height: "50px"
         }
         const container={
             width: "100px",
             height: "50px",
         }
         const button={
-          
-           
+            background: "#81d8d0",
+            boxShadow:"none"
         }
-        const buttonBlue={
-            height:"20px",
-           
-        }
+       
        
        
         return (
@@ -93,21 +90,21 @@ class Maps extends Component {
                         marker={this.state.activeMarker}
                         visible={this.state.showingInfoWindow}
                     >
-                        <div>
-                            <div style={container}>
-                                <img src={"https://easybiciback.herokuapp.com/Image/"+this.state.selectBike.imagen} style={imagen} />
-                            </div>
-                            <div style={button}>
-                            <Fab
-                            variant="extended"
-                            size="small"
-                            color="primary"
-                            aria-label="add"
-                            onClick={this.handleOneBike}                           
-                            >
-                            <NavigationIcon  />
-                                Ver
-                            </Fab>
+                        <div>         
+                            
+                            <img src={"https://easybiciback.herokuapp.com/Image/"+this.state.selectBike.imagen} style={imagen} />
+                          
+                            <div>
+                                <Fab
+                                variant="extended"
+                                color="primary"                            
+                                
+                                style={button}
+                                onClick={this.handleOneBike}                           
+                                >
+                                    <RoomServiceIcon  />
+                                     {this.state.selectBike.precio} $
+                                </Fab>
                             </div>            
                         
                         </div>
