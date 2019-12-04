@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import UpperView from './UpperVIew';
+import UpperView from '../UpperVIew';
 import axios from 'axios';
-import { Info } from "./Info";
-import { Redirect} from "react-router-dom";
+import { Info } from "../Info";
+
+
 export class ListBikes extends Component {
     constructor(props) {
         super(props);

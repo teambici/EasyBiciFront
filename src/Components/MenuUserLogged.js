@@ -66,7 +66,11 @@ export default function TemporaryDrawer() {
   const goMap = (site) => event=> {    
     setMap(site);   
   };
-  
+  const avatar={
+    margin: 10,
+    width: 60,
+    height: 60,
+  }
   const name=localStorage.getItem("mailLogged").charAt(0);  
   const toggleDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -81,14 +85,11 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(side, false)} >
       <List  style={styleDrawer} >
         <ListItem button onClick={goProfile(true)} >
-        <CardMedia
-          component="img"
-          image={"https://easybiciback.herokuapp.com/Image/"+localStorage.getItem("mailLogged")}
-        />           
-          {profile &&  <Redirect to={{  pathname: '/Profile' }}/>}     
-        </ListItem>
-      </List>
-      <ListItemText primary={localStorage.getItem('mailLogged')} align="center"></ListItemText>
+          <Avatar style={avatar}  src={"https://easybiciback.herokuapp.com/Image/"+localStorage.getItem("mailLogged")}  align="center" />      
+          <ListItemText primary={localStorage.getItem('mailLogged')} align="center"></ListItemText>      
+          {profile &&  <Redirect to={{  pathname: '/Profile' }}/>}       
+        </ListItem>        
+      </List>    
       <Divider />
       <List style={back}>
         <ListItem button onClick={goMap(true)} >

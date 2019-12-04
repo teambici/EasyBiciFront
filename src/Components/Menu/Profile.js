@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CardProfile from "./CardProfile.js";
+import CardMedia from '@material-ui/core/CardMedia';
 import UpperView from '../UpperVIew';
 export class Profile extends Component {
     constructor(props) {
@@ -7,22 +7,24 @@ export class Profile extends Component {
     }
 
 
-    render() {
-        const divStyle = {
-            display: 'flex',            
-            justifyContent: 'space-around',
-            alignItems:"center"
-        };
+    render() {      
         const barStyles = {
-            //modificar de acuerdo a lo que se defina como color principal
-            background: "#81d8d0"
+          width:"auto",
+          borderRadius:"20px"
         };
         return (
             <article>
                 
                 <div>
-                    <UpperView title="Profile"></UpperView>                    
-                    <CardProfile ></CardProfile> 
+                    <UpperView title="Profile"></UpperView>   
+
+                    <CardMedia 
+                        style={barStyles}   
+                        component="img"                   
+                        image={"https://easybiciback.herokuapp.com/Image/"+localStorage.getItem("mailLogged")}
+                        height="100"
+                        
+                    />
                     
                 </div>               
             </article>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import MenuUserLogged from "./MenuUserLogged.js";
+import MenuUserLogged from "../MenuUserLogged.js";
 export class BikeReserve extends Component {    
     render() {         
         const paper={

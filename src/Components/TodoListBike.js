@@ -4,12 +4,9 @@ import axios from 'axios';
 import {ViñetaCiclas} from './ViñetaCiclas'
 
 export class TodoListBike extends React.Component {
-
-    state = {
+  state = {
       ciclas: []
   }
-
-
   componentDidMount() {
       axios.get(`https://easybiciback.herokuapp.com/Cicla/cos/`+localStorage.getItem("mailLogged"))
         .then(res => {
@@ -17,18 +14,22 @@ export class TodoListBike extends React.Component {
           this.setState({ ciclas });
         })
     }  
-      render() {        
+      render() {
+        const contenerdor={
+          margin:0,
+          padding:0
 
+        }
         const items = this.state.ciclas;
         const listItems = items.map((list,i) =>
-        <li id={i}><ViñetaCiclas
+        <ViñetaCiclas
           res={list}
-          />
-        </li>
+        />
+        
       );
 
         return (  
-            <ul>{listItems}</ul>
+            <ul style={contenerdor} >{listItems}</ul>
         );
     }
 }

@@ -3,10 +3,8 @@ import { Redirect } from "react-router-dom";
 import "../LoginHome.css"
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import { GoogleComponent } from 'react-google-location';
 import Fab from '@material-ui/core/Fab';
 import RightIcon from '@material-ui/icons/KeyboardArrowRight';
-import LeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -16,17 +14,14 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import Terms from "./Terms.js"
 import { Container } from '@material-ui/core';
-import Box from '@material-ui/core/Box';
 import axios from 'axios';
 import { Input } from '@material-ui/core';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 const API_KEY = "";
 export class Name extends Component {
-
     checkdata() {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value
-
         if (email != "" && password != "") {
             localStorage.setItem("isLoggedIn", true);
             localStorage.setItem("mailLogged", email);
@@ -41,16 +36,15 @@ export class Name extends Component {
             this.state = {
                 first_name: this.props.location.state.first_name, last_name: this.props.location.state.last_name,
                 email: '', birthday: new Date('2014-08-18T21:11:54'), password: '', secondPassword: '', next: false,
-                back: false, open: false, Accept: false, Decline: false, tarjeta: '', documento: '',latitud :null, longitud:null,file: null
+                back: false, open: false, Accept: false, Decline: false, tarjeta: '', documento: '',file: null
             }
 
         } else {
             this.state = {
                 first_name: '', last_name: '', email: '', password: '', secondPassword: '', next: false, back: false, open: false, Accept: false, Decline: false,
-                tarjeta: '', documento: '',latitud :null, longitud:null,file: null,
+                tarjeta: '', documento: '',file: null,
             };
         }
-
         this.handleEmail = this.handleEmail.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
         this.handleSecondPassword = this.handleSecondPassword.bind(this);
@@ -61,8 +55,7 @@ export class Name extends Component {
         this.handleAccept = this.handleAccept.bind(this);
         this.handleDecline = this.handleDecline.bind(this);
         this.handleTarjeta = this.handleTarjeta.bind(this);
-        this.handleDocumento = this.handleDocumento.bind(this);
-        this.handleLocation = this.handleLocation.bind(this);
+        this.handleDocumento = this.handleDocumento.bind(this);      
         this.handleInputChange = this.handleInputChange.bind(this);
     }
     handleFirstName(event) {
@@ -85,15 +78,7 @@ export class Name extends Component {
     }
     handleDocumento(event) {
         this.setState({ documento: event.target.value });
-    }
-    handleLocation(e) {
-        console.log(e.coordinates);
-        if (e.coordinates != "") {
-            this.setState({latitud:e.coordinates.lat});
-            this.setState({longitud:e.coordinates.lng})
-        }
-
-    }
+    }   
     handleNext(event) {
         if (this.state.first_name && this.state.last_name && this.state.password && this.state.password == this.state.secondPassword && this.state.file!==null) {
             this.setState({ open: true });
@@ -101,8 +86,7 @@ export class Name extends Component {
                 nombre: this.state.first_name +" "+ this.state.last_name,
                 correo: this.state.email,
                 tarjeta: null,
-                puntuacion: 5.0,
-                ubicacion: {'latitud':this.state.latitud, 'longitud':this.state.longitud},
+                puntuacion: 5.0,               
                 documento: this.state.documento,
                 contrasena: this.state.password,
                 notification:localStorage.getItem("noti")
@@ -153,20 +137,7 @@ export class Name extends Component {
             flexDirection: 'column',
             alignItems: "center"   ,   
             marginTop:20  
-        };
-        const useStyles = makeStyles(theme => ({
-            fab: {
-                position: 'absolute',
-                bottom: theme.spacing(2),
-                left: theme.spacing(-5),
-            },
-            fab1: {
-                position: 'absolute',
-                bottom: theme.spacing(2),
-                right: theme.spacing(5),
-            },
-        }));
-
+        };        
         if (this.state.Accept) {
             return <Redirect to={{
                 pathname: '/Services',
@@ -225,7 +196,13 @@ export class Name extends Component {
                 </div>               
                 <Container >
                     <div>
-                        <form style={divStyle} >                            
+                        <form style={divStyle} > 
+                            <Container style={{marginTop:"15px"}}>       
+                                <Typography variant="h6" color="textSecondary" >
+                                    Profile picture
+                                </Typography>                         
+                                <Input style={InputGoogle} type="file" id="file" label="Imagen de perfil" onChange={this.handleInputChange}/>
+                            </Container>                           
                             <div>
                             <TextField
                                 style={inputs2}
@@ -285,19 +262,9 @@ export class Name extends Component {
                                 onChange={this.handleSecondPassword}
                                 margin="normal"
                             />
-                            </div>
+                            </div>             
                             
-                            <div style={InputGoogle}>
-                            <GoogleComponent                               
-                                apiKey={API_KEY}
-                                languaje={"en"}
-                                coordinates={true}
-                                onChange={this.handleLocation}
-                            ></GoogleComponent>
-                            </div>
-                            <Container>                                
-                                <Input style={InputGoogle} type="file" id="file" label="Imagen de perfil" onChange={this.handleInputChange}/>
-                            </Container>
+                            
                             <Fab aria-label="add" style={boton} onClick={this.handleNext}>
                                 <RightIcon />
                             </Fab>
@@ -320,9 +287,7 @@ export class Name extends Component {
                                  </Button>
                             </DialogActions>
                         </Dialog>
-                    </div>                                         
-                            
-                   
+                    </div>              
                       
                    
                 </Container>

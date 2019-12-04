@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from "react-router-dom";
-import "./LoginHome.css"
+import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -12,7 +12,6 @@ import RightIcon from '@material-ui/icons/KeyboardArrowRight';
 import LeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
 import Camera from 'react-html5-camera-photo';
 import axios from 'axios';
@@ -21,66 +20,51 @@ import { FACING_MODES } from 'react-html5-camera-photo'
 import { Input } from '@material-ui/core';
 import { GoogleComponent } from 'react-google-location';
 import uuid from 'react-uuid';
-
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import { EventEmitter } from 'events';
 const API_KEY = "";
 export class NewBike extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bike_name: '', description: '', type: '', size: '', last_mantein: new Date('2014-08-18T21:11:54')
-            , cost: '', address: '', phone: '', bikeNumber: '', back: false, next: true, image: '', 
-            photo: false,latitud :'', longitud: ''
-        };
-        this.handleBikeName = this.handleBikeName.bind(this);
+            description: '', type: '', last_mantein: new Date('2014-08-18T21:11:54')
+            , cost: '', address: '', bikeNumber: '', back: false, next: true, image: '', 
+            photo: false,latitud :'', longitud: '',colour:'',brand:''
+        }; 
+        this.handleColour= this.handleColour.bind(this)      
+        this.handleBrand= this.handleBrand.bind(this);
         this.handleDesc = this.handleDesc.bind(this);
-        this.handleType = this.handleType.bind(this);
-        this.handlesize = this.handlesize.bind(this);
+        this.handleType = this.handleType.bind(this);     
         this.handlelast = this.handlelast.bind(this);
         this.handlecost = this.handlecost.bind(this);
         this.handleadrress = this.handleadrress.bind(this);
         this.handleNumber = this.handleNumber.bind(this);
-        this.handleBack = this.handleBack.bind(this);
-        this.handlephone = this.handlephone.bind(this);
-        this.onTakePhoto = this.onTakePhoto.bind(this);
-        this.handlecamera = this.handlecamera.bind(this);
+        this.handleBack = this.handleBack.bind(this);          
         this.handleLocation = this.handleLocation.bind(this);
         this.handleMaintain=this.handleMaintain.bind(this);
         this.postcicla=this.postcicla.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
 
-    }
-    handlecamera() {
-        this.setState({ photo: true })
-    }
-    onTakePhoto(event) {
-        alert("entra")
-        this.setState({ image: event });
-        this.setState({ photo: false });
-    }
-    handleLocation(e) {
-        console.log(e.coordinates);
+    }    
+    handleColour(e){
+    
+        this.setState({colour:e.target.value})
+    } 
+    handleLocation(e) {       
         if (e.coordinates != "") {
             this.setState({ latitud: e.coordinates.lat });
             this.setState({ longitud: e.coordinates.lng })
         }
-
-    }
-    handleBikeName(event) {
-        this.setState({ bike_name: event.target.value });
-    };
+    }    
     handleDesc(event) {
         this.setState({ description: event.target.value });
     }
     handleType(event) {
         this.setState({ type: event.target.value });
     }
-    handleMaintain(event){
-        console.log(event);
+    handleMaintain(event){        
         this.setState({last_mantein:event});
-    }
-    handlesize(event) {
-        this.setState({ size: event.target.value });
-    }
+    }    
     handlelast(event) {
         this.setState({ last_mantein: event });
     };
@@ -99,6 +83,9 @@ export class NewBike extends Component {
     handleBack(event) {
         event.preventDefault();
         this.setState({ back: true });
+    }
+    handleBrand(event){
+        this.setState({ brand: event.target.value });
     }
     handleInputChange(e) {        
         this.setState({
@@ -126,8 +113,12 @@ export class NewBike extends Component {
             dueno:localStorage.getItem("mailLogged"),
             tipo: this.state.type,
             fechamante:this.state.last_mantein,
-            
+            precio:this.state.cost,
+            color:this.state.colour,
+            marca:this.state.brand,
+            ubicacion:{'latitud':this.state.latitud, 'longitud':this.state.longitud}            
         }
+        console.log(cicla)
         axios.post("https://easybiciback.herokuapp.com/Cicla",cicla).then(window.location.replace("/services"));
 
        
@@ -139,20 +130,39 @@ export class NewBike extends Component {
         const divStyle = {
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-between'
+            alignItems: "center"   ,   
+            marginTop:20  
         };
-        const useStyles = makeStyles(theme => ({
-            fab: {
-                position: 'absolute',
-                bottom: theme.spacing(2),
-                left: theme.spacing(-5),
-            },
-            fab1: {
-                position: 'absolute',
-                bottom: theme.spacing(2),
-                right: theme.spacing(5),
-            },
-        }));
+        const back={          
+            margin:"5%"
+        }
+        const content={
+            display:"flex",
+            flexDirection:"column",            
+        }
+        const inputs={
+            minWidth: "200px",
+            width: "70vw"
+        }
+        const inputs2={
+            minWidth: "100px",
+            width: "35vw"
+        }
+        const boton={
+            position:"fixed",
+            right:"5%",
+            bottom:"5%",
+            background: "#81d8d0"
+
+        }
+
+        const InputGoogle={
+            minWidth: "200px",
+            width: "70vw",
+            marginTop:16
+        }
+        
+       
         if (this.state.back) {
             return <Redirect to={{
                 pathname: '/',
@@ -173,23 +183,45 @@ export class NewBike extends Component {
         } else {
             return (
                 <div >
-                    <h1 align="center">New Bike</h1>
+                    <div style={content}>
+                        <KeyboardBackspaceIcon style={back} onClick={this.handleBack}/>
+                        <Typography  variant="h5"  >
+                           New Bike
+                        </Typography>
+                    </div>   
                     <Container>
                         <div >
                             <form style={divStyle} >
-                                <TextField
-                                    id="BikeType"
-                                    select
-                                    label="Bike Type"
-                                    onChange={this.handleType}
-                                    value={this.state.type}
-                                >
-                                    {estates.map(option => (
-                                        <MenuItem key={option.type} value={option.type}>
-                                            {option.type}
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
+                                <Container style={{marginTop:"15px"}}>       
+                                    <Typography variant="h6" color="textSecondary" >
+                                        Bike picture
+                                    </Typography>                         
+                                    <Input style={InputGoogle} type="file" id="file" label="Imagen de perfil" onChange={this.handleInputChange}/>
+                                </Container> 
+                                <div>
+                                    <TextField
+                                        id="BikeType"
+                                        select
+                                        label="Bike Type"
+                                        onChange={this.handleType}
+                                        value={this.state.type}
+                                        style={inputs2}
+                                                                            >
+                                        {estates.map(option => (
+                                            <MenuItem key={option.type} value={option.type}>
+                                                {option.type}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField>
+                                    <TextField
+                                        type="text"
+                                        label="Colour"
+                                        id="Colour"   
+                                        value={this.state.colour}                                                         
+                                        onChange={this.handleColour}
+                                        style={inputs2}
+                                    />
+                                </div>                                
                                 <TextField
                                     type="text"
                                     label="Description"
@@ -197,6 +229,7 @@ export class NewBike extends Component {
                                     value={this.state.description}
                                     onChange={this.handleDesc}
                                     margin="normal"
+                                    style={inputs}
                                 />
                                 <TextField
                                     type="text"
@@ -205,13 +238,34 @@ export class NewBike extends Component {
                                     value={this.state.bikeNumber}
                                     onChange={this.handleNumber}
                                     margin="normal"
+                                    style={inputs}
                                 />
+                                <div>
+                                    <TextField
+                                        type="number"
+                                        label="Price per hour"
+                                        id="Price"                                                                      
+                                        margin="normal"
+                                        value={this.state.cost}
+                                        onChange={this.handlecost}
+                                        style={inputs2}
+                                    />
+                                    <TextField
+                                        type="text"
+                                        label="Brand"
+                                        id="Brand"                                                                   
+                                        margin="normal"
+                                        value= {this.state.brand}
+                                        onChange ={this.handleBrand}
+                                        style={inputs2}
+                                    />                                
+                                </div>                                
                                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
-
                                     <KeyboardDatePicker
+                                        style={inputs}
                                         margin="normal"
                                         id="mantain"
-                                        label="Ultima fecha de mantenimiento"
+                                        label="Last maintenance"
                                         format="MM/dd/yyyy"
                                         value={this.state.last_mantein}
                                         selected={this.state.last_mantein}
@@ -221,29 +275,22 @@ export class NewBike extends Component {
                                         }}
                                     />
                                 </MuiPickersUtilsProvider>
-
+                                <div  style={InputGoogle}>
                                 <GoogleComponent
+                                   
                                     apiKey={API_KEY}
                                     languaje={"en"}
                                     label="ADRRESS"
                                     coordinates={true}
                                     onChange={this.handleLocation}
                                 ></GoogleComponent>
-                                <IconButton
-                                    color="primary"
-                                    aria-label="selectpicture"
-                                    component="span"
-                                >
-                                    <td align="center" font-size= "50px" >Imagen de Cicla : {"   ".replace(/ /g, "\u00a0")}  </td>
-                                    <Input type="file" id="file" onChange={this.handleInputChange}/>
-                                </IconButton>
+
+                                </div>
+                                                 
                             </form>
                         </div>
-                        <div>
-                            <Fab color="primary" aria-label="add" className={useStyles.fab} onClick={this.handleBack}>
-                                <LeftIcon />
-                            </Fab>
-                            <Fab color="primary" aria-label="add" className={useStyles.fab1} onClick={this.postcicla}>
+                        <div>                           
+                            <Fab color="primary" aria-label="add" style={boton}  onClick={this.postcicla}>
                                 <RightIcon />
                             </Fab>
                         </div>

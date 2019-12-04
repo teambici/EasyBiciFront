@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import {Redirect} from "react-router-dom";
 import Fab from '@material-ui/core/Fab';
 import RoomServiceIcon from '@material-ui/icons/RoomService';
-import UpperView from './UpperVIew';
+import UpperView from '../UpperVIew';
 import axios from 'axios';
 import { Container } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import CardMedia from '@material-ui/core/CardMedia';
 export class Bike extends Component {
     constructor(props) {
         super(props);      

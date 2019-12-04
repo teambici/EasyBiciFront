@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { Redirect } from "react-router-dom";
-import UpperView from './UpperVIew';
-import TodoListBike from './TodoListBike';
+import UpperView from '../UpperVIew';
+import TodoListBike from '../TodoListBike';
 
 export class MainBike extends Component {
     constructor(props) {
@@ -14,11 +14,7 @@ export class MainBike extends Component {
     handleAdd(event) {
         this.setState({ add: true })
     }
-    render() {
-        const barStyles = {
-            //modificar de acuerdo a lo que se defina como color principal
-            background: "#81d8d0"
-        };
+    render() {      
         const Buttonstyle = {
             position: "fixed",
             bottom: "30px",

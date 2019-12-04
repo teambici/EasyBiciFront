@@ -26,6 +26,11 @@ export class UpperView extends Component {
       display:"flex",
       justifyContent: "space-between"
     }
+    const title={
+      position: "absolute",
+      left: "50%",
+      transform: "translateX(-50%)"
+    }
     if (this.state.notification) {
       return <Redirect to={{
           pathname: '/notifications'               
@@ -36,7 +41,7 @@ export class UpperView extends Component {
         <AppBar position="static" style={barStyles}>
           <Toolbar style={contenerdor}>
             <MenuUserLogged />
-            <Typography variant="h6"  >
+            <Typography variant="h6" style={title}  >
                 {this.props.title}
             </Typography>
             {this.props.inNoti ?  <div></div>:<NotificationsActiveIcon  onClick={this.handleNotification}/>}
