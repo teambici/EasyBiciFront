@@ -7,6 +7,7 @@ import axios from 'axios';
 import { Container } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
+import Divider from '@material-ui/core/Divider';
 export class Bike extends Component {
     constructor(props) {
         super(props);      
@@ -20,12 +21,11 @@ export class Bike extends Component {
             const BikesList = res.data;
             this.setState({bike: BikesList});  
             axios.get("https://easybiciback.herokuapp.com/User/" + this.state.bike.dueno)
-            .then(due => {
-                console.log(due.data)
+            .then(due => {                
                 this.setState({dueno: due.data});  
+                console.log (this.state.bike.fechamante);       
              })                                    
-        })   
-        
+        })        
           
     }
     handleBooking(event) {        
@@ -34,12 +34,18 @@ export class Bike extends Component {
     
   
     render() {          
+       
+       
+              
         const buttonBooking={
             position:"fixed",
             bottom:"3%",
             left:"50%",
             transform: "translateX(-50%)"
         }   
+        const divider={
+            marginTop:15 
+        }
 
         const contenedor={            
             padding:0            
@@ -53,16 +59,16 @@ export class Bike extends Component {
         } 
         const perfil={
             display:"flex",
-            justifyContent:"space-between"         
+            justifyContent:"space-between",      
+            alignItems:"center"   
         } 
+       
          
         if (this.state.booking) {
             const reserva={
                 user:localStorage.getItem("mailLogged"),
-                bici:this.state.bike.id,         
-
-            }
-            
+                bici:this.state.bike.id,  
+            }            
             axios.post(`https://easybiciback.herokuapp.com/Reserva`,reserva)
             .then(function(){  
                                                   
@@ -92,6 +98,10 @@ export class Bike extends Component {
                         </Typography>
                         <Avatar src={"https://easybiciback.herokuapp.com/Image/"+this.state.dueno.correo}  align="right" />
                     </div> 
+                    <Divider style={divider} />
+                    <Typography variant="h5" align="left" >
+                        {this.state.bike.fechamante} 
+                    </Typography>
                 </div>
                             
                
