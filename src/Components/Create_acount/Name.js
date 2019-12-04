@@ -265,7 +265,7 @@ export class Name extends Component {
                             </div>             
                             
                             
-                            <Fab aria-label="add" style={boton} onClick={this.handleNext}>
+                            <Fab aria-label="add" color="primary" style={boton} onClick={this.handleNext}>
                                 <RightIcon />
                             </Fab>
                         </form>

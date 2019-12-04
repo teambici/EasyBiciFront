@@ -18,7 +18,8 @@ export class MainBike extends Component {
         const Buttonstyle = {
             position: "fixed",
             bottom: "30px",
-            right: "30px"
+            right: "30px",            
+            background: "#81d8d0",
         };
         if (this.state.add) {
             return <Redirect to={{

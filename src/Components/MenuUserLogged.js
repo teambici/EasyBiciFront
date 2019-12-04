@@ -1,6 +1,5 @@
 import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -14,7 +13,7 @@ import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MapIcon from '@material-ui/icons/Map';
 import { Redirect } from "react-router-dom";
-import CardMedia from '@material-ui/core/CardMedia';
+
 
 function logOut() {
   localStorage.removeItem("isLoggedIn");

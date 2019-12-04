@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import UpperView from '../UpperVIew';
 import axios from 'axios';
-import { Info } from "../Info";
+import {ViñetaCiclas} from '../ViñetaCiclas'
 
 
 
@@ -21,16 +21,16 @@ export class ListBikes extends Component {
       }
     render() { 
         const listItems = this.state.Bikes.map((list,i) =>
-            list.disponible&& <Info key={i} title={list.tipo} parrafo={list.descripcion} id={list.id} Image={list.imagen}/> 
+            list.disponible&& <ViñetaCiclas key={i} res={list} /> 
          );   
-         const format={
-            paddingInlineEnd: 40
-         }    
+        const lista={
+            padding:0
+        }
 
         return (
             <article>               
                 <UpperView title="Bikes"></UpperView> 
-                <ul style={format}>{listItems}</ul>              
+                <ul style={lista}>{listItems}</ul>              
             </article>
         )
     }

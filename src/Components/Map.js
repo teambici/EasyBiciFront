@@ -55,13 +55,14 @@ class Maps extends Component {
             width: "100px",
             height: "50px"
         }
-        const container={
-            width: "100px",
-            height: "50px",
-        }
+        
         const button={
             background: "#81d8d0",
-            boxShadow:"none"
+            boxShadow:"none",    
+            height:"33px"       
+        }
+        const room={
+            marginRight:5
         }
        
        
@@ -97,13 +98,13 @@ class Maps extends Component {
                             <div>
                                 <Fab
                                 variant="extended"
-                                color="primary"                            
+                                color="primary" 
                                 
                                 style={button}
-                                onClick={this.handleOneBike}                           
+                                onClick={this.handleOneBike}                          
                                 >
-                                    <RoomServiceIcon  />
-                                     {this.state.selectBike.precio} $
+                                    <RoomServiceIcon style={room} />
+                                    ${this.state.selectBike.precio}/h
                                 </Fab>
                             </div>            
                         
