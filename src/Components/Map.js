@@ -9,24 +9,31 @@ import { Redirect } from "react-router-dom";
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import bicicleta from '../img/bicicleta.jpg';
+import axios from 'axios';
 
-const barStyles={}
 const API_KEY = "";
 class Maps extends Component {
     constructor(props) {
-        super(props)
-        
-        this.state = { place: { lat: 4.6897100, lng: -74.0817500 }, zoom: 13 ,selectBike:null, showingInfoWindow: false,
+        super(props)        
+        this.state = { place: { lat: 4.6897100, lng: -74.0817500 }, zoom: 13 ,selectBike:null, showingInfoWindow: false,Bikes:[],selectBike:"",
         activeMarker: {}, selectedPlace: {}, goToBike:false };
         this.handleLocation = this.handleLocation.bind(this);
         this.handleBike = this.handleBike.bind(this);
         this.handleOneBike = this.handleOneBike.bind(this);
     }
-    onMarkerClick = (props, marker, e) => {
+    componentDidMount() {
+        axios.get(`https://easybiciback.herokuapp.com/Cicla`)
+          .then(res => {
+            const BikesList = res.data;
+            this.setState({Bikes: BikesList});           
+        })         
+    }
+    onMarkerClick = (props, marker, e) => {        
         this.setState({
-          selectedPlace: props.place_,
-          activeMarker: marker,
-          showingInfoWindow: true
+            selectBike:marker.obj,
+            selectedPlace: props.place_,
+            activeMarker: marker,
+            showingInfoWindow: true
         });
       };
     handleOneBike(e){
@@ -35,6 +42,9 @@ class Maps extends Component {
     }
 
     render() {
+        const listItems = this.state.Bikes.map((list,i) =>
+            list.disponible && <Marker key={i} position={{lat: list.ubicacion.latitud, lng: list.ubicacion.longitud}} obj={list}  icon={logo} onClick={this.onMarkerClick}/> 
+        ); 
         if (this.state.goToBike) {
             return <Redirect to={{
                 pathname: '/bike',
@@ -66,9 +76,8 @@ class Maps extends Component {
                         apiKey={API_KEY}
                         languaje={"en"}
                         coordinates={true}                        
-                    >aaaaaaa</GoogleComponent>
-                </Card>
-               
+                    ></GoogleComponent>
+                </Card>               
                 <Map 
                     google={this.props.google}
                     zoom={this.state.zoom}
@@ -76,29 +85,17 @@ class Maps extends Component {
                     options={{ streetViewControl: false }} 
                     fullscreenControl={false}
                     scaleControl={false}
-                    zoomControl={false}                >
+                    zoomControl={false}>                    
+                    {listItems}
 
-                    <Marker position={{ lat: 4.784, lng: -74.0417500 }} icon={logo} />
-                    <Marker position={{ lat: 4.785, lng: -74.0917500 }} icon={logo}   onClick={this.onMarkerClick}/>
-                    <Marker position={{ lat: 4.6897100, lng: -74.0817500 }} icon={logo}  onClick={this.onMarkerClick}/>
-                    <Marker position={{ lat: 4.753254, lng: -74.050950 }} icon={logo} onClick={this.onMarkerClick} />
-                    <Marker position={{ lat: 4.751907, lng: -74.049233 }} icon={logo} onClick={this.onMarkerClick} />
-                    <Marker position={{ lat: 4.752228, lng: -74.053621 }} icon={logo}  onClick={this.onMarkerClick}/>
-                    <Marker position={{ lat: 4.751202, lng: -74.052859 }} icon={logo} onClick={this.onMarkerClick}/>
-                    <Marker position={{ lat: 4.751042, lng: -74.047881 }} icon={logo}  onClick={this.onMarkerClick}/>
-                    <Marker position={{ lat: 4.752496, lng: -74.048192 }} icon={logo}  onClick={this.onMarkerClick}/>
 
-                    <Marker position={{ lat: 4.755831, lng: -74.052339 }} icon={parqueadero} />
-                    <Marker position={{ lat: 4.754775, lng: -74.054610 }} icon={parqueadero} />
-                    <Marker position={{ lat: 4.754989, lng: -74.065285 }} icon={parqueadero} />
-                    <Marker position={{ lat: 4.755278, lng: -74.079919 }} icon={parqueadero} />
                     <InfoWindowEx
                         marker={this.state.activeMarker}
                         visible={this.state.showingInfoWindow}
                     >
                         <div>
                             <div style={container}>
-                                <img src={bicicleta} style={imagen} />
+                                <img src={"https://easybiciback.herokuapp.com/Image/"+this.state.selectBike.imagen} style={imagen} />
                             </div>
                             <div style={button}>
                             <Fab

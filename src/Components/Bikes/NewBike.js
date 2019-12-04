@@ -21,7 +21,6 @@ import { Input } from '@material-ui/core';
 import { GoogleComponent } from 'react-google-location';
 import uuid from 'react-uuid';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
-import { EventEmitter } from 'events';
 const API_KEY = "";
 export class NewBike extends Component {
     constructor(props) {
