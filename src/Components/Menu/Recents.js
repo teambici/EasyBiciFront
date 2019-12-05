@@ -1,33 +1,39 @@
-import React, { Component } from 'react';
-import { Info } from "../Info";
-import { Link } from "react-router-dom";
+import React from 'react';
 import UpperView from '../UpperVIew';
-export class Recents extends Component {
+import axios from 'axios';
+import {Notification} from '../Notification'
+export class Recents extends React.Component {
     constructor(props) {
         super(props)
+        this.state={bike:""}    
     }
+
+    componentDidMount() {
+        axios.get(`https://easybiciback.herokuapp.com/Cicla/cos/`+localStorage.getItem("mailLogged"))
+          .then(res => {
+            
+            const BikesList = res.data;
+            console.log(BikesList)
+            this.setState({bike: BikesList}); 
+          })
+          console.log(this.state.bike)
+      }  
     
 
     render() {
-        const divStyle = {
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center", 
-            
-        };
-      
-        const barStyles = {
-            //modificar de acuerdo a lo que se defina como color principal
-            background: "#81d8d0"
-        };
+        const contenerdor={
+            margin:0,
+            padding:0
+  
+        }
+        const items = this.state.reservas;
+        
+         
+        
         return (
             <article > 
-                <UpperView title="Your Trips"></UpperView>                                        
-                <div style={divStyle}>                
-                    <Info title="Bicicleta de ruta" parrafo="03/04/2019  Valor:20000 " component={Link} to="/Services" />     
-                    <Info title="Bicicleta de ruta" parrafo="20/10/2019  Valor:5000" component={Link} to="/Services" />   
-                                                
-                </div>                
+                <UpperView title="Your Trips"></UpperView>                                       
+                <ul style={contenerdor} >{this.state.reservas}</ul>  
             </article>
         )
     }

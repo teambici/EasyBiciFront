@@ -5,6 +5,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import { Container } from '@material-ui/core';
 import StarIcon from '@material-ui/icons/Star';
 import { Redirect} from "react-router-dom";
+
 export class ViñetaCiclas extends React.Component {
 
     constructor(props) {

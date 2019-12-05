@@ -23,6 +23,7 @@ export class TodoListBike extends React.Component {
         const items = this.state.ciclas;
         const listItems = items.map((list,i) =>
         <ViñetaCiclas
+          key={i}
           res={list}
         />
         

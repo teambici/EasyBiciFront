@@ -7,6 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import { Redirect } from "react-router-dom";
+import NotificationsIcon from '@material-ui/icons/Notifications';
 export class UpperView extends Component { 
   constructor(props) {
     super(props);
@@ -18,8 +19,8 @@ export class UpperView extends Component {
   }
 
   render() {
-    const barStyles = {
-      //modificar de acuerdo a lo que se defina como color principal
+   
+    const barStyles = {      
       background: "#81d8d0"    
     };
     const contenerdor={
@@ -44,7 +45,7 @@ export class UpperView extends Component {
             <Typography variant="h6" style={title}  >
                 {this.props.title}
             </Typography>
-            {this.props.inNoti ?  <div></div>:<NotificationsActiveIcon  onClick={this.handleNotification}/>}
+            {this.props.inNoti ?  <div></div>:<NotificationsActiveIcon onClick={this.handleNotification}></NotificationsActiveIcon>}
           </Toolbar>
         </AppBar>      
     )

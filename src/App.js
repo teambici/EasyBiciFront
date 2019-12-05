@@ -19,7 +19,8 @@ import {MainBike} from "./Components/Bikes/MainBike";
 import {ListBikes} from "./Components/Bikes/ListBikes"; 
 
 import {isIOS} from 'react-device-detect';
-localStorage.setItem("isIos",isIOS)
+localStorage.setItem("isIos",isIOS);
+localStorage.setItem("notifications",0);
 if(!JSON.parse(localStorage.getItem("isIos"))){  
   const firebase = require("firebase");
   const firebaseConfig = {
@@ -45,8 +46,9 @@ if(!JSON.parse(localStorage.getItem("isIos"))){
     console.log(err);
   })
   messaging.onMessage(function(payload){
-    
-  });
+    localStorage.setItem("notifications",JSON.parse(localStorage.getItem("notifications"))+1)
+    window.navigator.vibrate(200)
+  });  
 }
 
 
