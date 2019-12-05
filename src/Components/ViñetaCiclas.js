@@ -38,6 +38,7 @@ export class ViñetaCiclas extends React.Component {
             color:"#EABE3F"
         }
         if (this.state.next) {
+            localStorage.setItem("lastBike",this.props.res.id)
             return <Redirect to={{
                 pathname: '/bike',
                 id: this.props.res.id

@@ -105,7 +105,8 @@ export class NewBike extends Component {
             alert("failed file upload", error);
     }); 
         const cicla={
-            descripcion:this.state.description+"   bikecode = "+this.state.bikeNumber,
+            descripcion:this.state.description,
+            bikeCode:this.state.bikeNumber,
             puntuacion:5.0,
             imagen:fotcicla,
             disponible:true,
