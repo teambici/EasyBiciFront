@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import UpperView from './UpperVIew';
 import "./Confirmed.css";
 import Divider from '@material-ui/core/Divider';
 import Face from '@material-ui/icons/Face';
@@ -6,10 +7,10 @@ import { Redirect } from "react-router-dom";
 class hostService extends Component {
     constructor(props) {
         super(props);
-        this.state = { qrButton: false, notification: false  ,scan: false};
+        this.state = { qrButton: false, notification: false, scan: false };
         this.handleqrButton = this.handleqrButton.bind(this);
         this.handlenotification = this.handlenotification.bind(this);
-        this.handlescan=this.handlescan.bind(this);
+        this.handlescan = this.handlescan.bind(this);
     }
     handleqrButton(event) {
         this.setState({ qrButton: true })
@@ -39,6 +40,30 @@ class hostService extends Component {
         }
     }
     render() {
+        const color = {
+            color: "#EABE3F"
+        }
+        const barStyles = {
+            display: 'block',
+            marginTop: '20px',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            width: 120,
+            height: 120,
+
+        };
+        const tipoStyle = {
+            marginTop: '35px'
+        }
+        const inputs = {
+            minWidth: "200px",
+            width: "70vw"
+        };
+        const inputs2 = {
+            minWidth: "200px",
+            width: "70vw",
+            marginTop: "50px"
+        };
         if (this.state.notification) {
             return <Redirect to={{
                 pathname: '/notifications'
@@ -52,28 +77,29 @@ class hostService extends Component {
             />
         }
         return (
-
-            <div className=" Confirmed">
-                <h1 className="titulo">SERVICE</h1>
-                <div />
-                <Divider />
-                <div>
-                    <Face className="usuario"></Face>
-                    <h6 className="usuario">usuario parker</h6>
-                </div>
-                < div>
-                    <button className="boton_confer">CONTACT</button>
-                </div>
-                <Divider />
-                <div className="divC"> </div>
-                <Divider />
-                <div className="divC">
-                    <h6>precio</h6>
-                </div>
-                <div className="divC"> </div>
-                <Divider />
-                <div className="divC">
-                    {this.whatView()}
+            <div>
+                <UpperView title="Service"></UpperView>
+                <div className=" Confirmed">
+                    <div />
+                    <Divider />
+                    <div>
+                        <Face className="usuario"></Face>
+                        <h6 className="usuario">usuario parker</h6>
+                    </div>
+                    < div>
+                        <button className="boton_confer">CONTACT</button>
+                    </div>
+                    <Divider />
+                    <div className="divC"> </div>
+                    <Divider />
+                    <div className="divC">
+                        <h6>precio</h6>
+                    </div>
+                    <div className="divC"> </div>
+                    <Divider />
+                    <div className="divC">
+                        {this.whatView()}
+                    </div>
                 </div>
             </div>
 
