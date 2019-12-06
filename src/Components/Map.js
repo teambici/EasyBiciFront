@@ -80,7 +80,7 @@ class Maps extends Component {
                 <Map 
                     google={this.props.google}
                     zoom={this.state.zoom}
-                    initialCenter={{ lat: this.state.place.lat, lng: this.state.place.lng }}                 
+                    center={{ lat: this.state.place.lat, lng: this.state.place.lng }}                 
                     options={{ streetViewControl: false }} 
                     fullscreenControl={false}
                     scaleControl={false}
