@@ -121,7 +121,7 @@ export class Bike extends Component {
                     </Typography>
                     <div  style={perfil}>
                         <Typography variant="subtitle1" gutterBottom  align="left" >
-                            Owner: {this.state.dueno.nombre}
+                            Owner: {this.state.dueno.nombre}    
                         </Typography>
                         <Avatar src={"https://easybiciback.herokuapp.com/Image/"+this.state.dueno.correo}  align="right" />
                     </div> 

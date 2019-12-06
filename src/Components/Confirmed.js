@@ -1,17 +1,36 @@
 import React, { Component } from 'react';
 import UpperView from './UpperVIew';
 import "../Components/Confirmed.css";
-import Divider from '@material-ui/core/Divider';
-import Face from '@material-ui/icons/Face';
 import { Redirect } from "react-router-dom";
-
+import Typography from '@material-ui/core/Typography';
+import axios from 'axios';
+import Avatar from '@material-ui/core/Avatar';
+import CancelIcon from '@material-ui/icons/Cancel';
+import ContactsIcon from '@material-ui/icons/Contacts';
+import Fab from '@material-ui/core/Fab';
+import CropFreeIcon from '@material-ui/icons/CropFree';
 
 class Confirmed extends Component {
     constructor(props) {
         super(props);
-        this.state = { qrButton: false, map: false };
+        this.state = { qrButton: false, map: false, Check: false, booking: false, bike: {}, dueno: {} };
         this.handleqrButton = this.handleqrButton.bind(this);
         this.handlemap = this.handlemap.bind(this);
+        this.handleBooking = this.handleBooking.bind(this);
+    }
+    componentDidMount() {
+        axios.get(`https://easybiciback.herokuapp.com/Cicla/` + this.props.location.id)
+            .then(res => {
+                const BikesList = res.data;
+                this.setState({ bike: BikesList });
+                axios.get("https://easybiciback.herokuapp.com/User/" + this.state.bike.dueno)
+                    .then(due => {
+                        this.setState({ dueno: due.data });
+                    })
+            })
+    }
+    handleBooking(event) {
+        this.setState({ booking: true });
     }
     handleqrButton(event) {
         this.setState({ qrButton: true })
@@ -60,25 +79,36 @@ class Confirmed extends Component {
             <div>
                 <UpperView title="Your Bike"></UpperView>
                 <div className=" Confirmed">
+                    <Avatar style={barStyles} src={"https://easybiciback.herokuapp.com/Image/" + localStorage.getItem("mailLogged")} />
                     <div />
-                    <Divider />
                     <div>
-                        <Face className="usuario"></Face>
-                        <h6 className="usuario">usuario parker</h6>
+                        <Typography variant="h5" style={tipoStyle} gutterBottom  >
+                            {"Usuario: " + this.state.dueno.nombre}
+                        </Typography>
                     </div>
                     < div>
-                        <button className="boton_confer">CONTACT</button>
-                        <button className="boton_confer" onClick={this.handlemap}>CANCEL</button>
+                        <div>
+                            <Fab variant="extended">
+                                <ContactsIcon className="delete" />
+                                Contact
+                            </Fab>
+                            <Fab variant="extended"
+                                onClick={this.handlemap}>
+                                <CancelIcon className="cance" />
+                                Cancel
+                            </Fab>
+                        </div>
                     </div>
-                    <Divider />
-                    <div className="divC"> </div>
-                    <Divider />
                     <div className="divC">
-                        <h6>precio</h6>
+                        <h6>Precio</h6>
                     </div>
-                    <div className="divM"> </div>
-                    <Divider />
-                    <button className="boton_qr" onClick={this.handleqrButton}>GET YOUR QR CODE</button>
+                    <div className="divM">
+                        <Fab variant="extended"
+                            onClick={this.handleqrButton}>
+                            <CropFreeIcon className="qr" />
+                            GET YOUR QR CODE
+                        </Fab>
+                    </div>
                 </div>
             </div>
 

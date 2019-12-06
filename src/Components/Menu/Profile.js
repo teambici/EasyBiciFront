@@ -9,7 +9,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import FingerprintIcon from '@material-ui/icons/Fingerprint';
- import StarIcon from '@material-ui/icons/Star' ;
+import StarIcon from '@material-ui/icons/Star' ;
 
 export class Profile extends Component {
     constructor(props) {

@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import UpperView from './UpperVIew';
+import Avatar from '@material-ui/core/Avatar';
 import "./Confirmed.css";
 import Divider from '@material-ui/core/Divider';
-import Face from '@material-ui/icons/Face';
 import { Redirect } from "react-router-dom";
+import Typography from '@material-ui/core/Typography';
+import axios from 'axios';
+import Button from '@material-ui/core/Button';
+import ContactsIcon from '@material-ui/icons/Contacts';
+import Fab from '@material-ui/core/Fab';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+
+
 class hostService extends Component {
     constructor(props) {
         super(props);
-        this.state = { qrButton: false, notification: false, scan: false };
+        this.state = { qrButton: false, notification: false, scan: false, dueno: {} };
         this.handleqrButton = this.handleqrButton.bind(this);
         this.handlenotification = this.handlenotification.bind(this);
         this.handlescan = this.handlescan.bind(this);
@@ -21,7 +29,6 @@ class hostService extends Component {
     handlescan(event) {
         this.setState({ scan: true })
     }
-
     whatView() {
         if (this.state.qrButton) {
             return (
@@ -38,6 +45,17 @@ class hostService extends Component {
 
             )
         }
+    }
+    componentDidMount() {
+        axios.get(`https://easybiciback.herokuapp.com/Cicla/` + this.props.location.id)
+            .then(res => {
+                const BikesList = res.data;
+                this.setState({ bike: BikesList });
+                axios.get("https://easybiciback.herokuapp.com/User/" + this.state.bike.dueno)
+                    .then(due => {
+                        this.setState({ dueno: due.data });
+                    })
+            })
     }
     render() {
         const color = {
@@ -76,27 +94,30 @@ class hostService extends Component {
             }}
             />
         }
+
         return (
+
             <div>
                 <UpperView title="Service"></UpperView>
                 <div className=" Confirmed">
+                    <Avatar style={barStyles} src={"https://easybiciback.herokuapp.com/Image/" + localStorage.getItem("mailLogged")} />
                     <div />
-                    <Divider />
                     <div>
-                        <Face className="usuario"></Face>
-                        <h6 className="usuario">usuario parker</h6>
+                        <Typography variant="h5" style={tipoStyle} gutterBottom  >
+                            {"Usuario: " + this.state.nombre}
+                        </Typography>
                     </div>
                     < div>
-                        <button className="boton_confer">CONTACT</button>
+                        <div>
+                            <Fab variant="extended">
+                                <ContactsIcon className="delete" />
+                                Contact
+                            </Fab>
+                        </div>
                     </div>
-                    <Divider />
-                    <div className="divC"> </div>
-                    <Divider />
                     <div className="divC">
-                        <h6>precio</h6>
+                        <h6>Precio</h6>
                     </div>
-                    <div className="divC"> </div>
-                    <Divider />
                     <div className="divC">
                         {this.whatView()}
                     </div>
