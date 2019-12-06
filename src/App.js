@@ -19,8 +19,7 @@ import {MainBike} from "./Components/Bikes/MainBike";
 import {ListBikes} from "./Components/Bikes/ListBikes"; 
 
 import {isIOS} from 'react-device-detect';
-localStorage.setItem("isIos",isIOS);
-localStorage.setItem("notifications",0);
+
 if(!JSON.parse(localStorage.getItem("isIos"))){  
   const firebase = require("firebase");
   const firebaseConfig = {
@@ -34,21 +33,27 @@ if(!JSON.parse(localStorage.getItem("isIos"))){
     measurementId: "G-7XW8PB67F4"
   };
   firebase.initializeApp(firebaseConfig);
-  const messaging=firebase.messaging();
-  messaging.requestPermission()
-  .then(function(){
-    return messaging.getToken();
-  })
-  .then(function(token){    
-    localStorage.setItem("noti",token)
-  })
-  .catch(function(err){
-    console.log(err);
-  })
-  messaging.onMessage(function(payload){
-    localStorage.setItem("notifications",JSON.parse(localStorage.getItem("notifications"))+1)
-    window.navigator.vibrate(200)
-  });  
+  try{
+    const messaging=firebase.messaging();
+    messaging.requestPermission()
+    .then(function(){
+      return messaging.getToken();
+    })
+    .then(function(token){    
+      localStorage.setItem("noti",token)
+    })
+    .catch(function(err){
+      console.log(err);
+    })
+    messaging.onMessage(function(payload){
+      localStorage.setItem("notifications",JSON.parse(localStorage.getItem("notifications"))+1)
+      window.navigator.vibrate(200)
+    });
+
+  }catch(err){
+    console.log("no notis")
+  }
+    
 }
 
 
