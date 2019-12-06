@@ -10,7 +10,7 @@ import RoomServiceIcon from '@material-ui/icons/RoomService';
 import axios from 'axios';
 
 
-const API_KEY = "AIzaSyBhtU1mcWPQzqOXFXwXwVnfTN8UhEQ-t5I";
+const API_KEY = "AIzaSyCSz1uwjha71zNa4K5aSXqJigxM96jUZ4Y";
 class Maps extends Component {
     constructor(props) {
         super(props)        
