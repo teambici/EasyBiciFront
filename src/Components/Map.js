@@ -73,7 +73,8 @@ class Maps extends Component {
                     <GoogleComponent                                          
                         apiKey={API_KEY}
                         languaje={"en"}
-                        coordinates={true}                        
+                        coordinates={true}
+                        onChange={this.handleLocation}
                     ></GoogleComponent>
                 </Card>               
                 <Map 
