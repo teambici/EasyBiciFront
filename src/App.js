@@ -21,19 +21,21 @@ import {ListBikes} from "./Components/Bikes/ListBikes";
 import {isIOS} from 'react-device-detect';
 
 if(!JSON.parse(localStorage.getItem("isIos"))){  
-  const firebase = require("firebase");
-  const firebaseConfig = {
-    apiKey: "AIzaSyCPSRE1oV0k1IToX5sxj9oK5TiRSjsGRuk",
-    authDomain: "easybici-75d31.firebaseapp.com",
-    databaseURL: "https://easybici-75d31.firebaseio.com",
-    projectId: "easybici-75d31",
-    storageBucket: "easybici-75d31.appspot.com",
-    messagingSenderId: "519777958549",
-    appId: "1:519777958549:web:4315b3c5ec91054d46b99c",
-    measurementId: "G-7XW8PB67F4"
-  };
-  firebase.initializeApp(firebaseConfig);
+ 
+  
   try{
+    const firebase = require("firebase");
+    const firebaseConfig = {
+      apiKey: "AIzaSyCPSRE1oV0k1IToX5sxj9oK5TiRSjsGRuk",
+      authDomain: "easybici-75d31.firebaseapp.com",
+      databaseURL: "https://easybici-75d31.firebaseio.com",
+      projectId: "easybici-75d31",
+      storageBucket: "easybici-75d31.appspot.com",
+      messagingSenderId: "519777958549",
+      appId: "1:519777958549:web:4315b3c5ec91054d46b99c",
+      measurementId: "G-7XW8PB67F4"
+    };
+    firebase.initializeApp(firebaseConfig);
     const messaging=firebase.messaging();
     messaging.requestPermission()
     .then(function(){
